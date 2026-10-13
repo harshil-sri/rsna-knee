@@ -1,12 +1,16 @@
 import os
 import argparse
-import requests
-import pandas as pd
+import json
+import random
+import time
 import shutil
 from concurrent.futures import ThreadPoolExecutor
+import requests
+import pandas as pd
 from tqdm import tqdm
-import time
 from kaggle.api.kaggle_api_extended import KaggleApi, ApiDownloadDataFileRequest
+
+PAGE_LIST_SLEEP = 1.2
 
 def get_auth_token():
     with open(os.path.expanduser('~/.kaggle/access_token'), 'r') as f:
@@ -17,24 +21,63 @@ def get_kaggle_api():
     api.authenticate()
     return api
 
+def call_with_429_backoff(func, *args, max_attempts=8, initial_backoff=5.0, max_backoff=60.0, **kwargs):
+    backoff = initial_backoff
+    for attempt in range(max_attempts):
+        try:
+            return func(*args, **kwargs)
+        except requests.exceptions.HTTPError as e:
+            status_code = getattr(e.response, "status_code", None) if e.response is not None else None
+            if status_code == 429:
+                if attempt == max_attempts - 1:
+                    raise
+                retry_after = None
+                if e.response is not None:
+                    header_val = e.response.headers.get("Retry-After")
+                    if header_val:
+                        try:
+                            retry_after = float(header_val)
+                        except (ValueError, TypeError):
+                            pass
+                sleep_time = retry_after if retry_after is not None else backoff
+                sleep_time += random.uniform(0.0, 1.0)
+                time.sleep(sleep_time)
+                backoff = min(backoff * 2, max_backoff)
+            else:
+                raise
+        except Exception as e:
+            err_str = str(e)
+            if "429" in err_str:
+                if attempt == max_attempts - 1:
+                    raise
+                sleep_time = backoff + random.uniform(0.0, 1.0)
+                time.sleep(sleep_time)
+                backoff = min(backoff * 2, max_backoff)
+            else:
+                raise
+
 def get_signed_download_url(api, comp, file_name):
-    with api.build_kaggle_client() as client:
-        req = ApiDownloadDataFileRequest()
-        req.competition_name = comp
-        req.file_name = file_name
-        resp = client.competitions.competition_api_client.download_data_file(req)
-        return resp.request.url
+    def _fetch():
+        with api.build_kaggle_client() as client:
+            req = ApiDownloadDataFileRequest()
+            req.competition_name = comp
+            req.file_name = file_name
+            resp = client.competitions.competition_api_client.download_data_file(req)
+            return resp.request.url
+    return call_with_429_backoff(_fetch)
 
 def download_file_stream(signed_url, target_path, expected_size=None, session=None):
     os.makedirs(os.path.dirname(target_path), exist_ok=True)
     part_path = target_path + ".part"
     sess = session or requests
-    with sess.get(signed_url, stream=True, timeout=60) as resp:
-        resp.raise_for_status()
-        with open(part_path, 'wb') as f:
-            for chunk in resp.iter_content(chunk_size=1024 * 1024):
-                if chunk:
-                    f.write(chunk)
+    def _stream():
+        with sess.get(signed_url, stream=True, timeout=60) as resp:
+            resp.raise_for_status()
+            with open(part_path, 'wb') as f:
+                for chunk in resp.iter_content(chunk_size=1024 * 1024):
+                    if chunk:
+                        f.write(chunk)
+    call_with_429_backoff(_stream)
     if expected_size is not None:
         actual_size = os.path.getsize(part_path)
         if actual_size != expected_size:
@@ -58,56 +101,132 @@ def download_csvs(data_dir, dry_run=False):
         return
     api = get_kaggle_api()
     for file_name in csv_files:
-        api.competition_download_file(comp, file_name, path=data_dir, force=True, quiet=False)
+        call_with_429_backoff(api.competition_download_file, comp, file_name, path=data_dir, force=True, quiet=False)
 
 def index_files(data_dir, dry_run=False):
     comp = "rsna-knee-abnormality-detection"
     url = f"https://www.kaggle.com/api/v1/competitions/data/list/{comp}?pageSize=500"
     headers = {"Authorization": f"Bearer {get_auth_token()}"}
     session = requests.Session()
+    
+    jsonl_path = os.path.join(data_dir, "file_index.jsonl")
+    progress_path = os.path.join(data_dir, "index.progress.json")
+    
     next_page_token = None
-    files = []
+    pages_done = 0
+    dry_run_files = []
+
+    if not dry_run and os.path.exists(progress_path):
+        with open(progress_path, "r") as pf:
+            prog = json.load(pf)
+            if isinstance(prog, dict):
+                next_page_token = prog.get("next_page_token")
+                pages_done = prog.get("pages_done", 0)
+
+    total_files_count = 0
+    if not dry_run and os.path.exists(jsonl_path):
+        with open(jsonl_path, "r") as jf:
+            for _ in jf:
+                total_files_count += 1
+
+    def fetch_page(token):
+        params = {"pageToken": token} if token else {}
+        resp = session.get(url, headers=headers, params=params)
+        resp.raise_for_status()
+        return resp.json()
+
     while True:
-        params = {"pageToken": next_page_token} if next_page_token else {}
-        response = session.get(url, headers=headers, params=params)
-        response.raise_for_status()
-        data = response.json()
+        data = call_with_429_backoff(fetch_page, next_page_token)
         page_files = data.get("files", [])
-        files.extend(page_files)
         next_page_token = data.get("nextPageToken")
-        if dry_run and len(files) >= 1000:
-            break
+        pages_done += 1
+
+        if dry_run:
+            dry_run_files.extend(page_files)
+            token_tail = (next_page_token[-10:] if next_page_token else "none")
+            if pages_done % 100 == 0:
+                print(f"page {pages_done}, files {len(dry_run_files)}, token tail {token_tail}")
+            if len(dry_run_files) >= 1000 or not next_page_token:
+                break
+            time.sleep(PAGE_LIST_SLEEP)
+            continue
+
+        with open(jsonl_path, "a") as jf:
+            for item in page_files:
+                name = item.get("name") or item.get("nameNullable", "")
+                size = item.get("totalBytes", 0)
+                jf.write(json.dumps({"path": name, "size_bytes": size}) + "\n")
+                total_files_count += 1
+
+        with open(progress_path, "w") as pf:
+            json.dump({"next_page_token": next_page_token, "pages_done": pages_done}, pf)
+
+        token_tail = (next_page_token[-10:] if next_page_token else "none")
+        if pages_done % 100 == 0:
+            print(f"page {pages_done}, files {total_files_count}, token tail {token_tail}")
+
         if not next_page_token:
             break
-    rows = []
-    for item in files:
-        name = item.get("name") or item.get("nameNullable", "")
-        size = item.get("totalBytes", 0)
-        parts = name.split("/")
-        if len(parts) >= 4 and parts[0] in ("train_series", "test_series"):
-            study_uid = parts[1]
-            series_uid = parts[2]
-            sop_uid = parts[3].rsplit(".", 1)[0]
-        else:
-            study_uid = None
-            series_uid = None
-            sop_uid = None
-        rows.append({
-            "path": name,
-            "size_bytes": size,
-            "study_uid": study_uid,
-            "series_uid": series_uid,
-            "sop_uid": sop_uid
-        })
-    df = pd.DataFrame(rows)
+        time.sleep(PAGE_LIST_SLEEP)
+
     if dry_run:
+        rows = []
+        for item in dry_run_files:
+            name = item.get("name") or item.get("nameNullable", "")
+            size = item.get("totalBytes", 0)
+            parts = name.split("/")
+            if len(parts) >= 4 and parts[0] in ("train_series", "test_series"):
+                study_uid = parts[1]
+                series_uid = parts[2]
+                sop_uid = parts[3].rsplit(".", 1)[0]
+            else:
+                study_uid = None
+                series_uid = None
+                sop_uid = None
+            rows.append({
+                "path": name,
+                "size_bytes": size,
+                "study_uid": study_uid,
+                "series_uid": series_uid,
+                "sop_uid": sop_uid
+            })
+        df = pd.DataFrame(rows)
         print(f"Dry run: Fetched {len(df)} files. First 5 rows:")
         print(df.head())
         print(f"Last 5 rows:")
         print(df.tail())
-    else:
-        df.to_parquet(os.path.join(data_dir, "file_index.parquet"), index=False)
-        print(f"Saved {len(df)} files to {os.path.join(data_dir, 'file_index.parquet')}")
+        return
+
+    rows = []
+    with open(jsonl_path, "r") as jf:
+        for line in jf:
+            if not line.strip():
+                continue
+            entry = json.loads(line)
+            name = entry["path"]
+            size = entry["size_bytes"]
+            parts = name.split("/")
+            if len(parts) >= 4 and parts[0] in ("train_series", "test_series"):
+                study_uid = parts[1]
+                series_uid = parts[2]
+                sop_uid = parts[3].rsplit(".", 1)[0]
+            else:
+                study_uid = None
+                series_uid = None
+                sop_uid = None
+            rows.append({
+                "path": name,
+                "size_bytes": size,
+                "study_uid": study_uid,
+                "series_uid": series_uid,
+                "sop_uid": sop_uid
+            })
+
+    df = pd.DataFrame(rows)
+    df.to_parquet(os.path.join(data_dir, "file_index.parquet"), index=False)
+    if os.path.exists(progress_path):
+        os.remove(progress_path)
+    print(f"Saved {len(df)} files to {os.path.join(data_dir, 'file_index.parquet')}")
 
 def select_subset(data_dir, budget_gb, dry_run=False):
     train_series_path = os.path.join(data_dir, "train_series.csv")
@@ -184,17 +303,12 @@ def download_subset(data_dir, dry_run=False, workers=12):
         dest = os.path.join(data_dir, path)
         if os.path.exists(dest) and os.path.getsize(dest) == size_bytes:
             return
-        last_error = None
-        for attempt in range(3):
-            try:
-                signed_url = get_signed_download_url(api, comp, path)
-                download_file_stream(signed_url, dest, expected_size=size_bytes)
-                return
-            except Exception as e:
-                last_error = e
-                time.sleep(2 ** attempt)
-        with open(failures_file, 'a') as f:
-            f.write(f"{path},{last_error}\n")
+        try:
+            signed_url = get_signed_download_url(api, comp, path)
+            download_file_stream(signed_url, dest, expected_size=size_bytes)
+        except Exception as e:
+            with open(failures_file, 'a') as f:
+                f.write(f"{path},{e}\n")
 
     with ThreadPoolExecutor(max_workers=workers) as executor:
         list(tqdm(executor.map(download_item, manifest.itertuples()), total=len(manifest)))

@@ -62,7 +62,7 @@ class RSNADataset(Dataset):
                     return float(ds.ImagePositionPatient[2])
             except Exception:
                 pass
-            return str(p.name)
+            return float("inf")
 
         return sorted(dcm_files, key=sort_key)
 

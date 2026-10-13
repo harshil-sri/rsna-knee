@@ -20,7 +20,7 @@ def infer_fn(
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     ckpt_file = Path(ckpt_path)
     checkpoint = torch.load(ckpt_file, map_location=device)
-    label_cols = checkpoint.get("label_cols", [f"Condition_{i}" for i in range(12)])
+    label_cols = checkpoint["label_cols"]
 
     model = RSNAViTMIL(
         model_name="vit_small_patch14_dinov2.lvd142m",
