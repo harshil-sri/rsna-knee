@@ -432,3 +432,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - How to regen weak labels: `python3 tools/weak_labels.py` (writes `data/train_weak.csv`; validation table vs gold-58 prints at end).
 - **Submission pipeline ready**: `python3 tools/make_submission.py` (--ckpt best_v2.pt default) → submission.csv. Verified end-to-end. CAVEAT: the 3 public test studies have NO images on disk (0/15 series exist; no UID overlap with train — real test is hidden). Until real test images appear, predictions use all-zero dummy windows (identical ~0.5s-ish probs). Pipeline auto-handles real test data when present.
 - **Weak labeler v2 (committed)**: parser-vs-gold MACRO **0.7651** (+0.056 vs v1; Effusion .53→.79, PF OA +.10, Synovitis +.09, LatOA +.08). Output `data/train_weak_v2.csv` (not overwritten v1). v4 candidate: retrain on v2 labels.
+
+## Update 21:00 — Night plan (user asleep, autonomous)
+- **PARTIAL DATASET CONFIRMED (user was right)**: file_index.jsonl = 819,640 files; only 95,495 on disk (~12%). 1,861/4,407 train studies (42%) have NO images on disk — v2/v3 trained those studies on all-zero windows with real soft labels (batch poisoning; likely a key reason scores stuck ~0.55).
+- **Night download running** (tmux dl4 → /home/harshil/rsna-ext/data, 360,327 files / 284.4 GB for the missing studies, ~13 it/s ≈ 7.5h, ETA ~03:45; resumable; signed-URL expiry caveat). Root disk has 687GB free. Morning: merge via move+symlink into data/train_series.
+- **v3 (4 epochs)** finishing ~22:10 with infer+score. Expectation: epoch-2 val AUC dipped (0.512) vs v2 epoch-2 (0.552) due to slower cosine anneal over 4 epochs; epochs 3-4 climbing (0.529 @ ep3).
+- **Overfit sanity test queued** (user directive #2: small tests before long runs) — tools/overfit_test.py written, RUN AFTER v3 frees the GPU (~22:15). If it fails to overfit 16 real studies → pipeline bug hunt before any more long runs.
+- **Next lever after download**: v4 = retrain on ALL studies with real images + weak-labeler-v2 labels (MACRO .7651). Also consider: only-download-enough + two-stage.
