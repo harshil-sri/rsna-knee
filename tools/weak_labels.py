@@ -1,3 +1,4 @@
+import argparse
 import re
 from collections import defaultdict
 import numpy as np
@@ -24,7 +25,8 @@ LATERAL_RE = re.compile(
 
 PF_RE = re.compile(
     r'patellofemoral|\bpf\b|femoro-patell|femoropatell|patellofémoral|patellofemorale|patellaire|rétropatellaire|retropatellar'
-    r'|patellar|trochle|troclea|rótula|patel|patellofemoralni|femoropatelarni|\bfp\b|patelofemoral|пател|трохле|трохлея|patellofemoralt',
+    r'|patellar|trochle|troclea|rótula|rotulian|patel|patellofemoralni|femoropatelarni|\bfp\b|patelofemoral|пател|трохле|трохлея|patellofemoralt'
+    r'|επιγονατιδ|τροχιλ|πετραντιληπιακ',
     re.I
 )
 
@@ -35,7 +37,7 @@ MENISCUS_KW = re.compile(
 
 MENISCUS_PATHOLOGY = re.compile(
     r'tear|torn|ruptur|rupture|extrusion|extru|horizontal|vertical|complex|komplex|bucket[- ]?handle|kova sap|radial|radijaln|radiale'
-    r'|ekstrud|скъсван|разрыв|scheur|desgarro|riss|flap'
+    r'|ekstrud|скъсван|разрыв|scheur|desgarro|riss|flap|amputación'
     r'|grade\s*3|grad\s*3|stupnj?\s*3|степен\s*3'
     r'|grade\s*iii|grad\s*iii|stupnj?\s*iii|степен\s*iii'
     r'|grade\s*2b|grad\s*2b|stupnj?\s*2b|степен\s*2b'
@@ -44,7 +46,8 @@ MENISCUS_PATHOLOGY = re.compile(
 )
 
 MENISCUS_NEG = re.compile(
-    r'no\s+(?:evidence|sign|definite|obvious)?\s*(?:of)?\s*(?:tear|rupture|lesion)'
+    r'no\s+(?:evidence|sign|definite|obvious)?\s*(?:of\s+)?(?:medial\s+|lateral\s+)?(?:menisc\w+\s+)?(?:tear|rupture|lesion)'
+    r'|no\s+(?:medial|lateral)?\s*menisc\w*\s+tear'
     r'|without\s+(?:evidence|sign)?\s*(?:of)?\s*(?:tear|rupture)'
     r'|not\s+torn|intact'
     r'|sin\s+(?:signos|criterios|evidencia)?\s*(?:de)?\s*rotura|sin\s+desgarro'
@@ -53,18 +56,18 @@ MENISCUS_NEG = re.compile(
     r'|geen\s+(?:aanwijzingen|tekenen|scheur)|zonder\s+scheur'
     r'|senza\s+(?:segni|evidenza)?\s*di\s*rottura|sem\s+(?:sinais|evidência)?\s*de\s*rotura'
     r'|yırtık\s+(?:saptanmadı|izlenmedi|yoktur|yok)|yoktur'
-    r'|bez\s+(?:znakova|evidencije)?\s*rupture|nema\s+(?:znakova)?\s*rupture|uredan|uredna|uredno'
+    r'|bez\s+(?:znakova|evidencije)?\s*(?:degeneracije\s+ili\s+)?rupture|nema\s+(?:znakova)?\s*rupture|uredan|uredna|uredno'
     r'|χωρίς\s+(?:ρήξη|σημεία\s+ρήξης)|δεν\s+παρατηρείται\s+ρήξη'
     r'|б\.о\.|без\s+(?:данни\s+за)?\s*(?:руптура|разрив)|няма\s+(?:данни\s+за)?\s*(?:руптура|разрив)|не\s+се\s+вижда\s+руптура'
     r'|normaldir|normal\b|normale\b|normalen\b'
-    r'|без\s+особености|без\s+патологи|sin\s+alteraciones',
+    r'|без\s+особености|без\s+патологи|sin\s+alteraciones|without\s+surfacing\s+tear|no\s+tear',
     re.I
 )
 
 ACL_KW = re.compile(
     r'\bacl\b|\blca\b|\bvkb\b|voorste kruisband|vorderes kreuzband|ligamento cruzado anterior|ligament croisé antérieur'
     r'|legamento crociato anteriore|ön çapraz|предн\w+ кръст\w+ връзка|предн\w+ крестообразн\w+ связка|prednji križni|prednjeg križnog'
-    r'|πρόσθι\w+ χιαστ\w+|前交叉韧带|前十字靭帯',
+    r'|πρόσθι\w+ χιαστ\w+|πρόσθιου\s+χιαστού|前交叉韧带|前十字靭帯',
     re.I
 )
 ACL_TEAR = re.compile(
@@ -92,55 +95,94 @@ MCL_NEG = re.compile(
     re.I
 )
 
-OA_KW = re.compile(
-    r'osteoarthr|arthros|artros|gonarthros|gonartros|chondropath|chondromalac|hondromalac|kraakbeenlijden|condropat|condromalacia'
-    r'|cartilage\s+loss|chondral\s+(?:defect|lesion|injury|damage)|cartilage\s+(?:defect|thinning)|dégradation\s+cartilagineuse'
-    r'|изтъняване\s+на\s+хрущял|остеоартрит|denudacija\s+hrskavic|hrskavic\w*\s+(?:reduciran|oštećen|defekt)|femorotibial|tibiofemoral',
+TRICOMPARTMENTAL_RE = re.compile(
+    r'tricompartment|tri-compartment|all\s+three\s+compartments|all\s+3\s+compartments|trigompartmental|pan-compartment',
     re.I
 )
+
+OA_KW = re.compile(
+    r'osteoarthr|arthros|artros|gonarthros|gonartros|goanrtrot|chondropath|chondromalac|hondromalac|kraakbeenlijden|condropat|condromalacia'
+    r'|cartilage\s+loss|chondral\s+(?:defect|lesion|injury|damage|thinning|fissur)|cartilage\s+(?:defect|thinning|loss|heterogeneity|fissur)|dégradation\s+cartilagineuse'
+    r'|изтъняване\s+на\s+хрущял|остеоартрит|denudacija\s+hrskavic|hrskavic\w*\s+(?:reduciran|oštećen|defekt|erozij)|femorotibial|tibiofemoral'
+    r'|οστεοαρθρίτιδ|οστεοαρθριτικ|αρθρικό\w*\s+χόνδρ\w*|εξάλειψη\s+του\s+αρθρικού\s+χόνδρου|διάβρωση\s+του\s+αρθρικού\s+χόνδρου|λέπτυνση\s+και\s+ανωμαλία'
+    r'|artrotsk|kıkırdak\s+(?:kaybı|defekt|erozyon)|úlcera\w*\s+condral\w*|chondrosis|osteophyte|osteofit|остеофит|chondral\w*|kraakbeenverlies'
+    r'|eklem\s+aralığı\s+(?:belirgin\s+)?daral|fissuring|reduciran\w*\s+zglobn\w*\s+prostor',
+    re.I
+)
+
 OA_NEG = re.compile(
-    r'no\s+focal\s+chondrosis|no\s+chondral|cartilage.*(?:is\s+)?normal|cartilages\s+normal|sin\s+alteraciones|intact|intakt|uredan|б\.о\.|няма',
+    r'no\s+(?:focal\s+)?chondrosis|no\s+chondral|cartilage.*(?:is\s+)?normal|cartilages\s+normal|sin\s+alteraciones|intact|intakt|uredan|б\.о\.|няма'
+    r'|χωρίς\s+(?:αλλοιώσεις|βλάβη|οστεοαρθρίτιδα)|δεν\s+παρατηρούνται\s+(?:αξιόλογα\s+ευρήματα|αλλοιώσεις)'
+    r'|preserved\s+(?:medial\s+and\s+lateral\s+)?(?:femorotibial\s+)?(?:articular\s+)?cartilage'
+    r'|normaal\s+voorkomen\s+kraakbeen|cartilage.*appears\s+congruent\s+without\s+chondral\s+lesion'
+    r'|cartilage\s+appears\s+intact',
     re.I
 )
 
 EFFUSION_KW = re.compile(
-    r'effusion|épanchement|versamento|derrame|erguss|gelenkerguss|articular\s+fluid|joint\s+fluid|fluid|vocht|sıvı|mayii|izljev|излив'
-    r'|синовиална\s+течност|синовиальная\s+жидкость|выпот|накопление\s+жидкости|关节积液|関節液|überschüssige\s+flüssigkeit',
-    re.I
-)
-EFFUSION_NEG = re.compile(
-    r'no\s+(?:joint\s+)?effusion|no\s+(?:significant\s+)?fluid|without\s+effusion|pas\s+d\'épanchement|sin\s+derrame|kein\s*(?:gelenk)?erguss|geen\s+vocht'
-    r'|sıvı\s+artışı\s+yok|sıvı\s+miktarı\s+normal|bez\s+izljeva|nema\s+izljeva|няма\s+излив|без\s+излив|б\.о\.',
+    r'effusion|épanchement|versamento|derrame|erguss|gelenkerguss|articular\s+fluid|joint\s+fluid|\bfluid\b|vocht|sıvı|mayii|izljev|излив'
+    r'|синовиална\s+течност|синовиальная\s+жидкость|выпот|накопление\s+жидкости|关节积液|関節液|überschüssige\s+flüssigkeit'
+    r'|συλλογή|υγρού|υγρό|υδράρθρωση|hydrops|efüzyon|artmış\s+efüzyon|izliv',
     re.I
 )
 
-SYNOVITIS_KW = re.compile(
-    r'synovit|sinovit|synovial\s+thickening|proliferat\w*\s+sinovij|hipertrofi\w*\s+sinovij|синовит|синовиална\s+хипертрофия|滑膜炎|synovialitis',
+EFFUSION_NEG = re.compile(
+    r'no\s+(?:significant|trace|definite|gross|large|moderate|focal|joint|articular)?\s*(?:amount\s+of\s+)?(?:joint\s+|knee\s+)?effusion'
+    r'|no\s+(?:significant|abnormal|excessive)?\s*(?:articular\s+|joint\s+)?fluid'
+    r'|without\s+(?:joint\s+|knee\s+)?(?:effusion|fluid)'
+    r'|pas\s+d\'épanchement|sin\s+(?:signos\s+de\s+)?derrame|kein\s*(?:e)?\s*(?:relevanter\s+|gelenk)?erguss|geen\s+(?:hydrops|vocht)'
+    r'|sıvı\s+artışı\s+yok|sıvı\s+miktarı\s+normal|efüzyon\s+saptanmadı|efüzyon\s+izlenmedi|efüzyon\s+yok'
+    r'|bez\s+(?:zglobnog\s+|slobodnog\s+)?izljeva|nema\s+izljeva|няма\s+излив|без\s+излив|б\.о\.'
+    r'|χωρίς\s+(?:παρουσία\s+)?(?:συλλογής|υγρού)|δεν\s+(?:παρατηρείται|διαπιστώνεται)\s+(?:συλλογή|υγρό)'
+    r'|senza\s+(?:significativo\s+)?versamento|sem\s+derrame',
     re.I
 )
+
+EFFUSION_MODERATE_OR_HIGH = re.compile(
+    r'moderate|large|gross|marked|abundant|massive|prominent|tens\w+|opsežan|значим|σημαντικ|ικανή|yaygın|artmış\s+efüzyon|ausgeprägt',
+    re.I
+)
+
+EFFUSION_MILD_OR_SMALL = re.compile(
+    r'mild|small|minimal|trace|slight|some\s+amount|leve|discreto|discreta|gering|spuren|pequeño|pequeña|mínim|μικρ|ήπι|blag|manj|малк|минимал|hafif|kısm',
+    re.I
+)
+
+SYNOVITIS_DIRECT = re.compile(
+    r'synovit|sinovit|synovial\s+(?:thickening|hypertrophy|tissue|pannus|proliferation)|proliferat\w*\s+sinovij|hipertrofi\w*\s+sinovij|синовит|синовиална\s+хипертрофия|滑膜炎|synovialitis'
+    r'|υμενίτιδ|υμενίτις|υμενικ\w*\s+πάχυνση|πάχυνση\s+του\s+υµένα|reizsynovialitis|verdikkingen\s+van\s+van\s+het\s+synovium',
+    re.I
+)
+
+SYNOVITIS_INDIRECT = re.compile(
+    r'bursitis|burzitis|ορογονοθυλακίτιδ|suprapatellar\s+bursa|suprapatellar\s+recess|suprapatellaire\s+recessus|suprapatelarno|suprapatellar\w*\s+(?:bursa|plica)',
+    re.I
+)
+
 SYNOVITIS_NEG = re.compile(
-    r'no\s+synovitis|sin\s+sinovitis|keine\s+synovitis|sans\s+synovite|bez\s+sinovitisa|няма\s+синовит',
+    r'no\s+synovitis|sin\s+sinovitis|keine\s+synovitis|sans\s+synovite|bez\s+sinovitisa|няма\s+синовит|χωρίς\s+υμενίτιδα',
     re.I
 )
 
 BAKER_KW = re.compile(
     r'baker|popliteal\s+cyst|kyste\s+poplité|quiste\s+poplíteo|cista\s+poplite|popliteakyste|poplitealzyste|киста\s+на\s+бейкер|бекерова\s+киста|киста\s+бейкера'
-    r'|bakerova\s+cista|bakerova\s+kista|贝克囊肿',
+    r'|bakerova\s+cista|bakerova\s+kista|κύστη\s+baker|συνοβιακή\s+κύστη|贝克囊肿',
     re.I
 )
 BAKER_NEG = re.compile(
-    r'no\s+baker|no\s+popliteal\s+cyst|sin\s+quiste|keine\s+baker|geen\s+baker|geen\s+poplitea|sans\s+kyste|bez\s+poplitealne\s+ciste|bez\s+baker|nema\s+baker|няма\s+бекерова',
+    r'no\s+baker|no\s+popliteal\s+cyst|sin\s+quiste|keine\s+baker|geen\s+baker|geen\s+poplitea|sans\s+kyste|bez\s+poplitealne\s+ciste|bez\s+baker|nema\s+baker|няма\s+бекерова'
+    r'|χωρίς\s+κύστη|δεν\s+παρατηρείται\s+κύστη',
     re.I
 )
 
 CONTUSION_KW = re.compile(
-    r'contusion|bruise|bone\s+bruise|edema\s+óseo|koštani\s+edem|kemik\s+iliği\s+ödem|костно[- ]мозъчен\s+едем|костномозговой\s+отек|botoedeem|knochenödem'
-    r'|marrow\s+edema|bone\s+marrow\s+edema|trabecular\s+microfracture|ост\w+ контузия|trabekul\w+ edem|挫伤|骨挫傷',
+    r'contusion|bruise|bone\s+bruise|edema\s+óseo|koštani\s+edem|kemik\s+iliği\s+ödem|костно[- ]мозъчен\s+едем|костномозговой\s+отеκ|botoedeem|knochenödem'
+    r'|marrow\s+edema|bone\s+marrow\s+edema|trabecular\s+microfracture|ост\w+ контузия|trabekul\w+ edem|οστεομυελικό\s+οίδημα|οστικό\s+μώλωπα|οστικό\s+οίδημα|挫伤|骨挫傷',
     re.I
 )
 CONTUSION_NEG = re.compile(
     r'no\s+(?:significant\s+)?bone\s+(?:marrow\s+)?(?:edema|contusion|bruise)|kein\s*(?:e)?\s*bone\s*bruise|kein\s*knochenödem|sin\s+(?:edema|alteraciones\s+en\s+médula)|bez\s+koštanog\s+edema'
-    r'|kemik\s+iliği\s+ödemi\s+saptanmadı|няма\s+костно-мозъчен|б\.о\.',
+    r'|kemik\s+iliği\s+ödemi\s+saptanmadı|няма\s+костно-мозъчен|б\.о\.|χωρίς\s+οστικό\s+οίδημα|χωρίς\s+οστεομυελικό\s+οίδημα',
     re.I
 )
 
@@ -186,6 +228,11 @@ def parse_report(report):
     med_oa = 0.0
     lat_oa = 0.0
     pf_oa = 0.0
+    if TRICOMPARTMENTAL_RE.search(report):
+        med_oa = max(med_oa, 0.9)
+        lat_oa = max(lat_oa, 0.9)
+        pf_oa = max(pf_oa, 0.9)
+
     for s in sents:
         if OA_KW.search(s):
             if OA_NEG.search(s):
@@ -194,14 +241,14 @@ def parse_report(report):
             has_l = bool(LATERAL_RE.search(s))
             has_pf = bool(PF_RE.search(s))
             if has_pf:
-                pf_oa = 1.0
+                pf_oa = max(pf_oa, 1.0)
             if has_m and not has_l:
-                med_oa = 1.0
+                med_oa = max(med_oa, 1.0)
             elif has_l and not has_m:
-                lat_oa = 1.0
+                lat_oa = max(lat_oa, 1.0)
             elif has_m and has_l:
-                med_oa = 1.0
-                lat_oa = 1.0
+                med_oa = max(med_oa, 1.0)
+                lat_oa = max(lat_oa, 1.0)
             elif not has_pf:
                 med_oa = max(med_oa, 0.5)
                 lat_oa = max(lat_oa, 0.5)
@@ -221,17 +268,27 @@ def parse_report(report):
                 labels['MCL'] = 1.0
                 break
 
+    eff_val = 0.0
     for s in sents:
         if EFFUSION_KW.search(s):
-            if not EFFUSION_NEG.search(s):
-                labels['Effusion'] = 1.0
-                break
+            if EFFUSION_NEG.search(s):
+                continue
+            if EFFUSION_MODERATE_OR_HIGH.search(s):
+                eff_val = max(eff_val, 1.0)
+            elif EFFUSION_MILD_OR_SMALL.search(s):
+                eff_val = max(eff_val, 0.6)
+            else:
+                eff_val = max(eff_val, 0.8)
+    labels['Effusion'] = eff_val
 
+    syn_val = 0.0
     for s in sents:
-        if SYNOVITIS_KW.search(s):
+        if SYNOVITIS_DIRECT.search(s):
             if not SYNOVITIS_NEG.search(s):
-                labels['Synovitis'] = 1.0
-                break
+                syn_val = max(syn_val, 1.0)
+        elif SYNOVITIS_INDIRECT.search(s):
+            syn_val = max(syn_val, 0.6)
+    labels['Synovitis'] = syn_val
 
     for s in sents:
         if BAKER_KW.search(s):
@@ -254,7 +311,12 @@ def parse_report(report):
     return labels
 
 def main():
-    df = pd.read_csv('/mnt/ssd/rsna-knee/data/train.csv')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--in-csv', default='/mnt/ssd/rsna-knee/data/train.csv')
+    parser.add_argument('--out', default='/mnt/ssd/rsna-knee/data/train_weak.csv')
+    args = parser.parse_args()
+
+    df = pd.read_csv(args.in_csv)
 
     parsed_rows = []
     for _, row in df.iterrows():
@@ -268,7 +330,7 @@ def main():
 
     weak_df = pd.DataFrame(parsed_rows)
     result_df = pd.concat([df[['StudyInstanceUID', 'Report']], weak_df], axis=1)
-    result_df.to_csv('/mnt/ssd/rsna-knee/data/train_weak.csv', index=False)
+    result_df.to_csv(args.out, index=False)
 
     gold_mask = ~df[LABEL_COLS].isna().all(axis=1)
     gold_rows = df[gold_mask]
