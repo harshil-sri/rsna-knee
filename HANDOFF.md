@@ -413,3 +413,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 | **OAI** | Osteoarthritis Initiative — a controlled-access knee dataset used by some public weights; eligibility unclear (§7). |
 | **Gate** | The checker (`gate.py`) a submission must pass before uploading. |
 | **Frontier** | The table of configs vs their accuracy and runtime; used to pick the best "accuracy per second" point. |
+
+## 15. v0 baseline + overnight status (Oct 14, 08:10)
+
+- **Data**: all 95,483 subset files (55GB) downloaded and verified (0 missing, 0 size mismatches) — pulled as 25.76GB compressed via HTTP range-reads from the 265GB Kaggle zip (`tools/zip_subset.py`).
+- **v0** (dinov2-small MIL, 42 windows/study, trained on Gold-58 only, fold 0, 10 ep = 120 steps): **MACRO AUC 0.5073 on Gold-58 — chance level.** Expected: massively undertrained and only 46 train studies/fold.
+- **v1 launched**: same arch, `--no-gold-only` → trains on all weak+gold labeled studies (~2,546), 3 epochs (~2.5h on the 4060). Watch `logs/TRAIN_STATUS`; score lands in `logs/score_v1.log`.
+- Runs: `runs/v0/preds.csv`, score in `logs/score_v0.log`; levers.csv has the v0 row.

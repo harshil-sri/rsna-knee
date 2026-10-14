@@ -49,6 +49,7 @@ def train_fn(
     batch_size: int = 4,
     labels_path: Optional[str] = None,
     out_dir: Optional[str] = None,
+    gold_only: bool = True,
 ):
     seed_everything(SEED)
     save_dir = Path(out_dir) if out_dir else CKPT_DIR
@@ -65,7 +66,7 @@ def train_fn(
     windows_per_study = 8 if smoke else 42
     full_dataset = RSNADataset(
         data_root=data_dir,
-        gold_only=True,
+        gold_only=gold_only,
         windows_per_study=windows_per_study,
         label_cols=label_cols,
         is_synthetic=smoke,
@@ -199,6 +200,7 @@ def parse_args():
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--labels", type=str, default=None)
     parser.add_argument("--out", type=str, default=None)
+    parser.add_argument("--no-gold-only", action="store_true")
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -210,4 +212,5 @@ if __name__ == "__main__":
         batch_size=args.batch_size,
         labels_path=args.labels,
         out_dir=args.out,
+        gold_only=not args.no_gold_only,
     )
