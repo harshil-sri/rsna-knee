@@ -4,6 +4,7 @@ import json
 import random
 import time
 import shutil
+import threading
 from concurrent.futures import ThreadPoolExecutor
 import requests
 import pandas as pd
@@ -11,6 +12,23 @@ from tqdm import tqdm
 from kaggle.api.kaggle_api_extended import KaggleApi, ApiDownloadDataFileRequest
 
 PAGE_LIST_SLEEP = 1.2
+
+_tls = threading.local()
+
+def thread_session():
+    if not hasattr(_tls, "session"):
+        s = requests.Session()
+        s.headers.update({"User-Agent": "rsna-subset-downloader/1.0"})
+        adapter = requests.adapters.HTTPAdapter(pool_connections=2, pool_maxsize=2)
+        s.mount("https://", adapter)
+        _tls.session = s
+    return _tls.session
+
+def thread_api_client():
+    if not hasattr(_tls, "client"):
+        api = get_kaggle_api()
+        _tls.client = api.build_kaggle_client().__enter__()
+    return _tls.client
 
 def get_auth_token():
     with open(os.path.expanduser('~/.kaggle/access_token'), 'r') as f:
@@ -331,8 +349,16 @@ def download_subset(data_dir, dry_run=False, workers=12):
         if os.path.exists(dest) and os.path.getsize(dest) == size_bytes:
             return
         try:
-            signed_url = get_signed_download_url(api, comp, path)
-            download_file_stream(signed_url, dest, expected_size=size_bytes)
+            client = thread_api_client()
+            req = ApiDownloadDataFileRequest()
+            req.competition_name = comp
+            req.file_name = path
+            resp = call_with_429_backoff(
+                client.competitions.competition_api_client.download_data_file, req
+            )
+            signed_url = resp.request.url
+            sess = thread_session()
+            download_file_stream(signed_url, dest, expected_size=size_bytes, session=sess)
         except Exception as e:
             with open(failures_file, 'a') as f:
                 f.write(f"{path},{e}\n")

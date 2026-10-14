@@ -9,7 +9,7 @@ python3 tools/download_subset.py --data-dir "$DATA" select --budget-gb 55 > logs
   || { echo "FAIL select $(date '+%H:%M:%S')" > "$S"; exit 1; }
 
 echo "RUNNING download $(date '+%H:%M:%S')" > "$S"
-python3 tools/download_subset.py --data-dir "$DATA" --workers 12 download > logs/download.log 2>&1 \
+python3 tools/download_subset.py --data-dir "$DATA" --workers 48 download > logs/download.log 2>&1 \
   || { echo "FAIL download $(date '+%H:%M:%S')" > "$S"; exit 1; }
 
 echo "RUNNING verify $(date '+%H:%M:%S')" > "$S"
