@@ -270,11 +270,11 @@ def select_subset(data_dir, budget_gb, dry_run=False):
     label_cols = [c for c in train_csv.columns if c not in ("StudyInstanceUID", "Report")]
     gold_uids = set(train_csv.dropna(subset=label_cols, how="all")["StudyInstanceUID"])
 
+    series_merged["key"] = list(zip(series_merged["study_uid"], series_merged["series_uid"]))
     best_per_study = series_merged.drop_duplicates(subset=["study_uid"], keep="first").copy()
     best_per_study["gold"] = best_per_study["study_uid"].isin(gold_uids)
     best_per_study = best_per_study.sort_values(by=["gold", "priority", "study_uid"], ascending=[False, True, True])
 
-    series_merged["key"] = list(zip(series_merged["study_uid"], series_merged["series_uid"]))
     budget_bytes = budget_gb * 1024 * 1024 * 1024
     selected = []
     total_bytes = 0
