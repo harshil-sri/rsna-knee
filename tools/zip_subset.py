@@ -145,9 +145,20 @@ def fetch_member(signed, cd, idx, dest):
     fnl = name_end - name_start
     end = off + 30 + fnl + 512 + csize + 32
     s = session()
-    r = s.get(signed, headers={"Range": f"bytes={off}-{end-1}"}, timeout=600, stream=True)
-    r.raise_for_status()
-    raw = r.content
+    raw = None
+    last_err = None
+    for attempt in range(3):
+        try:
+            r = s.get(signed, headers={"Range": f"bytes={off}-{end-1}"}, timeout=(10, 180), stream=True)
+            r.raise_for_status()
+            raw = r.content
+            break
+        except requests.RequestException as e:
+            last_err = e
+            s = session()
+            time.sleep(2 * attempt + 1)
+    if raw is None:
+        raise last_err if last_err else RuntimeError("fetch failed")
     if raw[0:4] != b"PK\x03\x04":
         raise ValueError("bad local header")
     lfnl, lexl = struct.unpack_from("<HH", raw, 26)
@@ -166,6 +177,7 @@ def fetch_member(signed, cd, idx, dest):
     if zlib.crc32(out) & 0xFFFFFFFF != want_crc:
         raise ValueError("crc mismatch")
     part = dest + ".part"
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
     with open(part, "wb") as f:
         f.write(out)
     os.replace(part, dest)
