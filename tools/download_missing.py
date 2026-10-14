@@ -4,6 +4,7 @@ import time
 import json
 import random
 import argparse
+import threading
 from pathlib import Path
 import pandas as pd
 
@@ -25,6 +26,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dest", default="/home/harshil/rsna-ext/data")
     parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument("--workers", type=int, default=16)
     args = parser.parse_args()
 
     dest_root = os.path.abspath(args.dest)
@@ -86,38 +88,47 @@ def main():
     t0 = time.time()
     processed = 0
     total = len(ordered_files)
+    lock = threading.Lock()
 
-    for path, expected_size in ordered_files:
-        dest_file = os.path.join(dest_root, path)
-        if os.path.exists(dest_file) and os.path.getsize(dest_file) == expected_size:
-            processed += 1
-            if processed % 500 == 0:
-                elapsed = time.time() - t0
-                rate = processed / elapsed if elapsed > 0 else 0.0
-                eta_hours = (total - processed) / rate / 3600 if rate > 0 else 0.0
-                print(f"Progress: {processed}/{total} ({rate:.1f} files/s, ETA: {eta_hours:.2f}h)", flush=True)
-            continue
+    def worker():
+        nonlocal processed
+        while True:
+            with lock:
+                if not ordered_files:
+                    return
+                path, expected_size = ordered_files.pop()
+            dest_file = os.path.join(dest_root, path)
+            if os.path.exists(dest_file) and os.path.getsize(dest_file) == expected_size:
+                pass
+            else:
+                cd_idx = path_to_idx.get(path)
+                if cd_idx is None:
+                    with lock:
+                        with open(failures_csv, "a") as f:
+                            f.write(f'"{path}","not found in central directory"\n')
+                else:
+                    try:
+                        fetch_member(signed, cd, cd_idx, dest_file)
+                    except Exception as e:
+                        with lock:
+                            with open(failures_csv, "a") as f:
+                                f.write(f'"{path}","{e}"\n')
+            with lock:
+                processed += 1
+                n = processed
+                if n % 500 == 0:
+                    elapsed = time.time() - t0
+                    rate = n / elapsed if elapsed > 0 else 0.0
+                    eta_hours = (total - n) / rate / 3600 if rate > 0 else 0.0
+                    print(f"Progress: {n}/{total} ({rate:.1f} files/s, ETA: {eta_hours:.2f}h)", flush=True)
 
-        cd_idx = path_to_idx.get(path)
-        if cd_idx is None:
-            err_msg = "not found in central directory"
-            with open(failures_csv, "a") as f:
-                f.write(f'"{path}","{err_msg}"\n')
-            processed += 1
-            continue
-
-        try:
-            fetch_member(signed, cd, cd_idx, dest_file)
-        except Exception as e:
-            with open(failures_csv, "a") as f:
-                f.write(f'"{path}","{e}"\n')
-
-        processed += 1
-        if processed % 500 == 0:
-            elapsed = time.time() - t0
-            rate = processed / elapsed if elapsed > 0 else 0.0
-            eta_hours = (total - processed) / rate / 3600 if rate > 0 else 0.0
-            print(f"Progress: {processed}/{total} ({rate:.1f} files/s, ETA: {eta_hours:.2f}h)", flush=True)
+    threads = []
+    for _ in range(args.workers):
+        th = threading.Thread(target=worker)
+        th.start()
+        threads.append(th)
+    for th in threads:
+        th.join()
 
     elapsed = time.time() - t0
     rate = processed / elapsed if elapsed > 0 else 0.0

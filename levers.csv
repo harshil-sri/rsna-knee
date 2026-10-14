@@ -1,3 +1,4 @@
 config,gold_auc,owner,date,notes
 dinov2-small-mil-224-fold0,0.5073,harshil,2026-10-14,v0: gold-58-only train (46 st/fold x 10 ep = 120 steps) — chance level; undertrained baseline
 dinov2-small-mil-224-fold0-weak2ep,0.5447,harshil,2026-10-14,v2: all 4407 studies on soft weak+gold labels (labeler MACRO .709), 2 ep x 882 steps; val AUC climbing when stopped
+dinov2-small-mil-224-fold0-weak-4ep,0.5012,harshil,2026-10-14,v3: 4ep on poisoned mix (42% zero-window studies); overfit to noise, WORSE than v2. Val-AUC-on-soft-labels proxy misleading

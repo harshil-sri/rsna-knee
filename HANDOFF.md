@@ -439,3 +439,6 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - **v3 (4 epochs)** finishing ~22:10 with infer+score. Expectation: epoch-2 val AUC dipped (0.512) vs v2 epoch-2 (0.552) due to slower cosine anneal over 4 epochs; epochs 3-4 climbing (0.529 @ ep3).
 - **Overfit sanity test queued** (user directive #2: small tests before long runs) — tools/overfit_test.py written, RUN AFTER v3 frees the GPU (~22:15). If it fails to overfit 16 real studies → pipeline bug hunt before any more long runs.
 - **Next lever after download**: v4 = retrain on ALL studies with real images + weak-labeler-v2 labels (MACRO .7651). Also consider: only-download-enough + two-stage.
+- **v3 scored 0.5012 (WORSE than v2 0.5447)** — 4 epochs on the poisoned mix overfit noise. Lesson: val-AUC-on-soft-labels is a misleading proxy; trust score_gold (gold-58 MACRO).
+- **Overfit test PASSED in substance**: tools/overfit_test.py, 16 real studies, train AUC 0.9476 @ ep60 (loss 0.217 is the expected soft-label floor, not a bug) → pipeline (data→model→loss) is sound.
+- **v2b launched 23:05**: labels = train_weak_v2_img.csv (2,546 image-available studies only, labeler-v2 MACRO .7651), 3 epochs, then infer+score (~03:00). Isolates (a) zero-window fix + (b) better labels vs v2.
