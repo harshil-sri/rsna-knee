@@ -265,14 +265,41 @@ def select_subset(data_dir, budget_gb, dry_run=False):
 
     series_merged['priority'] = [assign_prio(row) for _, row in series_merged.iterrows()]
     series_merged = series_merged.sort_values(by=['priority', 'study_uid', 'series_uid'])
+
+    train_csv = pd.read_csv(os.path.join(data_dir, "train.csv"))
+    label_cols = [c for c in train_csv.columns if c not in ("StudyInstanceUID", "Report")]
+    gold_uids = set(train_csv.dropna(subset=label_cols, how="all")["StudyInstanceUID"])
+
+    best_per_study = series_merged.drop_duplicates(subset=["study_uid"], keep="first").copy()
+    best_per_study["gold"] = best_per_study["study_uid"].isin(gold_uids)
+    best_per_study = best_per_study.sort_values(by=["gold", "priority", "study_uid"], ascending=[False, True, True])
+
+    series_merged["key"] = list(zip(series_merged["study_uid"], series_merged["series_uid"]))
     budget_bytes = budget_gb * 1024 * 1024 * 1024
     selected = []
     total_bytes = 0
-    for _, row in series_merged.iterrows():
-        if total_bytes + row['size_bytes'] <= budget_bytes:
+    chosen = set()
+
+    for _, row in best_per_study.iterrows():
+        if total_bytes + row["size_bytes"] <= budget_bytes:
             selected.append(row)
-            total_bytes += row['size_bytes']
-    subset_df = pd.DataFrame(selected)
+            total_bytes += row["size_bytes"]
+            chosen.add(row["key"])
+
+    for _, row in series_merged.iterrows():
+        if row["key"] in chosen:
+            continue
+        if row["priority"] >= 3:
+            break
+        if total_bytes + row["size_bytes"] <= budget_bytes:
+            selected.append(row)
+            total_bytes += row["size_bytes"]
+            chosen.add(row["key"])
+
+    subset_df = pd.DataFrame(selected).drop(columns=["key"])
+    n_studies = subset_df["study_uid"].nunique()
+    gold_cov = subset_df[subset_df["study_uid"].isin(gold_uids)]["study_uid"].nunique()
+    print(f"coverage: {n_studies} studies of {train_csv['StudyInstanceUID'].nunique()}, gold {gold_cov}/{len(gold_uids)}")
     manifest_files = dcm_index.merge(subset_df[['study_uid', 'series_uid']], on=['study_uid', 'series_uid'], how='inner')
     if dry_run:
         print(f"Dry run: Selected {len(subset_df)} series ({len(manifest_files)} files, {total_bytes / (1024**3):.2f} GB) under budget {budget_gb} GB")
