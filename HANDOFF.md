@@ -420,3 +420,6 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - **v0** (dinov2-small MIL, 42 windows/study, trained on Gold-58 only, fold 0, 10 ep = 120 steps): **MACRO AUC 0.5073 on Gold-58 — chance level.** Expected: massively undertrained and only 46 train studies/fold.
 - **v1 launched**: same arch, `--no-gold-only` → trains on all weak+gold labeled studies (~2,546), 3 epochs (~2.5h on the 4060). Watch `logs/TRAIN_STATUS`; score lands in `logs/score_v1.log`.
 - Runs: `runs/v0/preds.csv`, score in `logs/score_v0.log`; levers.csv has the v0 row.
+- **v1b killed** (gold-58, 30 ep): val AUC stuck 0.46–0.53 through epoch 10 — more epochs on 46 studies doesn't help; data was the bottleneck.
+- **KEY FINDING**: train.csv has NO weak labels — 4,349/4,407 rows are all-NaN (only gold-58 labeled). Reports exist for every row. `tools/weak_labels.py` now generates them: multilingual report → 12 soft labels, **parser-vs-gold MACRO AUC 0.709** on the 58 (Baker's .81, MedMen .81, ACL .79, Effusion .53 worst). Output: `data/train_weak.csv` (positives: meniscus 39/24%, effusion 69%, ACL 12%).
+- **v2 launched 08:32**: trains on all 4,407 studies w/ soft weak+gold labels (`--labels train_weak.csv --no-gold-only`), 2 epochs (~3h on 4060), then infer+score. Watch `logs/TRAIN_STATUS`, `logs/score_v2.log`.

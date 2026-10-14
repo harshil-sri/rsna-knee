@@ -70,6 +70,7 @@ def train_fn(
         windows_per_study=windows_per_study,
         label_cols=label_cols,
         is_synthetic=smoke,
+        train_csv=labels_path,
     )
 
     study_uids = full_dataset.studies
@@ -134,7 +135,8 @@ def train_fn(
 
             with torch.autocast(device_type="cuda", dtype=torch.bfloat16):
                 logits = model(images)
-                loss = criterion(logits, targets) / 2
+                valid = ~torch.isnan(targets)
+                loss = criterion(logits[valid], targets[valid]) / 2
 
             loss.backward()
 

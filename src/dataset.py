@@ -17,6 +17,7 @@ class RSNADataset(Dataset):
         windows_per_study: int = 8,
         label_cols: Optional[List[str]] = None,
         is_synthetic: bool = False,
+        train_csv: Optional[str] = None,
     ):
         self.data_root = Path(data_root)
         self.split = split
@@ -24,7 +25,7 @@ class RSNADataset(Dataset):
         self.windows_per_study = windows_per_study
         self.is_synthetic = is_synthetic
 
-        train_csv_path = self.data_root / "train.csv"
+        train_csv_path = Path(train_csv) if train_csv else self.data_root / "train.csv"
         series_csv_path = self.data_root / "train_series.csv"
 
         df_train = pd.read_csv(train_csv_path)
