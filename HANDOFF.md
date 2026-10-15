@@ -494,3 +494,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - NB2 v9 trains 5 models (canonical folds, 8 ep each), saves ensemble best.pt (state_dicts list) + oof_preds.csv (4407x12 — team OOF artifact for Daksh's stacking, now also in ckpt-v1 dataset).
 - Levers tonight: v7 v1_weights-in-loss REJECTED (0.7503); v8 12ep no gain (0.7649); v9 ensemble +0.011 (0.7798). Label ladder: parser 0.765 < v6 0.769 < v9 ensemble 0.780 < raw blend table 0.893.
 - NB3 v4 adapted to ensemble (mean of 5 heads); gate PASS; submission sent (2 left today → 1 after).
+
+## Update 23:50 IST — Council pivot (Option C hybrid) + public fork anchor submitted
+- Research (@researcher + official discussion 742106): parser-echo REFUTED — hidden test labels are an INDEPENDENT process, not the team LLM parser. Top LB (~0.952-0.954) = real 2.5D image models (CoAtNet-384/ConvNeXt MIL, 20+ member ensembles, rank fusion).
+- @council verdict: Hybrid — keep fast MIL loop for label iteration, fork public 2.5D recipe as LB vehicle, probit/rank-fuse the two; max 3-4 fold-models on our GPU budget; gold-58 stays the hermetic CV.
+- Actioned: forked sameerk2004/rsna-knee-sil-d5h-pub0954, stripped to single CoAtNet-384 arm (cells 0/2/8 only, weights dataset nartaa/rsna-knee-publication-swa-weights-20261007) → kernel rsna-knee-pub954-strip v1 → gate PASS → SUBMITTED (LB anchor, expect ~0.949).
+- Next (overnight): NB3 v4 ensemble submit via watcher (last sub today), then build 2.5D ConvNeXt fold-0 training notebook for tomorrow's Kaggle GPU.
