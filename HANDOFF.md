@@ -452,3 +452,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - NOTE: tmux sessions keep dying on this WSL (server vanished ~02:07 killing v2b mid-run). v2b relaunched 06:55 via `setsid nohup` (tmux-independent, heartbeat logs/v2b.pid). DON'T launch long runs in bare tmux anymore.
 - v2b ETA ~10:15 (3 ep × 509 steps on 2546 real-image studies + labeler-v2 labels) → score_gold → levers.csv. This validates: better labels + no zero-poisoning before we bake the recipe into NB2.
 - **07:30 v2b CANCELLED** (user call, correct): local GPU runs add no information now — the identical question (labeler-v2 + real images) gets answered on Kaggle on the FULL set. best_v2.pt (0.5447) remains the local reference.
+
+## Update 08:05 Oct 15 — Kaggle pipeline live via API (orchestrator)
+- `dinov2-timm-cache` dataset PUBLISHED via CLI (`--dir-mode tar`; Kaggle auto-extracts → root has `hf/` + `torch/`, matches NB1/NB3 expectations; `torch/` was empty, harmless). Verified via `kaggle datasets files`.
+- Discovered: `kaggle kernels push` runs notebooks HEADLESSLY (Save-&-Run-All equivalent) with data attached via kernel-metadata.json — no manual UI upload needed. Workflow documented in kaggle/README.md.
+- **NB1 pushed + RUNNING**: kernel `harshilsrivastav/rsna-knee-nb1-features` (GPU, internet OFF, comp data + timm cache attached). ETA ~1-1.5h → then publish output as `rsna-knee-embeddings-v1`.
+- NB2 edited before push: added final cell scoring best.pt on ALL 58 gold studies (mimics score_gold.py, writes gold_preds.csv + gold_score.json) → number directly comparable to local 0.5447, no misleading soft-label proxy needed.
+- Next: when NB1 done → publish embeddings-v1 → push NB2 (kernel: rsna-knee-nb2-train) → check gold MACRO ≥ ~0.55 → publish ckpt-v1 → push NB3 fork → submit.

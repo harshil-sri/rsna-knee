@@ -10,7 +10,7 @@ the laptop is for prototyping on the local cache only.
 | asset | where | status |
 |---|---|---|
 | competition data (full 569 GB train) | auto-attached in notebooks | ready |
-| `dinov2-timm-cache` (HF/timm weights, ~100 MB) | Kaggle dataset | **needs one-time upload (script below)** |
+| `dinov2-timm-cache` (HF/timm weights, ~100 MB) | Kaggle dataset | **published** ✓ (auto-extracted, layout = `hf/` as notebooks expect) |
 | `rsna-knee-weak-labels` (train_weak.csv + train_weak_v2.csv) | Kaggle dataset | published |
 | `rsna-knee-embeddings-v1` (~150 MB) | NB1 output | run NB1 → publish |
 | `rsna-knee-ckpt-v1` (best.pt ~25 MB) | NB2 output | run NB2 → publish |
@@ -18,20 +18,30 @@ the laptop is for prototyping on the local cache only.
 Account: `harshilsrivastav` (Kaggle API token at `~/.kaggle/access_token` works with
 `export KAGGLE_API_TOKEN=$(cat ~/.kaggle/access_token)` for CLI/API).
 
-## One-time: build the DINOv2 weights dataset (~100 MB)
+## One-time: build the DINOv2 weights dataset — DONE (Oct 15)
+
+`dinov2-timm-cache` is PUBLISHED and ready to attach. Note: Kaggle auto-extracts
+tar/zip uploads, so the dataset root contains `hf/` + `torch/` directly — exactly
+the layout NB1/NB3 expect (`/kaggle/input/dinov2-timm-cache/hf`).
+
+## API push workflow (no UI clicks needed)
+
+Notebooks can be pushed + run headlessly from the CLI (token at `~/.kaggle/access_token`):
 
 ```bash
-python3 tools/build_timm_cache.py          # writes kaggle-out/dinov2-timm-cache.tar
 export KAGGLE_API_TOKEN=$(cat ~/.kaggle/access_token)
-mkdir -p /tmp/opencode/dinov2-cache && cd /tmp/opencode/dinov2-cache
-tar xf /home/harshil/kaggle/rsna-knee/kaggle-out/dinov2-timm-cache.tar
-cat > dataset-metadata.json <<'EOF'
-{"title": "dinov2-timm-cache", "id": "harshilsrivastav/dinov2-timm-cache", "licenses": [{"name": "CC0-1.0"}]}
-EOF
-kaggle datasets create -p .
+# kernel-metadata.json: {"id":"harshilsrivastav/<slug>","code_file":"<nb>.ipynb",
+#   "language":"python","kernel_type":"notebook","enable_gpu":"true",
+#   "enable_internet":"false","dataset_sources":[...],"competition_sources":[...]}
+kaggle kernels push -p <folder-with-metadata+ipynb>
+kaggle kernels status harshilsrivastav/<slug>     # poll
+kaggle kernels output harshilsrivastav/<slug> -p <out-dir>   # after completion
 ```
 
-Needs ~120 MB free on the main drive (deferred until storage is cleared).
+Push triggers a Save-&-Run-All equivalent (headless). Status: `kaggle kernels status`.
+A pushed kernel's output can also be attached to other kernels via `kernel_sources`
+(mounts as `/kaggle/input/<slug>/`) — dataset publishing then optional but recommended
+for teammates.
 
 ## Notebook sequence
 
