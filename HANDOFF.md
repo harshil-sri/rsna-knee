@@ -451,3 +451,4 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - NB1 extraction logic smoke-tested on real public-test DICOMs (12 slices → windows → embeddings finite ✓). Public test series ARE downloadable via API (557 files listed at /tmp/opencode/test_files.txt) if ever needed locally.
 - NOTE: tmux sessions keep dying on this WSL (server vanished ~02:07 killing v2b mid-run). v2b relaunched 06:55 via `setsid nohup` (tmux-independent, heartbeat logs/v2b.pid). DON'T launch long runs in bare tmux anymore.
 - v2b ETA ~10:15 (3 ep × 509 steps on 2546 real-image studies + labeler-v2 labels) → score_gold → levers.csv. This validates: better labels + no zero-poisoning before we bake the recipe into NB2.
+- **07:30 v2b CANCELLED** (user call, correct): local GPU runs add no information now — the identical question (labeler-v2 + real images) gets answered on Kaggle on the FULL set. best_v2.pt (0.5447) remains the local reference.
