@@ -483,3 +483,4 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 ## Update 16:15 — NB2 v5 (seeded loader, 8 epochs): gold MACRO 0.6868
 - Soft-val climbed 0.6975→0.7385 over 8 ep (monotonic, tiny ep6 dip). Gold-58 MACRO **0.6868** — new best (v4 0.6347, v3 0.663, local 0.5447). +0.14 over baseline.
 - Promoted: `rsna-knee-ckpt-v1` bumped to v5 weights; NB3 v2 pushed (uses v5 ckpt); pending submission → will record.
+- NB3 v2 ran clean, gate PASS (rows=3 cols=13), submitted as v2 — pending hidden re-run. 3 submissions left today.
