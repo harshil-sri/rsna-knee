@@ -470,3 +470,16 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - **After phase=done**: verify submission on Kaggle (version N of `rsna-knee-nb3-submit-test`), record public LB in levers.csv, then next levers per HANDOFF_PROMPT (stronger head, window count, labeler-v3) — compare NB2 gold MACRO vs local best_v2 0.5447 first.
 ## Update 15:07 — NB2 gold-58 MACRO 0.6346948937877982 (soft val 0.7138747934759152) on Kaggle full-set embeddings; rsna-knee-ckpt-v1 published; NB3-test pushed.
 ## Update 15:11 — NB3-test ran clean on public test; gate PASS; sanity submission sent (version 1).
+
+## Correction 15:22 — submission actually registered (the 15:11 note was premature)
+- The 15:11 submit FAILED silently: RSNA comp requires `-f submission.csv` (output FileName) on `kaggle competitions submit -k ... -v ...`; without it → HTTP 400 "This competition requires an output FileName for Notebook Submissions" (CLI swallows the body; verified via direct API call). Watcher script patched to always pass `-f submission.csv`.
+- **Registered for real 15:20:36**: submission ref 57235426, kernel `rsna-knee-nb3-submit-test` v1, status pending (Kaggle re-runs it server-side on the hidden test). 4 submissions left today.
+- **NB2 official result (banked)**: gold-58 MACRO **0.6347** (soft val 0.7139) vs local best_v2 0.5447 → **+0.09**. A v3 run of the same code printed 0.663 → run-to-run variance ~±0.03 (loader shuffle unseeded). Best model number so far; levers.csv row + commit c2055ae.
+- NB2 v1–v3 failures = notebook bugs found by real runs, all fixed in `kaggle/nb2_train.ipynb`: (1) gold-scoring cell spliced BEFORE the training cell → FileNotFoundError on best.pt; (2) per-epoch val AUC crashed on soft labels ("continuous format is not supported") → now binarizes (Y>0.5) + uses label mask; (3) missing `import json` → died after printing the score, before gold_score.json.
+- NB1 v3 completed in 5h03m (serial 819k DICOM reads). Parallelized+resume-capable NB1 contingency prepped at /tmp/opencode/nb1-v2/ (NOT pushed, not needed).
+- Watcher bugs fixed mid-flight: stale-output-dir guard (skipped fresh download because an old debug dir existed → now requires >MIN_NPZ npz to skip), datasets-create idempotency (pre-check "ready" → skip create).
+- Pending: public LB score for ref 57235426. Next levers: seed loader shuffle, more epochs (soft-val still climbing 0.69→0.71→0.72), labeler-v3, window count.
+
+## Update 16:15 — NB2 v5 (seeded loader, 8 epochs): gold MACRO 0.6868
+- Soft-val climbed 0.6975→0.7385 over 8 ep (monotonic, tiny ep6 dip). Gold-58 MACRO **0.6868** — new best (v4 0.6347, v3 0.663, local 0.5447). +0.14 over baseline.
+- Promoted: `rsna-knee-ckpt-v1` bumped to v5 weights; NB3 v2 pushed (uses v5 ckpt); pending submission → will record.
