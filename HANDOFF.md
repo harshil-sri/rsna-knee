@@ -507,3 +507,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Morning checklist: (a) check nb4 result -> levers.csv + compare vs 0.7798 champion; (b) if nb4 gold >= 0.80: push full 3-leg fork (c384+c224+cnxt fusion, needs raptor-knee-arms dataset) as submission after UTC reset 05:30 IST; (c) 2.5D fold 1-3 training if GPU allows (~5.5h/fold, council cap 3-4 folds); (d) probit/rank fusion MIL(5-fold OOF) x 2.5D; (e) Daksh teacher-round partial labels merge; (f) Kartik onboarding + TTA ownership.
 - GPU budget after nb4: ~18h left this week. Zero interactive Kaggle runs — local smoke first (council risk rule).
 - Watcher: /tmp/opencode/night_watcher.sh -> /tmp/opencode/night.log (LB poll every 10 min, only logs changes).
+
+## Update 00:15 IST — LB ANCHOR LANDED: 0.949 public (strip fork)
+- Watcher auto-submitted NB3 v4 ensemble at 18:34Z (5th/last sub today). Both our MIL submissions + ensemble now in queue.
+- SUBMISSION #4 (pub954-strip CoAtNet-384 single arm) scored **0.949 public LB** — validates mechanics + sets anchor. Top LB ~0.952 (Brandon Low per research).
+- NOTE: v1 (15:20Z) and v2 (16:26Z) show completed hidden-rerun but NO public score yet; v3 still pending. Watch for score attachment (or zero-score bug).
+- nb4 2.5D fold-0 running, ETA ~06:30 IST. 5 fresh subs at 05:30 IST. Morning checklist in Update 23:57 stands.
