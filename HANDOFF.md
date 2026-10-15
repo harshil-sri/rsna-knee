@@ -442,3 +442,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - **v3 scored 0.5012 (WORSE than v2 0.5447)** — 4 epochs on the poisoned mix overfit noise. Lesson: val-AUC-on-soft-labels is a misleading proxy; trust score_gold (gold-58 MACRO).
 - **Overfit test PASSED in substance**: tools/overfit_test.py, 16 real studies, train AUC 0.9476 @ ep60 (loss 0.217 is the expected soft-label floor, not a bug) → pipeline (data→model→loss) is sound.
 - **v2b launched 23:05**: labels = train_weak_v2_img.csv (2,546 image-available studies only, labeler-v2 MACRO .7651), 3 epochs, then infer+score (~03:00). Isolates (a) zero-window fix + (b) better labels vs v2.
+
+## 07:00 pivot: Kaggle notebook pipeline (user decision with friends)
+- **Local full-set download CANCELLED** (454 GB remaining was the real need; storage won't fit + code-competition means submit runs on Kaggle anyway). Keep 115 GB local cache for prototyping. dl tmux dead — do not resume.
+- `kaggle/` scaffolding complete and committed: nb1_features.ipynb (819k DICOMs → 4407×[42,384] fp16 embeddings, ~1-1.5h on T4), nb2_train.ipynb (head-only MIL on embeddings, ~10min), nb3_submit.ipynb (hidden-test inference; windowing+model ported verbatim). README.md = team runbook.
+- Published: dataset `harshilsrivastav/rsna-knee-weak-labels` (train_weak.csv + train_weak_v2.csv) ✓ ready.
+- Pending: `dinov2-timm-cache` dataset upload (tar built at kaggle-out/, 176 MB, offline-load VERIFIED locally) — needs the user's storage cleanup.
+- NB1 extraction logic smoke-tested on real public-test DICOMs (12 slices → windows → embeddings finite ✓). Public test series ARE downloadable via API (557 files listed at /tmp/opencode/test_files.txt) if ever needed locally.
+- NOTE: tmux sessions keep dying on this WSL (server vanished ~02:07 killing v2b mid-run). v2b relaunched 06:55 via `setsid nohup` (tmux-independent, heartbeat logs/v2b.pid). DON'T launch long runs in bare tmux anymore.
+- v2b ETA ~10:15 (3 ep × 509 steps on 2546 real-image studies + labeler-v2 labels) → score_gold → levers.csv. This validates: better labels + no zero-poisoning before we bake the recipe into NB2.
