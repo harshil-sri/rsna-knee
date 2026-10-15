@@ -6,3 +6,5 @@ dinov2-small-mil-224-fold0-weak-3ep-img2546,CANCELLED,harshil,2026-10-15,v2b kil
 kaggle-nb2-head-3ep-emb-v1,0.6346948937877982,harshil,2026-10-15,NB2 head on Kaggle full-set DINOv2 embeddings (kernel output); soft val 0.7138747934759152
 kaggle-nb2-head-8ep-emb-v1-seed,0.6868364824041544,harshil,2026-10-15,NB2 head seeded+8ep on full-set embeddings; soft val 0.7385351948709591; beats v4 0.6347
 kaggle-nb2-head-8ep-v1targets-folds,0.7690158277627028,harshil,2026-10-15,NB2 head 8ep on Daksh v1_targets (fused soft labels 0.89-quality) + canonical folds (val=fold0); soft val 0.7601563835820658
+kaggle-nb2-head-8ep-v1targets-weights,0.7502609366053964,harshil,2026-10-15,REJECTED: v1_weights in loss hurt gold (0.7503 vs 0.7690 v6); soft val 0.7608911226357278
+kaggle-nb2-head-12ep-v1targets,0.7649281345360398,harshil,2026-10-15,NO GAIN: 12ep ~= 8ep (0.7649 vs 0.7690, noise); soft val 0.7677592647325225
