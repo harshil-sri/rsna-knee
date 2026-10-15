@@ -484,3 +484,8 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Soft-val climbed 0.6975→0.7385 over 8 ep (monotonic, tiny ep6 dip). Gold-58 MACRO **0.6868** — new best (v4 0.6347, v3 0.663, local 0.5447). +0.14 over baseline.
 - Promoted: `rsna-knee-ckpt-v1` bumped to v5 weights; NB3 v2 pushed (uses v5 ckpt); pending submission → will record.
 - NB3 v2 ran clean, gate PASS (rows=3 cols=13), submitted as v2 — pending hidden re-run. 3 submissions left today.
+
+## Update 22:45 IST — NB2 v6 on Daksh's labels: gold MACRO 0.7690 (+0.082)
+- Integrated team label backbone: pulled dakxsh23/fisrt kernel output (folds.csv 4407x4, v1_targets.csv 4407x12 dense soft targets) → published as dataset `rsna-knee-labels-v1` (files also in repo data/labels-v1/). NB2 v6 = 8ep head trained on v1_targets, val=fold 0 (910 studies, 12 gold unseen). Gold-58 MACRO **0.7690** (soft val 0.7602) vs 0.6868 on old weak labels.
+- Label ladder now: our parser 0.765 < v6 model 0.769 < best raw label tables 0.893 (llm_labels_v4_blend). Next lever: per-cell v1_weights in loss, more epochs, ensemble with raw blend table.
+- ckpt-v1 dataset bumped to v6 weights; NB3 v3 pushed → submission pending. Note: v1_targets does NOT gold-anchor the 58 gold rows (team protocol, no leakage).

@@ -5,3 +5,4 @@ dinov2-small-mil-224-fold0-weak-4ep,0.5012,harshil,2026-10-14,v3: 4ep on poisone
 dinov2-small-mil-224-fold0-weak-3ep-img2546,CANCELLED,harshil,2026-10-15,v2b killed at ~ep1: same experiment better tested on Kaggle full-set (NB1+NB2 ~2h wall); local GPU freed for prototyping only
 kaggle-nb2-head-3ep-emb-v1,0.6346948937877982,harshil,2026-10-15,NB2 head on Kaggle full-set DINOv2 embeddings (kernel output); soft val 0.7138747934759152
 kaggle-nb2-head-8ep-emb-v1-seed,0.6868364824041544,harshil,2026-10-15,NB2 head seeded+8ep on full-set embeddings; soft val 0.7385351948709591; beats v4 0.6347
+kaggle-nb2-head-8ep-v1targets-folds,0.7690158277627028,harshil,2026-10-15,NB2 head 8ep on Daksh v1_targets (fused soft labels 0.89-quality) + canonical folds (val=fold0); soft val 0.7601563835820658
