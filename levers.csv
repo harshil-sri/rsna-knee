@@ -3,3 +3,4 @@ dinov2-small-mil-224-fold0,0.5073,harshil,2026-10-14,v0: gold-58-only train (46 
 dinov2-small-mil-224-fold0-weak2ep,0.5447,harshil,2026-10-14,v2: all 4407 studies on soft weak+gold labels (labeler MACRO .709), 2 ep x 882 steps; val AUC climbing when stopped
 dinov2-small-mil-224-fold0-weak-4ep,0.5012,harshil,2026-10-14,v3: 4ep on poisoned mix (42% zero-window studies); overfit to noise, WORSE than v2. Val-AUC-on-soft-labels proxy misleading
 dinov2-small-mil-224-fold0-weak-3ep-img2546,CANCELLED,harshil,2026-10-15,v2b killed at ~ep1: same experiment better tested on Kaggle full-set (NB1+NB2 ~2h wall); local GPU freed for prototyping only
+kaggle-nb2-head-3ep-emb-v1,0.6346948937877982,harshil,2026-10-15,NB2 head on Kaggle full-set DINOv2 embeddings (kernel output); soft val 0.7138747934759152
