@@ -500,3 +500,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - @council verdict: Hybrid — keep fast MIL loop for label iteration, fork public 2.5D recipe as LB vehicle, probit/rank-fuse the two; max 3-4 fold-models on our GPU budget; gold-58 stays the hermetic CV.
 - Actioned: forked sameerk2004/rsna-knee-sil-d5h-pub0954, stripped to single CoAtNet-384 arm (cells 0/2/8 only, weights dataset nartaa/rsna-knee-publication-swa-weights-20261007) → kernel rsna-knee-pub954-strip v1 → gate PASS → SUBMITTED (LB anchor, expect ~0.949).
 - Next (overnight): NB3 v4 ensemble submit via watcher (last sub today), then build 2.5D ConvNeXt fold-0 training notebook for tomorrow's Kaggle GPU.
+
+## Update 23:57 IST — overnight ledger (night shift)
+- Submissions today: #1 v4-ckpt MIL (15:20Z), #2 v5 (16:26Z), #3 v6 (17:10Z), #4 pub954-strip CoAtNet-384 single arm (23:47Z, expect ~0.949) — all pending public score. #5 = NB3 v4 ensemble, watcher auto-submits when COMPLETE (if it errors, sub is lost — acceptable).
+- NEW kernel rsna-knee-nb4-train25d v1 PUSHED 23:55 (2.5D ConvNeXt-Tiny fold-0, public KneeNet contract verbatim from pub954 own_src, offline in1k weights dataset harshilsrivastav/convnext-tiny-weights, cache-guard 4.5h, expect ~6-7h run). Locally smoke-tested on RTX 4060 (real forward + backward + AUC on 3 studies).
+- Morning checklist: (a) check nb4 result -> levers.csv + compare vs 0.7798 champion; (b) if nb4 gold >= 0.80: push full 3-leg fork (c384+c224+cnxt fusion, needs raptor-knee-arms dataset) as submission after UTC reset 05:30 IST; (c) 2.5D fold 1-3 training if GPU allows (~5.5h/fold, council cap 3-4 folds); (d) probit/rank fusion MIL(5-fold OOF) x 2.5D; (e) Daksh teacher-round partial labels merge; (f) Kartik onboarding + TTA ownership.
+- GPU budget after nb4: ~18h left this week. Zero interactive Kaggle runs — local smoke first (council risk rule).
+- Watcher: /tmp/opencode/night_watcher.sh -> /tmp/opencode/night.log (LB poll every 10 min, only logs changes).
