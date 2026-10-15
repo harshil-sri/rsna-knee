@@ -469,3 +469,4 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - **Repo HEAD = `564c1bc`** (nb3 dual-ckpt-key loader + local NB3 mirror test PASSED gate.py on 3-study fake submission) — supersedes the `1306eaf` hash mentioned earlier.
 - **After phase=done**: verify submission on Kaggle (version N of `rsna-knee-nb3-submit-test`), record public LB in levers.csv, then next levers per HANDOFF_PROMPT (stronger head, window count, labeler-v3) — compare NB2 gold MACRO vs local best_v2 0.5447 first.
 ## Update 15:07 — NB2 gold-58 MACRO 0.6346948937877982 (soft val 0.7138747934759152) on Kaggle full-set embeddings; rsna-knee-ckpt-v1 published; NB3-test pushed.
+## Update 15:11 — NB3-test ran clean on public test; gate PASS; sanity submission sent (version 1).
