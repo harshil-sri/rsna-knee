@@ -513,3 +513,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - SUBMISSION #4 (pub954-strip CoAtNet-384 single arm) scored **0.949 public LB** — validates mechanics + sets anchor. Top LB ~0.952 (Brandon Low per research).
 - NOTE: v1 (15:20Z) and v2 (16:26Z) show completed hidden-rerun but NO public score yet; v3 still pending. Watch for score attachment (or zero-score bug).
 - nb4 2.5D fold-0 running, ETA ~06:30 IST. 5 fresh subs at 05:30 IST. Morning checklist in Update 23:57 stands.
+
+## Update 03:30 IST — crash root-caused & fixed; reset watcher armed
+- WHY OUR MIL SUBS SCORED NULL: Kaggle rerun error "notebook hit an unhandled error" — debugger found unguarded pydicom.dcmread (no force=True/try), np.stack crashes on mismatched slice sizes, zero per-study fallback, multi-series edge cases. 1 corrupt DICOM in ~1300 hidden studies killed each rerun. FIX in NB3 v5: per-study try/except -> 0.5 fallback row, round-robin multi-series window sampling (proportional, cap 42), MONOCHROME1 inversion, cv2 resize alignment, robust paths. Local 40-study stress test incl. fake corrupted/multi-series/tiny studies: ALL PASS, 0.85s/study mean.
+- pub954-full v1 ERROR: cnxt_v0_fold*.pt live in goodpjw2008/rsna-knee-2-5d-convnext-reader (not in raptor-knee-arms current version); own-leg assert is W_OWN-guarded so reader-only fusion is safe. v2 pushed with that dataset added.
+- nb4 v1 ERROR: missing os.makedirs('/kaggle/working/own_src') before %%writefile. v2 pushed (mkdir cell inserted).
+- reset_watcher2.sh armed (03:24): gates full-fork, then at UTC rollover (05:30 IST) auto-submits fullfork v2 (~0.954 expected) + NB3 v5 (crash-fix). night_watcher keeps LB polling.
+- Timing note: NB3 whole 3-study run = 64s wall in-kernel -> hidden ~1300 studies ≈ 4-6h, within 9h cap.
