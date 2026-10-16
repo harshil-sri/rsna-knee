@@ -796,3 +796,11 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   3. Added torch.cuda.empty_cache() between legs.
   4. Verified: valid JSON, py_compile passes, and STUB=1 execution PASSES generating 58x13 submission.csv and blend_receipt.json.
 - Updated FILLED-NOTES.md.
+
+## 00:40 IST Oct 17 — WATCHER v6 ARMED & FIRST POLL VERIFIED GREEN
+- Watcher v5 chunk exited cleanly at 00:39 IST (CHUNK-EXIT 00:39).
+- Watcher v6 launched immediately in background (sh_1461e76f2001WDiyubgdMjJVw6).
+- First poll (00:39 IST) verified in wt/watch-folds-recovery.log: all 5 kernels RUNNING:
+  f1=RUNNING, f2=RUNNING, f3=RUNNING, f0@d=RUNNING (v2 fixed), knee-arms2=RUNNING.
+- Watcher v6 schedule: 4x10 min chunk (next polls ~00:49, ~00:59, ~01:09; exit ~01:10 IST).
+- Next major milestone: T2 timer at 03:40 IST (f1 quota check).
