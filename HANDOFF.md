@@ -713,3 +713,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Affected entries: the 17:53-18:03 stamps above actually span ~17:53-18:30 real; content unaffected.
 - MATERIALLY: fold-0 real elapsed = 11h27m (server-start 02:15:32 UTC vs 13:43 UTC), NOT 10h20m as last stated. 12h-cap point = 14:15:32 UTC = 19:45:32 IST -> ~30 min away. Watcher-A catches it.
 - Timed processes unaffected: watchers are epoch-based/self-consistent on the correct clock; versia autosubmit fires real 05:34:30 IST Oct 17 as designed.
+
+## 19:47 IST Oct 16 — DAKSH PKG SHIPPED + 12H-CAP RULED OUT (empirically)
+- daksh-nb4-pkg-20261016.zip -> Downloads (9 files, 89.7KB): READ-ME-FIRST.md (answers Daksh 5 items), nb4_source/ (nb4_train25d.ipynb canonical + f1 variant + kernel-metadata + eval_gold.py/RUN.md standalone inference port), OAI-HOST-QUESTION.md draft.
+- Daksh item 2 APPROVED with gate: r1-targets(0.898) soft-mixed w/ OOF, fold-0 paired test decides vs pure-OOF; gold-58 override w=2.0 + silent w=0 unchanged. Item 4 ADOPTED + strengthened: >=0.93 gold-alone AND macro delta>0 AND no finding worse by >0.02 (n=58 noise guard).
+- ACTION for Harshil: share convnext-tiny-weights dataset to Dakxsh23 via web UI (not in the original 5 shares; no API for sharing). Post OAI host question TODAY; if silent by Oct 20 12:00 IST treat as NOT allowed (flag-off fallback baked into plan).
+- CAP INTEL: fold-0 RUNNING at 19:46 = passed the 12h-cap point (start 07:45:32 IST + 12h = 19:45:32). Interactive cap >12h at this config -> folds 1-3 can run full EPOCHS=3 without cap-cut; anti-cap cut now unlikely (final call on fold-0 total duration + phase timings).
+- 40-min user timer fires ~19:55; watcher-A still polling.
