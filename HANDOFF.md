@@ -624,3 +624,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - cnxt leg fix added ZERO public AUC (v2 broken=0.950, v9 fixed=0.950). Full-fork lineage closed for submissions; its value is only as a fusion ingredient + private decorrelation, unmeasurable until rerun.
 - Sub budget today: 3/5 (57252363, 57260570, 57262514). Remaining plan: versia-7 tonight (#4) + 1 spare.
 - Fold-0 still RUNNING at 14:47; gate ~15:30. helios v2 PENDING (~22:00).
+
+## 14:56 IST Oct 16 — SUB QUOTA CORRECTION (UTC clock!)
+- Kaggle daily allowance resets at UTC midnight = 05:30 IST. Oct 16 UTC quota had FIVE subs, not 3: 57247325 + 57247347 at 00:01 UTC (05:31 IST) were invisible to our IST-based count. 5/5 burned since 08:58 UTC.
+- versia-7 submit BLOCKED tonight; autosubmit armed (nohup pid 10416) to fire 05:35 IST Oct 17 -> rerun scores ~09:00-13:00 IST tomorrow.
+- RULE for team: budget subs against the UTC date; verify with the submissions list, not memory; the 400 error body states allowance remaining.
+- Tonight now: helios ~22:00 only. Fold gate ~15:30 unchanged.

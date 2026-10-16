@@ -5,7 +5,7 @@
 ## Competition facts
 - Kaggle **code competition**: `rsna-knee-abnormality-detection`. **Deadline Oct 22, 23:59 UTC.**
 - Metric: macro ROC-AUC across 12 findings. Hidden rerun: the submitted kernel is re-executed by Kaggle on the full hidden test set (~1,300 studies); it must write `submission.csv` (StudyInstanceUID + 12 finding columns).
-- **5 code submissions/day per team** (shared pool — coordinate before ANY member submits). LB shows your **best** score, not the latest.
+- **5 code submissions/day per team** (shared pool — coordinate before ANY member submits). **The day is a UTC day**: allowance resets at UTC midnight = **05:30 IST**, not local midnight. LB shows your **best** score, not the latest.
 - Final selection: exactly **2 kernels**. Frozen rule: `[best-AUC kernel, strip-c384 kernel]`.
 - Team: **Harshil** (orchestrator, fusion, all submissions), **Daksh** (own model legs + pseudo-label loop), **Kartik** (GPU provider + read-only inference levers).
 - Kaggle GPU quota: **2 concurrent GPU kernels per account, ~30 GPU-h/week per account.** We spread work across Harshil's + Kartik's accounts.
