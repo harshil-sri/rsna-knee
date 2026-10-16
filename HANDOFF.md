@@ -560,3 +560,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - gate.py PASS (3x13, full spread per column). Output includes _own.csv (our MIL leg ran inside fork).
 - v9 rerun ETA ~21:00 IST (c384+cnxt+c224+own-MIL fusion on hidden).
 - Subs today: 2/5 used (nb5 ref 57252363 @02:52Z, fullfork v9 ref 57260570 @~07:55Z). 3 left.
+
+## Update 14:30 IST — LEDGER CORRECTION (assignment swap at 00:01Z resolved)
+- CORRECTED mapping: nb3 v5 MIL ensemble = 0.756 (NOT 0.950); full-fork v2 (c384+c224+cnxt-poisoned) = 0.950 (NOT 0.756).
+- Evidence: submit-time descriptions match kernels; gold-58 predicted MIL 0.7798 (fits 0.756, never fit 0.950); nb5 (MIL+c384) = 0.891 only explicable if MIL leg ≈ 0.756.
+- nb5 fusion v3 = 0.891 = NEGATIVE result (rank-fusion with a 0.756 leg drags c384). No more MIL fusions until MIL > ~0.85.
+- Subs used today: 2/5 (nb5 0.891, fullfork-v9 PENDING ETA ~21:00 IST).
