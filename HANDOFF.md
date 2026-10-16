@@ -605,3 +605,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - New fusion recipe: percentile rank-average (rankdata -> [0,1]) of legs, UNIFORM 1/3 weights = primary sub. Optional secondary = ONE global scalar (0.5/0.3/0.2 leg-level), never per-finding. Target 0.958-0.961.
 - Daksh v2 guidance changed: soft distillation (BCEWithLogitsLoss on continuous OOF targets, NO 0.9/0.1 cutoffs), gold-58 override w=2.0, silent/ambiguous cells w=0. TEAM-STATUS.md + Downloads copy updated.
 - Corroborates our own negatives: nb5 MIL fusion 0.891 dead; every leg-blend that worked (helios 0.957, versia 0.956) is uniform rank fusion.
+
+## 14:52 IST Oct 16 — eff-prize rules stream + frontier correction
+- eff-frontier-whatif.md REWRITTEN (grunt mis-fit: benchmark is 0.5 linear form, NOT 1.0; real counts: 167 teams >=0.957 on Oct-15 eff snapshot, ~600 on Oct-16 main LB -> frontier flooding fast).
+- Metric CONFIRMED consistent: eff = -(AUC-0.5)/0.467 + RuntimeSeconds/32400, minimize; +0.001 AUC = 69s runtime; 1h = 0.05 AUC.
+- RuntimeSeconds = full rerun wall-clock incl. download/preprocess (Sep 28 clarification). Rerun-measured numbers are authoritative; "1xA100" hardware claim DISCARDED (not a Kaggle GPU; hallucination risk).
+- Eligibility conflict: rules-agent says best-public auto-qualifies; earlier verified reading = must be among 2 team-selected subs. HEDGE: make fusion run at strip speed (20-30 min) so it is BOTH best-public AND selected -> satisfies both readings. Resolve with our own Legacy row in tonight 03:00 IST eff refresh.
+- Stack confirmed: 3 eff prizes stack with medals.
