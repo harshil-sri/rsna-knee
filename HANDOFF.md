@@ -612,3 +612,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - RuntimeSeconds = full rerun wall-clock incl. download/preprocess (Sep 28 clarification). Rerun-measured numbers are authoritative; "1xA100" hardware claim DISCARDED (not a Kaggle GPU; hallucination risk).
 - Eligibility conflict: rules-agent says best-public auto-qualifies; earlier verified reading = must be among 2 team-selected subs. HEDGE: make fusion run at strip speed (20-30 min) so it is BOTH best-public AND selected -> satisfies both readings. Resolve with our own Legacy row in tonight 03:00 IST eff refresh.
 - Stack confirmed: 3 eff prizes stack with medals.
+
+## 14:56 IST Oct 16 — runtime-cuts stream: verified plan (wt/research/runtime-cuts-verified.md)
+- We ALREADY run fp16 autocast in strip/fork lineage (researcher partially outdated).
+- Concrete lever: swap build_study_table -> studyone_lut (our own _fastread.py has these variants; byte-identical contract) = 40-50% I/O cut; + K_EVAL 94->48 if gold-58 delta <=0.001; + cudnn.benchmark/tf32 audit.
+- REJECTED: torch.compile/ONNX (risk, unverifiable offline), two-stage /kaggle/tmp cache (pointless within one run).
+- Target: strip 0.949 at ~10-12 min; fusion kernel BORN fast on same path Oct 18-19 (fusion at strip speed = both best-AUC and efficiency horse).
+- Gold-gate caveat: strip gold-58 macro is in the 0.75-0.80 band by design (validation split, half the training data, no val tuning) -> do NOT gate the strip on 0.80; that threshold is for the nb4 leg.
