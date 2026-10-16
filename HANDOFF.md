@@ -854,3 +854,11 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - If f1 hits quota wall between 03:40 and 05:20, f1v2 remains safely queued for 05:40 post-reset auto-push.
 - All 5 kernels RUNNING at 03:34 poll: f1=RUNNING, f2=RUNNING, f3=RUNNING, f0@d=RUNNING (v2, ~3h 07m in), knee-arms2=RUNNING.
 - Chunk 6 final round due ~03:44, chunk exit ~03:45 IST.
+
+## 03:46 IST Oct 17 — WATCHER v6 CHUNK 7 ARMED & ROUND 1 VERIFIED GREEN
+- Watcher v6 Chunk 6 finished 4 rounds normally (03:14, 03:24, 03:34, 03:44; exit 03:44 IST).
+- Watcher v6 Chunk 7 launched in background (sh_146c879f7001LjJ7QAb48PJDlr).
+- Round 1 poll at 03:45 IST verified in watch-folds-recovery.log:
+  f1=RUNNING (~4h 20m elapsed), f2=RUNNING, f3=RUNNING, f0@d=RUNNING (v2 fixed, ~3h 17m in), knee-arms2=RUNNING.
+- Chunk 7 schedule: rounds at 03:45, 03:55, 04:05, 04:15; exit ~04:16 IST.
+- Background timers T4 (05:45), T1 (06:10), T3 (10:20) and Versia autosubmit (05:34:30) active.
