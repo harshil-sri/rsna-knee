@@ -777,3 +777,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 ## 00:15 IST Oct 17 — v6 upgraded: cancel-or-crash of doomed f0v1 auto-triggers fixed-f0 push
 - v6 (still not running; arms ~00:52 on v5 chunk exit) now watches f0@d status: if v1 dies by ANY means (Daksh cancels in web UI OR natural ~09:45 crash) AND no gate run already owned (.f0kpushed absent), auto-push fixed f0 v2 to the freed Daksh slot within <=10 min. Gate-ownership exclusivity: exactly one of {daksh-v2, kartik-f0} ever runs (each push gated on the other flag being absent); the loser path hosts f4/free slot instead.
 - User awake 00:12: asked to relay cancel request to Daksh (only he can stop his kernel). Value: each hour earlier = gate verdict ~1h earlier (floor ~10:30 if cancelled now vs 15:25 kartik path vs 19:45 post-crash fallback).
+
+## 00:30 IST Oct 17 — DAKSH CANCELLED DOOMED v1; FIXED f0v2 PUSHED & RUNNING
+- Daksh cancelled doomed v1 in web UI (KernelWorkerStatus.CANCEL_ACKNOWLEDGED observed at 00:27 IST).
+- Fixed f0 package (wt/f0-daksh: 5-tuple unpack in gold loop, byte-identical to verified lineage) PUSHED immediately via Daksh token.
+- Receipt: "Kernel version 2 successfully pushed. Please check progress at https://www.kaggle.com/code/dakxsh23/rsna-knee-nb4-f0".
+- Verified: dakxsh23/rsna-knee-nb4-f0 status is RUNNING at 00:27:52 IST.
+- Flag .f0v2dpushed set in wt/ to lock gate ownership to Daksh slot.
+- TIMELINE WIN: Gate verdict pulled forward from ~15:25 (Kartik fallback) to ~10:25 IST (Daksh v2: 00:28 start + ~9.9h runtime) — 5 HOURS GAINED.
+- KARTIK SLOTS AT ~05:25: First terminal pushes f4 (since .f0v2dpushed is set, f0-kartik is bypassed); second slot stays free as headroom.
+- Model tier check: running on google-agy/gemini-3.8-flash (free antigravity). Zero spend incurred.
