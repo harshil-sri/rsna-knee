@@ -14,7 +14,7 @@
 ## Leaderboard reality (Oct 16, verified from Kaggle data)
 - **6,071 teams.** Top = **0.968**. Gold (#10) = **0.964**. Silver (#304) AND bronze (#607) lines are **both 0.957**.
 - Fork plateau: **1,400+ teams at 0.955–0.960** running copied public legs — their errors are fully correlated, so the private shake-up will reshuffle that blob. 71 teams ≥0.960 have real edges.
-- **Legacy today: 0.950** (full-fork lineage; closed — more forks add zero). Public rank ~#1,780.
+- **Legacy today: 0.956 (NEW BEST)** — helios fork v2 (Raptor ⊕ 4-fold ConvNeXt-small, 50/50 rank blend) scored 17:37 IST. That is **0.001 below the bronze line (0.957)**. Full-fork 0.950 lineage closed; more forks add zero.
 
 ## Efficiency prize track (decoded from the official LB — 5,955 rows)
 - Metric (minimize): `eff = −(AUC−0.5)/0.467 + RuntimeSeconds/32400` (normalizer = global **private** max; public 0.967 is our planning proxy). **+0.001 AUC ≡ 69 s runtime; 1 hour ≡ 0.05 AUC.**
@@ -27,12 +27,12 @@
 | item | account | status | ETA |
 |---|---|---|---|
 | `rsna-knee-nb4-train25d` (2.5D fold-0) | Harshil | RUNNING (long — overrun cause reads from its log at completion; per-epoch checkpoint saves survive any timeout) | verdict within hours; watch armed |
-| helios fork v2 (57262514) | Harshil | hidden rerun PENDING | score ~22:00 IST |
+| helios fork v2 (57262514) | Harshil | **SCORED 0.956 — new team best** | done |
 | `rsna-knee-versia7` (mega-fusion fork) | Harshil | interactive COMPLETE (3-study output verified healthy, both legs loaded, blend receipt clean) | auto-submits **05:35 IST Oct 17** at quota reset → score ~09:00–13:00 |
 | strip-v2 (`pub954-strip` v2) | Harshil | **verified: predictions byte-identical to 0.949 baseline (MAXDIFF 0.0)** with fast decode + tf32 — this is the fast-decode base the fusion inherits | runtime measured at next real submission |
 | `fullfork v9` | Harshil | scored **0.950** — cnxt decoder fix added ZERO → full-fork lineage closed | done |
 
-- Sub budget today (UTC Oct 16): **5/5 used** (the two 00:01-UTC subs counted against today — lesson logged). Next submissions possible **05:30 IST Oct 17**.
+- Sub budget today (UTC Oct 16): **5/5 used**. Next submissions possible **05:30 IST Oct 17** — versia-7 auto-submits 05:35 IST; it bundles helios legs + CoAtNet + stackers, expected ≥ 0.956.
 
 ## Daksh — your lane
 1. **Dataset shares** (labels-v1, weak-labels, embeddings-v1, ckpt-v1, dinov2-timm-cache → `Dakxsh23`): being shared via Kaggle web UI today. Say so in chat if anything is missing after tonight.
