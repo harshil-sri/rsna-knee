@@ -706,3 +706,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - @coder-2 delivered REAL artifact this time: 125,888B notebook, 7 cells, cell2 = byte-identical transplant of strip-v2 fast-decode cell (95,654 chars, diff=0, my re-check). KneeNet leg ported with k=16 eval windows + TODO-CKPT marker. Rank-normalize uniform blend + fail-closed + receipt + timings all per SPEC; my own STUB run green.
 - MY PATCH (cell 5): alignment pre-check — leg2 study list must exactly cover leg1 (missing UIDs or row-count mismatch -> leg2 failed, weights renormalized, leg1-only mode) instead of unguarded .loc KeyError that would kill the whole rerun. Verified by corrupt-leg2 simulation: receipt leg2_align_error + strip=1.0 renormalized + valid submission. BUILD-REPORT.md has my independent verification section.
 - SCAFFOLD ACCEPTED. Pre-real-run TODOs: ckpt dataset path (after fold-0 gate PASS), kernel-metadata mounts, first-sub runtime measurement (<=25 min gate).
+
+## 19:14 IST Oct 16 — CLOCK AUDIT (triggered by user catching bad stamps)
+- System clock VERIFIED CORRECT: local UTC 13:43 == Kaggle server 13:43:01 == Google 13:43:01 == user 19:12 IST. No skew; WSL drift ruled out.
+- Root cause of bad stamps: L1 extrapolated timestamps between tool calls instead of running date each turn; turn wall-time is much larger than modeled. RULE ADOPTED: every timestamp comes from a date command, never extrapolation.
+- Affected entries: the 17:53-18:03 stamps above actually span ~17:53-18:30 real; content unaffected.
+- MATERIALLY: fold-0 real elapsed = 11h27m (server-start 02:15:32 UTC vs 13:43 UTC), NOT 10h20m as last stated. 12h-cap point = 14:15:32 UTC = 19:45:32 IST -> ~30 min away. Watcher-A catches it.
+- Timed processes unaffected: watchers are epoch-based/self-consistent on the correct clock; versia autosubmit fires real 05:34:30 IST Oct 17 as designed.
