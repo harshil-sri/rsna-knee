@@ -634,3 +634,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 ## 15:05 IST Oct 16 — coder false-completion caught by verification
 - strip-v2 surgery v1: coder reported push-ready but grep proved FASTREAD_VARIANT still study_lut (swap absent), VERIFY.md empty, metadata bad keys present. Lesson: notebooks are JSON — a claimed .ipynb edit can silently no-op; ALWAYS grep the artifact after surgery.
 - Discovery: strip ships study_lut (not table as assumed) -> target is studyone_lut, modest gain. coder-2 re-spawned with proof-per-task instructions.
+
+## 15:10 IST Oct 16 — EFF ELIGIBILITY SETTLED (primary source: official Efficiency Prize Evaluation page, fetched via rendering proxy)
+- VERBATIM: eligible = "among the submissions selected by a team for the Leaderboard Prize, or else among those automatically selected". The rules-researcher claim (best-public auto-qualifies) was WRONG. Manual selection of [best-AUC, strip/fusion] at freeze is MANDATORY.
+- maxAUC = max AUC of ALL submissions on the PRIVATE leaderboard (global normalizer). Public 0.967 is our proxy for planning only.
+- "A submission may be eligible for both the Leaderboard Prize and the Efficiency Prize" -> fusion-at-strip-speed fully legal.
+- Eff prizes = CASH ($7k/$6k/$5k); GPU/CPU notebooks capped 9h (=32400s denominator). Winners obligations: video + open-source code/weights + public model distribution (Nov 5 deadline) - applies if we win.
+- Entries: 25,797 entrants / 7,245 participants / 6,071 teams. Team merger deadline PASSED (Oct 15) - team locked.
