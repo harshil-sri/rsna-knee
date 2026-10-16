@@ -520,3 +520,8 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - nb4 v1 ERROR: missing os.makedirs('/kaggle/working/own_src') before %%writefile. v2 pushed (mkdir cell inserted).
 - reset_watcher2.sh armed (03:24): gates full-fork, then at UTC rollover (05:30 IST) auto-submits fullfork v2 (~0.954 expected) + NB3 v5 (crash-fix). night_watcher keeps LB polling.
 - Timing note: NB3 whole 3-study run = 64s wall in-kernel -> hidden ~1300 studies ≈ 4-6h, within 9h cap.
+
+## Update 07:15 IST — MIL ensemble 0.950 public; Kaggle switched to NESTED mounts
+- **nb3 v5 (MIL 5-fold ensemble, crash-fixed) = 0.950 public LB** — crash fix validated, at the top of the public LB. levers row added.
+- Kaggle mount layout CHANGED overnight: /kaggle/input now nests comp data under /kaggle/input/competitions/<comp>/ and datasets under /kaggle/input/datasets/<owner>/. This silently broke flat-path kernels (nb4 v2/v3) and will break NB1/NB2 on any future rerun (their train.csv globs are flat-only; patch before any rerun). NB3 already robust (sample_submission glob, any depth). nb4 v4: comp_dir derived from resolved train_series.csv; v1_targets/folds/convnext weights via depth-agnostic find_file; diagnostic cell prints mounts + fail-fast.
+- Full fork (pub954-full v2) in hidden rerun 7h+ (pending). nb4 v4 ETA ~14:00 IST. 3 subs left today.

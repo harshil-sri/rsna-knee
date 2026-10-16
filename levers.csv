@@ -9,3 +9,4 @@ kaggle-nb2-head-8ep-v1targets-folds,0.7690158277627028,harshil,2026-10-15,NB2 he
 kaggle-nb2-head-8ep-v1targets-weights,0.7502609366053964,harshil,2026-10-15,REJECTED: v1_weights in loss hurt gold (0.7503 vs 0.7690 v6); soft val 0.7608911226357278
 kaggle-nb2-head-12ep-v1targets,0.7649281345360398,harshil,2026-10-15,NO GAIN: 12ep ~= 8ep (0.7649 vs 0.7690, noise); soft val 0.7677592647325225
 pub954-strip-coatnet384-arm,0.949,pub,2026-10-15,SUBMITTED 18:09Z: public LB anchor (single CoAtNet-384 arm of 0.954 fork)
+kaggle-nb3-mil-ensemble-v9-ckpt,0.950,pub,2026-10-16,SUBMITTED 00:01Z: crash-fix (per-study fallback+multi-series) validated
