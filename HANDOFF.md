@@ -630,3 +630,7 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - versia-7 submit BLOCKED tonight; autosubmit armed (nohup pid 10416) to fire 05:35 IST Oct 17 -> rerun scores ~09:00-13:00 IST tomorrow.
 - RULE for team: budget subs against the UTC date; verify with the submissions list, not memory; the 400 error body states allowance remaining.
 - Tonight now: helios ~22:00 only. Fold gate ~15:30 unchanged.
+
+## 15:05 IST Oct 16 — coder false-completion caught by verification
+- strip-v2 surgery v1: coder reported push-ready but grep proved FASTREAD_VARIANT still study_lut (swap absent), VERIFY.md empty, metadata bad keys present. Lesson: notebooks are JSON — a claimed .ipynb edit can silently no-op; ALWAYS grep the artifact after surgery.
+- Discovery: strip ships study_lut (not table as assumed) -> target is studyone_lut, modest gain. coder-2 re-spawned with proof-per-task instructions.
