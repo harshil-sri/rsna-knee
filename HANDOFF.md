@@ -836,3 +836,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f1=RUNNING, f2=RUNNING, f3=RUNNING, f0@d=RUNNING (v2 fixed, ~2h 16m in), knee-arms2=RUNNING.
 - Chunk 5 schedule: rounds at 02:43, 02:53, 03:03, 03:13; exit ~03:14 IST.
 - All background timers (T1–T4) and Versia autosubmit (05:34:30) confirmed active and undisturbed.
+
+## 03:15 IST Oct 17 — WATCHER v6 CHUNK 6 ARMED & ROUND 1 VERIFIED GREEN
+- Watcher v6 Chunk 5 finished 4 rounds normally (02:43, 02:53, 03:03, 03:13; exit 03:14 IST).
+- Watcher v6 Chunk 6 launched in background (sh_146ac43a9001uj98WLOah8GZNL).
+- Round 1 poll at 03:14 IST verified in watch-folds-recovery.log:
+  f1=RUNNING, f2=RUNNING, f3=RUNNING, f0@d=RUNNING (v2 fixed, ~2h 47m in), knee-arms2=RUNNING.
+- Chunk 6 schedule: rounds at 03:14, 03:24, 03:34, 03:44; exit ~03:45 IST.
+- Critical coverage: Chunk 6 spans the expected ~03:25 f1 quota timeout boundary and the 03:40 T2 timer check.
+- All background timers (T1–T4) and Versia autosubmit (05:34:30) confirmed active and undisturbed.
