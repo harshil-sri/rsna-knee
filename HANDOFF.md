@@ -577,3 +577,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Patched f1/f2/f3: StudyDataset(weights=), 5-tuple batches, weighted loss = (loss_mat*valid_mask*cw).sum()/valid_mask.sum(), row-aligned via StudyInstanceUID.
 - Decision: fold-0 (RUNNING, unweighted) NOT restarted — gold go/no-go signal first; its ckpt = free diverse 5th leg.
 - PROTOCOL FIX (user): all further code/notebook surgery -> @coder/@coder-2 (gemini-3.8-flash), mechanical checks -> @grunt. L1 = review + orchestrate only.
+
+## Update ~14:15 IST — decoder-risk audit (reasoning receipt)
+- KEY EVIDENCE: strip c384 scored 0.949 on Oct 15 => its hidden rerun SUCCEEDED => hidden DICOMs decode with plain pydicom (uncompressed). NOT a decoder minefield.
+- cnxt reader leg needs pylibjpeg unconditionally (its own code path) — fork v7/v8 failures were exactly this; v9 has wheels => safe.
+- nb5 fusion kernel has NO wheels dataset: if ever resubmitted, attach pylibjpeg-abi-zips first. Strip + fork v9 = safe tonight.
+- Fusion weight plan (day 4): rank-average, per-finding coarse grid {0,0.25,0.5} per leg tuned on gold-58 (58 rows => overfit-risk; smoothing toward uniform).
+- Efficiency trim option (medium priority): strip windows/2 => ~10min hidden (eff gain ~0.05); decide after first daily Efficiency Leaderboard sighting.
