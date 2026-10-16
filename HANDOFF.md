@@ -619,3 +619,8 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - REJECTED: torch.compile/ONNX (risk, unverifiable offline), two-stage /kaggle/tmp cache (pointless within one run).
 - Target: strip 0.949 at ~10-12 min; fusion kernel BORN fast on same path Oct 18-19 (fusion at strip speed = both best-AUC and efficiency horse).
 - Gold-gate caveat: strip gold-58 macro is in the 0.75-0.80 band by design (validation split, half the training data, no val tuning) -> do NOT gate the strip on 0.80; that threshold is for the nb4 leg.
+
+## 14:47 IST Oct 16 — v9 = 0.950 (COMPLETE)
+- cnxt leg fix added ZERO public AUC (v2 broken=0.950, v9 fixed=0.950). Full-fork lineage closed for submissions; its value is only as a fusion ingredient + private decorrelation, unmeasurable until rerun.
+- Sub budget today: 3/5 (57252363, 57260570, 57262514). Remaining plan: versia-7 tonight (#4) + 1 spare.
+- Fold-0 still RUNNING at 14:47; gate ~15:30. helios v2 PENDING (~22:00).
