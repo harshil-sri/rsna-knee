@@ -1,0 +1,173 @@
+delivery: rsna-knee-mil-ensemble-pub0950
+owner: harshil
+created_utc: 2026-10-16 02:09:46+00:00
+purpose: Handoff of inference-artifact package for Kartik read-only reference and inference-side lever
+  assessment (TTA, precision, windows, runtime).
+scope_of_transfer: Kartik's role is NOT model takeover; scope is read-only reference for inference-side
+  levers (TTA, precision, windows, runtime) on existing models — training/strategy ownership remains with
+  Harshil.
+required_phases:
+- train: source/nb2_train.ipynb (NB2) produces artifacts/best.pt (5-fold ensemble state_dicts)
+- embed: source/nb1 not included (reference only; timm cache in dinov2-timm-cache dataset)
+- infer: source/nb3_submit.ipynb (NB3) consumes ckpt + dinov2-timm-cache for hidden test submission
+- score: source/score_gold.py scores gold-58 held-out subset; outputs recorded in receipts/
+files:
+  artifacts/best.pt:
+    sha256: 68bf7c452d8624f5b3a0f93d8eb458504142a6248f9ccdc6f59e55bb74106727
+  artifacts/gold58_truth.csv:
+    sha256: a3ca7df32d43ee7c683091162b1839ea8308d802bea3f2b437f4908d9cbcb079
+  artifacts/gold_preds.csv:
+    sha256: 4d5f1c7d8a165eaabaf0f8644a88fbac33351a56abf1710f093d0e513bcca500
+  artifacts/gold_score.json:
+    sha256: ebf472c78037f47ef87366d517bc7e9dc05e197ea2f3b634a39e65a4f9126411
+  artifacts/oof_preds.csv:
+    sha256: e9a8d3183b3194e50e52196b241b00bad6d74cb6cd859df576441119fa3da9ce
+  candidate_levers.csv:
+    sha256: b994bc567db79fe75ff2e2fc9698a2376a1f3d07156ca1483d8f990d30a4eb49
+  configs/kernel-metadata-nb2.json:
+    sha256: 38798f9c6e22f79363527c0ec57406582281874439195853e668b9800d6d4024
+  configs/kernel-metadata-nb3.json:
+    sha256: 5a45f65ef444282abbd288a110c191d20846739525ffd3523cd89c8ec01b8fba
+  levers.csv:
+    sha256: 954e358db20ead7f738db3773a74965c8d231246136d736f8bfd3d55af57e4b8
+  receipts/nb2-v9-run.log:
+    sha256: 50eae712c02531aac82f096527ec25d33e5e24e88350bfb614a4030548a8a2ff
+  receipts/nb3-v5-run.log:
+    sha256: 0da8a4e426d8d7822849e37bb49b93310ade461578ff6e12e347d4226076e475
+  receipts/receipt-gold58-ensemble.txt:
+    sha256: fd9359b494cff6fe66497b6350167f9e2b44c9166001543c3d299783d6e2827d
+  receipts/receipt-gold58-oof.txt:
+    sha256: ce0f3cfe63212b8f33e63591906d485225b0700573b21471c5838c98c56bb613
+  receipts/score_receipts.csv:
+    sha256: 2d7ee2fe9ccc9e79ea1c0b158355c7016249cb7d3c54b4fccdd74bfb9c1ef069
+  receipts/submissions-public-lb.json:
+    sha256: f2f844137d16a5683b2ce436e46fe137122c103c185840c683461fc27215f358
+  source/make_folds.py:
+    sha256: b831b032359e6676cd351817be697a366962dda90c9be4c3563021a0e9c8af10
+  source/nb2_train.ipynb:
+    sha256: d23cbd7f1fbb791c1138b20173d77409b71124ca2f08f8e8e2b20b85a403f440
+  source/nb3_submit.ipynb:
+    sha256: f0a9302f0d81a4af9e93fd676067baeb2a889af6a4431d0620b94a7f37502bac
+  source/score_gold.py:
+    sha256: 0eb874054554195cb2b1023c8f911dbbfe4132cfad94758eac8233e494c9f893
+  artifacts/submission_lb0950.csv: ad982c60014005e473896e47da9f99ad8af9bb292ce6a6d1370bd98521da2520
+  source/nb1_features.ipynb: 7388cf9d84c06e996a8a66b4d0b54d73b95ca23c2069acc4bb2e9e56296efe0b
+kaggle_references:
+  checkpoint_dataset:
+    path: harshilsrivastav/rsna-knee-ckpt-v1
+    files:
+      best_pt:
+        sha256: 68bf7c452d8624f5b3a0f93d8eb458504142a6248f9ccdc6f59e55bb74106727
+      gold_preds_csv: present
+      oof_preds_csv: present
+      gold_score_json: present
+    version_pin:
+      by_sha256: true
+      creation_datetime: 2026-10-15 17:42:05 UTC
+      kaggle_version_number: UNAVAILABLE (Kaggle CLI has no version-list command)
+  kernels:
+  - name: harshilsrivastav/rsna-knee-nb1-features
+    completion_timestamp: 2026-10-15 08:36 UTC
+    version: COMPLETE
+    code_file_hash: UNAVAILABLE (nb1 not in package; reference only)
+  - name: harshilsrivastav/rsna-knee-nb2-train
+    completion_timestamp: 2026-10-15 17:22 UTC
+    version: v9
+    code_file_hash: d23cbd7f1fbb791c1138b20173d77409b71124ca2f08f8e8e2b20b85a403f440
+    code_file: source/nb2_train.ipynb
+  - name: harshilsrivastav/rsna-knee-nb3-submit-test
+    completion_timestamp: 2026-10-15 20:05 UTC
+    version: v5
+    code_file_hash: f0a9302f0d81a4af9e93fd676067baeb2a889af6a4431d0620b94a7f37502bac
+    code_file: source/nb3_submit.ipynb
+  datasets_consumed:
+  - name: rsna-knee-embeddings-v1
+    size_bytes: 133562760
+    created: 2026-10-15 14:31 UTC
+  - name: rsna-knee-weak-labels
+    file: train_weak_v2.csv
+    sha256: UNAVAILABLE-not-precomputed
+  - name: rsna-knee-labels-v1
+    created: 2026-10-16 01:51 UTC
+    note: This version ALSO contains train.csv/train_series.csv added for nb4 mount-fallback; nb2 uses
+      only v1_targets/folds/v1_weights from it
+  - name: convnext-tiny-weights
+    note: NOT used by this model — nb4 only
+  - name: dinov2-timm-cache
+    path: hf/hub/models--timm--vit_small_patch14_dinov2.lvd142m
+    snapshot: 4610ca143709d58a633b6397a74412c2c3842454
+  competition: rsna-knee-abnormality-detection
+  mount_note: data mount only
+external_data:
+  declared: NONE beyond ImageNet-pretrained timm weights (dinov2 vit_small_patch14_dinov2.lvd142m + convnext_tiny_in1k
+    unused-by-this-model).
+  oai_usage: NOT used anywhere in this package's models — explicitly declared clean.
+  public_fork_artifacts: Public 0.949-0.954 fork artifacts are external third-party outputs referenced
+    for LB context only, never trained on or included as assets.
+model_contract:
+  input: knee MRI DICOM study; load all series dirs; slices sorted by ImagePositionPatient[2] (SliceLocation
+    fallback); per-slice cv2.INTER_LINEAR resize with aspect-preserving base fit; percentile window normalize
+    (2.0, 98.0); MONOCHROME1 inverted
+  windows: 42 windows/study round-robin across series proportional to size; window = 5 consecutive slices;
+    short series pad by repeating last slice; resize_volume to 224x224 per slice
+  embeddings_nb1: timm vit_small_patch14_dinov2.lvd142m, in_chans=5, img_size=224, num_classes=0, patch-token
+    mean over PREFIX-stripped tokens (fp16), saved .npz per study (emb float16)
+  model_nb2: 'GatedAttentionMIL(in=384, hidden=128, out=12) — attention_v Linear+tanh, attention_u Linear+sigmoid,
+    attention_weights Linear(hidden,1), softmax over windows, masked sum, classifier Linear. 5 folds trained
+    (SEED 42+fold), ckpt = {''state_dicts'': [5 sd], ''label_cols'', ''hidden'', ''val_auc''}'
+  output: 12 sigmoid probabilities
+  submission_columns: 'Verified from source/nb3_submit.ipynb: label_cols = [c for c in sample.columns
+    if c != ''StudyInstanceUID'']; submission DataFrame built via pd.DataFrame(rows, columns=sample.columns)
+    written to /kaggle/working/submission.csv. The single ''Abnormality'' column is NOT used; final submission
+    = per-finding probabilities for 12 findings.'
+  label_column_order:
+  - ACL
+  - MCL
+  - Medial Meniscus
+  - Lateral Meniscus
+  - Medial OA
+  - Lateral OA
+  - PF OA
+  - Effusion
+  - Synovitis
+  - Baker's
+  - Contusion
+  - Fracture
+  precision: fp32 inference (no autocast in nb3)
+  logit_aggregation: 'Verified from source/nb3_submit.ipynb predict_study(): logits = torch.stack([h(emb)
+    for h in heads], 0).mean(0); final = torch.sigmoid(logits). Exact: mean over 5 fold-head logits (raw
+    logits, pre-sigmoid), then single sigmoid applied to the averaged logits.'
+  fallback: no series dir → row of all 0.5; empty slices → same; never crash (per-study try/except)
+label_lineage: comp train.csv = 4407 studies, only 58 have hard labels (gold58); Daksh LLM-teacher pipeline
+  produced train_weak_v2 (weak soft labels, labeler macro-AUC vs gold58 0.709) then fused v1_targets.csv
+  (teacher soft labels, quality 0.89 vs gold58 — per-class MAE 0.135-0.379, exact-match 41-55/58, verified
+  vs truth file); v1_weights.csv = per-study confidence weights; gold rows in v1_targets carry SOFT teacher
+  labels (NOT ground-truth hard labels) — training never saw gold hard labels; gold hard labels used ONLY
+  in score_gold.py receipts (no contamination).
+fold_lineage: folds.csv (sha256 8ea359a25c841c31554da17c20c0b7ba6f688c0d87975af38ff091d42bfd186b), canonical
+  5-fold, seed 42, made by make_folds.py (sha256 b831b032359e6676cd351817be697a366962dda90c9be4c3563021a0e9c8af10)
+  from train_series.csv StudyInstanceUIDs (np.random.default_rng(42) permutation, fold = i%5, sorted unique
+  4407 studies). NB2 VAL_FOLD=0; per-fold models use fold!=f train / fold==f val.
+gold58_usage: scoring only (score_gold.py, receipts); truth file artifacts/gold58_truth.csv = 58 rows
+  x (StudyInstanceUID + 12 label cols), sha256 a3ca7df32d43ee7c683091162b1839ea8308d802bea3f2b437f4908d9cbcb079;
+  NO report text, NO DICOMs included.
+score_receipts_pointer: receipts/score_receipts.csv — 5 records (REC-001..REC-005) covering gold58_macro,
+  gold58_oof_strict, and public_lb score types with prediction/truth/fold/scorer sha256 provenance.
+anchors:
+  accuracy_anchor: cand10 (kaggle-nb3-mil-ensemble-v9-ckpt, 0.7798 gold58_macro / 0.950 public_lb)
+  efficiency_anchor: cand07 (single head 0.7690, ~1/5 head compute, same preprocessing)
+known_issues:
+- 'Kaggle nested mount layout change 2026-10-16: nb3 robust (depth-agnostic glob); nb1/nb2 use flat-path
+  globs in places — patch required before any rerun (tracked; ETA same-day)'
+- earlier NB3 versions v1/v2/v4 errored on hidden rerun (unguarded dcmread/np.stack); v5 crash-fixed —
+  never submit v1-v4 code
+- hidden-rerun timeout is a projection (4-6h vs 9h cap), not verified on full hidden set
+- checkpoint file (2076513 bytes) stores 5 head state_dicts; backbone (dinov2) NOT in ckpt — recreated
+  from timm hub cache dataset at load (pretrained=True) — note this for reproducibility
+reproduction: 'Exact commands in README Quickstart; this manifest repeats them with expected outputs:
+  (1) NB1 produce embeddings (.npz per study) via timm dinov2 timm cache + competition mount; (2) NB2
+  train via source/nb2_train.ipynb attaching rsna-knee-embeddings-v1 + rsna-knee-weak-labels + rsna-knee-labels-v1
+  → best.pt (sha256 68bf7c452d8624f5b3a0f93d8eb458504142a6248f9ccdc6f59e55bb74106727); (3) NB3 infer via
+  source/nb3_submit.ipynb attaching rsna-knee-ckpt-v1 + dinov2-timm-cache + competition mount → submission.csv'
+undeclared_paths: none
+network_downloads: none

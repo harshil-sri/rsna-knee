@@ -1,0 +1,22 @@
+{
+  "id": "harshilsrivastav/rsna-knee-nb2-train",
+  "title": "rsna-knee-nb2-train",
+  "code_file": "nb2_train.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "dataset_sources": [
+    "harshilsrivastav/rsna-knee-weak-labels",
+    "harshilsrivastav/rsna-knee-labels-v1"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "kernel_sources": [
+    "harshilsrivastav/rsna-knee-nb1-features"
+  ],
+  "model_sources": []
+}

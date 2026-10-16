@@ -1,0 +1,14 @@
+gold studies in train: 58   matched in preds: 58
+  ACL                  0.6642
+  MCL                  0.6417
+  Medial Meniscus      0.7752
+  Lateral Meniscus     0.8062
+  Medial OA            0.8574
+  Lateral OA           0.7872
+  PF OA                0.6988
+  Effusion             0.8000
+  Synovitis            0.7324
+  Baker's              0.7536
+  Contusion            0.7058
+  Fracture             0.7222
+  MACRO                0.7454

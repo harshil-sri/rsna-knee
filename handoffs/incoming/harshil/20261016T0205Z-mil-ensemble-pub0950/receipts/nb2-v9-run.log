@@ -1,0 +1,104 @@
+[{"stream_name":"stderr","time":11.782382099,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":11.782426551,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":11.782433163,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":11.782437393,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":12.59692694,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":12.596958745,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":12.596963586,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":12.596967339,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":32.679738112,"data":"COMP = /kaggle/input/competitions/rsna-knee-abnormality-detection\n"}
+,{"stream_name":"stdout","time":32.679774746,"data":"EMB = /kaggle/input/notebooks/harshilsrivastav/rsna-knee-nb1-features/embeddings\n"}
+,{"stream_name":"stdout","time":32.679779299,"data":"LABELS = /kaggle/input/datasets/harshilsrivastav/rsna-knee-weak-labels/train_weak_v2.csv\n"}
+,{"stream_name":"stdout","time":32.679792856,"data":"FOLDS = /kaggle/input/rsna-knee-labels-v1/folds.csv\n"}
+,{"stream_name":"stdout","time":32.679797024,"data":"TARGETS = /kaggle/input/rsna-knee-labels-v1/v1_targets.csv\n"}
+,{"stream_name":"stdout","time":33.132095437,"data":"train 3497  val 910  (gold in val fold: 12)\n"}
+,{"stream_name":"stdout","time":122.48184842,"data":"fold 0 epoch 1: loss 0.5308 val-macro-AUC 0.7051\n"}
+,{"stream_name":"stdout","time":131.989804749,"data":"fold 0 epoch 2: loss 0.5096 val-macro-AUC 0.7220\n"}
+,{"stream_name":"stdout","time":139.394071612,"data":"fold 0 epoch 3: loss 0.5023 val-macro-AUC 0.7370\n"}
+,{"stream_name":"stdout","time":148.383290836,"data":"fold 0 epoch 4: loss 0.4972 val-macro-AUC 0.7450\n"}
+,{"stream_name":"stdout","time":156.361772363,"data":"fold 0 epoch 5: loss 0.4946 val-macro-AUC 0.7474\n"}
+,{"stream_name":"stdout","time":165.142087938,"data":"fold 0 epoch 6: loss 0.4921 val-macro-AUC 0.7477\n"}
+,{"stream_name":"stdout","time":173.679247824,"data":"fold 0 epoch 7: loss 0.4899 val-macro-AUC 0.7563\n"}
+,{"stream_name":"stdout","time":181.595755397,"data":"fold 0 epoch 8: loss 0.4885 val-macro-AUC 0.7581\n"}
+,{"stream_name":"stdout","time":189.264874713,"data":"fold 0 epoch 9: loss 0.4857 val-macro-AUC 0.7550\n"}
+,{"stream_name":"stdout","time":197.585654606,"data":"fold 0 epoch 10: loss 0.4844 val-macro-AUC 0.7594\n"}
+,{"stream_name":"stdout","time":206.375829672,"data":"fold 0 epoch 11: loss 0.4828 val-macro-AUC 0.7653\n"}
+,{"stream_name":"stdout","time":214.320180671,"data":"fold 0 epoch 12: loss 0.4811 val-macro-AUC 0.7643\n"}
+,{"stream_name":"stdout","time":216.080520219,"data":"fold 0 best val-macro-AUC 0.7653\n"}
+,{"stream_name":"stdout","time":226.389631482,"data":"fold 1 epoch 1: loss 0.5250 val-macro-AUC 0.7043\n"}
+,{"stream_name":"stdout","time":234.892654451,"data":"fold 1 epoch 2: loss 0.5052 val-macro-AUC 0.7242\n"}
+,{"stream_name":"stdout","time":243.019133478,"data":"fold 1 epoch 3: loss 0.4997 val-macro-AUC 0.7412\n"}
+,{"stream_name":"stdout","time":250.738863744,"data":"fold 1 epoch 4: loss 0.4946 val-macro-AUC 0.7499\n"}
+,{"stream_name":"stdout","time":258.862755317,"data":"fold 1 epoch 5: loss 0.4908 val-macro-AUC 0.7533\n"}
+,{"stream_name":"stdout","time":270.200566415,"data":"fold 1 epoch 6: loss 0.4891 val-macro-AUC 0.7558\n"}
+,{"stream_name":"stdout","time":278.00168979,"data":"fold 1 epoch 7: loss 0.4867 val-macro-AUC 0.7561\n"}
+,{"stream_name":"stdout","time":286.031702204,"data":"fold 1 epoch 8: loss 0.4856 val-macro-AUC 0.7603\n"}
+,{"stream_name":"stdout","time":293.914813756,"data":"fold 1 epoch 9: loss 0.4836 val-macro-AUC 0.7666\n"}
+,{"stream_name":"stdout","time":304.149302325,"data":"fold 1 epoch 10: loss 0.4820 val-macro-AUC 0.7660\n"}
+,{"stream_name":"stdout","time":313.087458698,"data":"fold 1 epoch 11: loss 0.4795 val-macro-AUC 0.7645\n"}
+,{"stream_name":"stdout","time":321.827142526,"data":"fold 1 epoch 12: loss 0.4788 val-macro-AUC 0.7658\n"}
+,{"stream_name":"stdout","time":323.621534321,"data":"fold 1 best val-macro-AUC 0.7666\n"}
+,{"stream_name":"stdout","time":332.629758367,"data":"fold 2 epoch 1: loss 0.5279 val-macro-AUC 0.6949\n"}
+,{"stream_name":"stdout","time":342.571511558,"data":"fold 2 epoch 2: loss 0.5088 val-macro-AUC 0.7236\n"}
+,{"stream_name":"stdout","time":350.446596228,"data":"fold 2 epoch 3: loss 0.5014 val-macro-AUC 0.7399\n"}
+,{"stream_name":"stdout","time":358.886967092,"data":"fold 2 epoch 4: loss 0.4973 val-macro-AUC 0.7441\n"}
+,{"stream_name":"stdout","time":367.11561336,"data":"fold 2 epoch 5: loss 0.4938 val-macro-AUC 0.7536\n"}
+,{"stream_name":"stdout","time":376.127635663,"data":"fold 2 epoch 6: loss 0.4903 val-macro-AUC 0.7556\n"}
+,{"stream_name":"stdout","time":383.917068414,"data":"fold 2 epoch 7: loss 0.4893 val-macro-AUC 0.7592\n"}
+,{"stream_name":"stdout","time":391.457152222,"data":"fold 2 epoch 8: loss 0.4866 val-macro-AUC 0.7581\n"}
+,{"stream_name":"stdout","time":399.067127982,"data":"fold 2 epoch 9: loss 0.4850 val-macro-AUC 0.7619\n"}
+,{"stream_name":"stdout","time":407.780112592,"data":"fold 2 epoch 10: loss 0.4832 val-macro-AUC 0.7698\n"}
+,{"stream_name":"stdout","time":415.552851524,"data":"fold 2 epoch 11: loss 0.4817 val-macro-AUC 0.7662\n"}
+,{"stream_name":"stdout","time":423.815907457,"data":"fold 2 epoch 12: loss 0.4806 val-macro-AUC 0.7640\n"}
+,{"stream_name":"stdout","time":425.49361158,"data":"fold 2 best val-macro-AUC 0.7698\n"}
+,{"stream_name":"stdout","time":433.581960389,"data":"fold 3 epoch 1: loss 0.5274 val-macro-AUC 0.6952\n"}
+,{"stream_name":"stdout","time":442.055078573,"data":"fold 3 epoch 2: loss 0.5078 val-macro-AUC 0.7270\n"}
+,{"stream_name":"stdout","time":450.153247838,"data":"fold 3 epoch 3: loss 0.5011 val-macro-AUC 0.7356\n"}
+,{"stream_name":"stdout","time":458.991345562,"data":"fold 3 epoch 4: loss 0.4982 val-macro-AUC 0.7415\n"}
+,{"stream_name":"stdout","time":468.348202798,"data":"fold 3 epoch 5: loss 0.4943 val-macro-AUC 0.7446\n"}
+,{"stream_name":"stdout","time":475.934082832,"data":"fold 3 epoch 6: loss 0.4924 val-macro-AUC 0.7515\n"}
+,{"stream_name":"stdout","time":484.788752932,"data":"fold 3 epoch 7: loss 0.4890 val-macro-AUC 0.7555\n"}
+,{"stream_name":"stdout","time":493.268693243,"data":"fold 3 epoch 8: loss 0.4873 val-macro-AUC 0.7593\n"}
+,{"stream_name":"stdout","time":501.604130786,"data":"fold 3 epoch 9: loss 0.4859 val-macro-AUC 0.7553\n"}
+,{"stream_name":"stdout","time":509.954133359,"data":"fold 3 epoch 10: loss 0.4845 val-macro-AUC 0.7618\n"}
+,{"stream_name":"stdout","time":518.610314035,"data":"fold 3 epoch 11: loss 0.4838 val-macro-AUC 0.7640\n"}
+,{"stream_name":"stdout","time":527.2704445,"data":"fold 3 epoch 12: loss 0.4820 val-macro-AUC 0.7669\n"}
+,{"stream_name":"stdout","time":529.061567929,"data":"fold 3 best val-macro-AUC 0.7669\n"}
+,{"stream_name":"stdout","time":539.274643726,"data":"fold 4 epoch 1: loss 0.5250 val-macro-AUC 0.7025\n"}
+,{"stream_name":"stdout","time":547.092937793,"data":"fold 4 epoch 2: loss 0.5064 val-macro-AUC 0.7345\n"}
+,{"stream_name":"stdout","time":558.727585137,"data":"fold 4 epoch 3: loss 0.4990 val-macro-AUC 0.7449\n"}
+,{"stream_name":"stdout","time":569.790051673,"data":"fold 4 epoch 4: loss 0.4942 val-macro-AUC 0.7525\n"}
+,{"stream_name":"stdout","time":578.952320332,"data":"fold 4 epoch 5: loss 0.4915 val-macro-AUC 0.7595\n"}
+,{"stream_name":"stdout","time":589.249590648,"data":"fold 4 epoch 6: loss 0.4877 val-macro-AUC 0.7595\n"}
+,{"stream_name":"stdout","time":598.220937526,"data":"fold 4 epoch 7: loss 0.4859 val-macro-AUC 0.7663\n"}
+,{"stream_name":"stdout","time":609.958048305,"data":"fold 4 epoch 8: loss 0.4831 val-macro-AUC 0.7686\n"}
+,{"stream_name":"stdout","time":619.297210978,"data":"fold 4 epoch 9: loss 0.4831 val-macro-AUC 0.7661\n"}
+,{"stream_name":"stdout","time":628.110737147,"data":"fold 4 epoch 10: loss 0.4807 val-macro-AUC 0.7698\n"}
+,{"stream_name":"stdout","time":638.863339935,"data":"fold 4 epoch 11: loss 0.4801 val-macro-AUC 0.7723\n"}
+,{"stream_name":"stdout","time":648.324168034,"data":"fold 4 epoch 12: loss 0.4783 val-macro-AUC 0.7730\n"}
+,{"stream_name":"stdout","time":651.005756493,"data":"fold 4 best val-macro-AUC 0.7730\n"}
+,{"stream_name":"stdout","time":651.164763342,"data":"ENSEMBLE OOF val-macro-AUC 0.7683\n"}
+,{"stream_name":"stdout","time":674.738272703,"data":"  ACL                  0.7377\n"}
+,{"stream_name":"stdout","time":674.738309049,"data":"  MCL                  0.6576\n"}
+,{"stream_name":"stdout","time":674.738315499,"data":"  Medial Meniscus      0.7993\n"}
+,{"stream_name":"stdout","time":674.738320313,"data":"  Lateral Meniscus     0.8236\n"}
+,{"stream_name":"stdout","time":674.738324869,"data":"  Medial OA            0.8884\n"}
+,{"stream_name":"stdout","time":674.738329586,"data":"  Lateral OA           0.8433\n"}
+,{"stream_name":"stdout","time":674.73833397,"data":"  PF OA                0.7529\n"}
+,{"stream_name":"stdout","time":674.738337877,"data":"  Effusion             0.8050\n"}
+,{"stream_name":"stdout","time":674.738342167,"data":"  Synovitis            0.7204\n"}
+,{"stream_name":"stdout","time":674.738346209,"data":"  Baker's              0.8460\n"}
+,{"stream_name":"stdout","time":674.738350167,"data":"  Contusion            0.7152\n"}
+,{"stream_name":"stdout","time":674.738354174,"data":"  Fracture             0.7681\n"}
+,{"stream_name":"stdout","time":674.738361875,"data":"GOLD-58 MACRO AUC (5-fold ensemble): 0.7798\n"}
+,{"stream_name":"stdout","time":674.738364938,"data":"GOLD-58 MACRO AUC (strict OOF): 0.7454\n"}
+,{"stream_name":"stdout","time":674.738367758,"data":"wrote gold_preds.csv + oof_preds.csv + gold_score.json\n"}
+,{"stream_name":"stderr","time":680.847906442,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":680.847931644,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":681.098073574,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":681.098095684,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":682.079207356,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":682.164169033,"data":"[NbConvertApp] Writing 22048 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":684.837193072,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":685.437431857,"data":"[NbConvertApp] Writing 342386 bytes to __results__.html\n"}
+]
