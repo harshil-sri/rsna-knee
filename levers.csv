@@ -10,3 +10,5 @@ kaggle-nb2-head-8ep-v1targets-weights,0.7502609366053964,harshil,2026-10-15,REJE
 kaggle-nb2-head-12ep-v1targets,0.7649281345360398,harshil,2026-10-15,NO GAIN: 12ep ~= 8ep (0.7649 vs 0.7690, noise); soft val 0.7677592647325225
 pub954-strip-coatnet384-arm,0.949,pub,2026-10-15,SUBMITTED 18:09Z: public LB anchor (single CoAtNet-384 arm of 0.954 fork)
 kaggle-nb3-mil-ensemble-v9-ckpt,0.950,pub,2026-10-16,SUBMITTED 00:01Z: crash-fix (per-study fallback+multi-series) validated
+kaggle-pub954-full-v2,0.756,pub,2026-10-16,REJECTED: cnxt leg poisoned fusion (pylibjpeg wheels missing in assets dir; hidden-set compressed DICOM decode broke leg) - v3 fix pushed w/ wheels dataset + check=True
+kaggle-nb5-mil-plus-c384-rankfuse,SUBMITTED,pub,2026-10-16,ref 57252363: rank-pct-average fusion of MIL(0.950)+c384(0.949) legs; 1e-4-scale MIL-prob tiebreaker; public run 1.4min

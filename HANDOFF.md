@@ -538,3 +538,7 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - All public DICOMs are uncompressed (ExplicitVR LE, 132 scanned) — cnxt leg decode was fine locally; poison is hidden-set-specific (likely compressed TS needs pylibjpeg — fork author shipped wheels in assets, ours lacked them). v3 hard-fails if wheels missing.
 - nb5 = nb3 MIL cells (output _mil.csv) + strip c384 cells (output _c384.csv) + rank-pct-average fusion → submission.csv. Pushed v1. Public run validates assembly; hidden risk = total runtime (MIL ~5.5h + c384 ?) vs 9h cap — decide submission only after full-fork v3 score lands (~15:00 IST) and nb5 public runtime observed.
 - Sub budget: 3. Plan: 1 for full fork v3 (if gate+score good), 1 for nb5, 1 reserve.
+
+## Update 08:25 IST — nb5 submitted; code-comp submit flow corrected
+- nb5 v3 gated internally after fusion fix (degenerate-MM on 3 public rows was legs' anti-correlation coincidence; MIL-prob tiebreaker + assert added), submitted via competition_submit_code(kernel ref, version) — NOTE: `-f file.csv` legacy submit returns 400 for code comps now; use submit_code with kernel_owner/slug + version.
+- Pending: nb5 (ETA ~14:30), full fork v3 (ETA ~15:00), nb4 v5 fold-0 (ETA ~14:30). All three land mid-afternoon.
