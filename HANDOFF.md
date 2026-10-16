@@ -554,3 +554,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Kaggle datasets auto-EXTRACT .zip at ingest (dirs uploaded as dirs get dropped — root cause of the whole abi saga). abi-zips dataset = abi3xx/abi3xx/... trees, import validated locally.
 - full-fork v8 pushed 11:21 (decoder cell: recursive .so find + PYTHONPATH=parent, check=True test). RUNNING 11:24+.
 - nb4 v5 fold-0 still RUNNING (3.4h in, ETA ~14:30). nb5 fusion rerun score pending (ETA ~14:30).
+
+## Update 13:25 IST — full fork v9 COMPLETE + SUBMITTED (ref 57260570)
+- Decoder fix CONFIRMED on Kaggle: [abi] dir abi313/abi313, "decoders ok, python 3.13.15", cnxt reader 27s (3 public studies).
+- gate.py PASS (3x13, full spread per column). Output includes _own.csv (our MIL leg ran inside fork).
+- v9 rerun ETA ~21:00 IST (c384+cnxt+c224+own-MIL fusion on hidden).
+- Subs today: 2/5 used (nb5 ref 57252363 @02:52Z, fullfork v9 ref 57260570 @~07:55Z). 3 left.
