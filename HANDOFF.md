@@ -548,3 +548,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Strategy: strip c384 (0.949, ~20min) = efficiency horse; MIL/fusion (~5.5-6h) CANNOT win efficiency (5.5h must buy >0.27 AUC).
 - DEADLINE ACTION (repeat until done): team's 2 final selections MUST include strip-c384 run for efficiency eligibility; other slot = best-AUC sub.
 - GPU accel accepted: user will provide Daksh token for parallel nb4 folds 1-3.
+
+## Update 11:30 IST — reboot recovery + full-fork v8
+- LESSON: /tmp is WIPED on reboot here → all scratch now lives in ~/kaggle/wt/ (persistent). day_watcher relaunched (pid 2600, fixed pgrep self-match).
+- Kaggle datasets auto-EXTRACT .zip at ingest (dirs uploaded as dirs get dropped — root cause of the whole abi saga). abi-zips dataset = abi3xx/abi3xx/... trees, import validated locally.
+- full-fork v8 pushed 11:21 (decoder cell: recursive .so find + PYTHONPATH=parent, check=True test). RUNNING 11:24+.
+- nb4 v5 fold-0 still RUNNING (3.4h in, ETA ~14:30). nb5 fusion rerun score pending (ETA ~14:30).
