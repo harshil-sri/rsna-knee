@@ -661,3 +661,8 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - OLD frozen rule "never select heavy fusion for eff" is SUPERSEDED by the Oct 16 fusion spec (wt/fusion-scaffold/SPEC.md): the fusion kernel is ≤25 min (fold-0 SOLO + strip leg), NOT an 8h monster. The old rule INTENT survives unchanged: never let an >1h kernel occupy the efficiency-eligible slot.
 - New frozen selection rule: [fusion@strip-speed (if ≥0.952 public), strip-c384 as fallback horse] — final 2 selections at Oct 21-22 freeze, manual, mandatory for eff eligibility (settled Oct 16 from primary source).
 - SYNTHESIS.md accepted as the master strategy doc; sequenced levers: strip cuts (Oct 17 AM) -> fusion scaffold (post-gate) -> K_EVAL trim gold-58-gated (Oct 18) -> Daksh 3rd leg if fits (Oct 19) -> strip trim (Oct 20) -> freeze (Oct 21-22).
+
+## 15:53 IST Oct 16 — strip-v2 VERIFIED (MAXDIFF 0.0 vs _sota_0949.csv)
+- studyone_lut swap + cudnn.benchmark + tf32: predictions byte-identical on public 3 studies. Decode contract holds -> strip-v2 = official fast-decode base for fusion kernel (born-fast requirement satisfied).
+- NOTE: the nohup strip watcher died silently (empty log) - verification done manually. Lesson stands: nohup watchers need a heartbeat line at start; silent death = missing verification.
+- fold-0 RUNNING at 15:52 (ETA slipped ~20min, normal variance; poller covers to ~17:50). helios PENDING. Subs 5/5 until 05:30 IST.
