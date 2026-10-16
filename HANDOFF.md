@@ -641,3 +641,7 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - "A submission may be eligible for both the Leaderboard Prize and the Efficiency Prize" -> fusion-at-strip-speed fully legal.
 - Eff prizes = CASH ($7k/$6k/$5k); GPU/CPU notebooks capped 9h (=32400s denominator). Winners obligations: video + open-source code/weights + public model distribution (Nov 5 deadline) - applies if we win.
 - Entries: 25,797 entrants / 7,245 participants / 6,071 teams. Team merger deadline PASSED (Oct 15) - team locked.
+
+## 15:02 IST Oct 16 — fusion kernel SPEC written (wt/fusion-scaffold/SPEC.md)
+- KEY DESIGN LOCK: fusion runs 2.5D fold-0 SOLO (4-fold inference = 20-40 min, blows 25-min budget). 4-fold ensemble serves OOF/pseudo-labels; f1 added only if measured rerun shows headroom.
+- Fusion = percentile rank-average, uniform, fail-closed per leg, receipt json. Legs: strip-c384 (post-cuts ~10-12 min) + 2.5D-f0 (~5-10 min); Daksh leg 3rd only if fits.
