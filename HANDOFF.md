@@ -566,3 +566,8 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Evidence: submit-time descriptions match kernels; gold-58 predicted MIL 0.7798 (fits 0.756, never fit 0.950); nb5 (MIL+c384) = 0.891 only explicable if MIL leg ≈ 0.756.
 - nb5 fusion v3 = 0.891 = NEGATIVE result (rank-fusion with a 0.756 leg drags c384). No more MIL fusions until MIL > ~0.85.
 - Subs used today: 2/5 (nb5 0.891, fullfork-v9 PENDING ETA ~21:00 IST).
+
+## Update 13:55 IST — fold 1-3 launch packages ready (in ~/kaggle/wt/nb4-f{1,2,3}/)
+- FOLD param set (1/2/3), SEED=42 normalized, OOF filename val_preds_fold{N}.csv (fold-aware).
+- make_oof_25d.py: concatenates fold val_preds -> oof_preds_25d.csv for Daksh (StudyInstanceUID + 12 cols + fold col; uniqueness-asserted).
+- Launch protocol on fold-0 pass: publish fold-0 artifacts dataset; push nb4-f1 (our quota) immediately; f2/f3 on Kartik token arrival.
