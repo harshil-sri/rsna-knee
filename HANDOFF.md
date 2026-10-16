@@ -763,3 +763,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - ROOT CAUSE + NEW HARD RULE: never overwrite the script file of a RUNNING bash watcher (lazy re-read corrupts state). Future watcher versions go to NEW filenames (watch-folds-v6.sh etc.), old file untouched until its process exits.
 - Coverage gap: ~00:07->00:12 (minutes, nothing was due - f2/f3 due 05:25, f1 death due ~03:25, both covered by T1/T2 timers regardless).
 - v5 re-armed 00:12 (sh_146021ed2001); v5 file is FROZEN from now (no in-place edits, ever).
+
+## 00:20 IST Oct 17 — FOLD-LINEAGE AUDIT: BLOCKER CONFIRMED IN RUNNING f0v1; PLAN RE-ROUTED
+- @reviewer found: f0 gold loop "for x, mask, pos, _ in gold_loader:" unpacks 4 but dataset __getitem__ returns 5 (A2 weight w) -> ValueError at first gold batch ~09:45, BEFORE gold_score25d.json AND val_preds_fold0.csv. VERIFIED by direct code read (not trusting summary): getitem 5-tuple confirmed, gold loop 4-unsafe confirmed.
+- f1/f2/f3/f4 UNAFFECTED: no gold block (val-only) - running kernels safe, f4 05:30 push safe as-is.
+- Fix applied to all THREE f0 copies (f0-daksh, f0v3, f0-kartik): gold loop now unpacks 5; copies byte-identical; py_compile clean.
+- Re-push of fixed v2 to dakxsh23 REJECTED (cap 2: knee-arms2 + doomed v1). No API cancel exists; no human awake to cancel in web UI.
+- DECISION: v1 rides to its ~09:45 crash (its epoch-boundary best25d.pt SURVIVES in the errored version output = bonus artifact for local eval / recovery kernel; T3 timer 10:20 handles pull+decision). GATE RE-ROUTES: first Kartik terminal (~05:25) -> f0-kartik FIXED (done ~15:15, gate ~15:25), second -> f4 (~15:15).
+- WATCHER V6 (NEW FILE watch-folds-v6.sh per no-overwrite rule; bash -n OK; flags cleared): flip push order f0-first/f4-second, f0@k+f0@d polls, f1v2 logic unchanged. Arms at next v5 chunk exit (~00:50).
+- TIMELINE IMPACT: gate ~15:25 (was 09:30); provisional OOF now folds 2+3 ~05:45 (f0 arrives 15:15); FULL OOF ~15:45 (was 15:30). All still fine vs Daksh Oct 19 12:00. Local-4060 early gate possible ~11:00 IF v1 ckpt survives (opportunistic, T3 decision).
+- HONESTY: my grep-based f0v3 verification (FOLD/EPOCHS/weights/A1 greps) could NOT catch a 4-vs-5 unpack mismatch - semantic review could. Verification hierarchy updated: greps = sanity, subagent semantic audit = required before any long GPU run. Also WARN: BCE loss NaN-poisoning pattern noted (harmless now - 0 NaN targets; log for future kernels). Audit WARNs 2+3 on make_oof were already fixed in v2 (auditor read pre-v2 file).
