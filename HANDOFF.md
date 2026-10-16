@@ -757,3 +757,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   T3 10:20 IST — f0v3 deadline (ETA 09:30 +50min; investigate or run gate)
   Chunk heartbeat continues (~40 min cadence, v5 from next re-arm).
 - NOTE: current running chunk has v4 buffered; v5 takes over at next re-arm (~00:35).
+
+## 00:12 IST Oct 17 — CORRECTION: v4 watcher died from MY v5 overwrite, not at birth
+- Log forensics: v4 ran NORMALLY 23:37/23:47/23:57/00:07 rounds (f0@d + knee-arms2 polls live, all five kernels RUNNING at 00:07 fresh sweep too). The "unexpected EOF line 62" = bash lazy-read landed mid-file after I OVERWROTE watch-folds.sh with v5 at ~00:04 while v4 was mid-sleep. Earlier HANDOFF claim "died at birth / never ran" is WRONG - the parse error arrived at completion-notification time, misread by me as at-birth.
+- ROOT CAUSE + NEW HARD RULE: never overwrite the script file of a RUNNING bash watcher (lazy re-read corrupts state). Future watcher versions go to NEW filenames (watch-folds-v6.sh etc.), old file untouched until its process exits.
+- Coverage gap: ~00:07->00:12 (minutes, nothing was due - f2/f3 due 05:25, f1 death due ~03:25, both covered by T1/T2 timers regardless).
+- v5 re-armed 00:12 (sh_146021ed2001); v5 file is FROZEN from now (no in-place edits, ever).
