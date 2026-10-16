@@ -13,3 +13,4 @@ kaggle-nb3-mil-ensemble-v9-ckpt,0.950,pub,2026-10-16,SUBMITTED 00:01Z: crash-fix
 kaggle-pub954-full-v2,0.756,pub,2026-10-16,REJECTED: cnxt leg poisoned fusion (pylibjpeg wheels missing in assets dir; hidden-set compressed DICOM decode broke leg) - v3 fix pushed w/ wheels dataset + check=True
 kaggle-nb5-mil-plus-c384-rankfuse,SUBMITTED,pub,2026-10-16,ref 57252363: rank-pct-average fusion of MIL(0.950)+c384(0.949) legs; 1e-4-scale MIL-prob tiebreaker; public run 1.4min
 14:47,sub 57260570 (fullfork v9: wheels-fixed cnxt leg),0.950,negative result: cnxt leg fixed=0 delta vs v2 broken -> cnxt redundant with raptor on public; full-fork line CLOSED, no more subs on this lineage
+helios-v2-rerun,0.956,,2026-10-16,raptor+R7 50/50 rank blend; sub 57262514 COMPLETE; NEW TEAM BEST (+0.006); 0.001 below bronze 0.957

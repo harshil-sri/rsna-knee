@@ -683,3 +683,8 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - User directive: ditch nohup watchdogs, poll directly; then "do whatever works, dont sit idle". nohup/tmux watchers KILLED; one-shot versia autosubmit (pid 10416) kept (05:35 IST).
 - 3 harness-background watchers armed (exit = notification, cannot die silently): A=nb4-train25d fold0 5-min x 120 (10h, watch-fold0-b2.log), B=helios 57262514 until leaves PENDING (8h, watch-helios-b2.log), C=night: 03:05 IST LB pulls + 05:40 versia autosubmit check + versia status poll (watch-night.log).
 - Status at 17:29: fold0 STILL RUNNING (~9h45m), helios still PENDING. Idle-time work started: @coder (bg, ses_ebb69789effenqfK7c1f5dhvH2) building fusion kernel scaffold per fusion-scaffold/SPEC.md on verified strip-v2 base -> wt/fusion-scaffold/work/ (fusion-kernel.ipynb + BUILD-REPORT.md; STUB mode for CPU test; no push, no tokens).
+
+## 17:37 IST Oct 16 — HELIOS v2 RERUN SCORED: 0.956 = NEW TEAM BEST
+- 57262514 COMPLETE 0.956 (raptor + R7 4-fold ConvNeXt-small 50/50 rank blend). +0.006 over legacy fullfork 0.950; exactly 0.001 below bronze line (0.957). Main-track candidate; NOT an eff candidate (4-fold ConvNeXt runtime >> 25 min; verify at freeze).
+- Main-track board now: helios 0.956 < versia-7 (auto-sub 05:35 IST, expect >= helios) < fusion target 0.958-0.961 (Oct 18-19). Bronze line 0.957 reachable by versia/fusion.
+- Helios legs = additional decorrelated leg CANDIDATES for fusion 3rd leg if runtime budget allows (per SPEC: only if total <=25 min).
