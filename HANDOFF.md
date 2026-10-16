@@ -542,3 +542,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 ## Update 08:25 IST — nb5 submitted; code-comp submit flow corrected
 - nb5 v3 gated internally after fusion fix (degenerate-MM on 3 public rows was legs' anti-correlation coincidence; MIL-prob tiebreaker + assert added), submitted via competition_submit_code(kernel ref, version) — NOTE: `-f file.csv` legacy submit returns 400 for code comps now; use submit_code with kernel_owner/slug + version.
 - Pending: nb5 (ETA ~14:30), full fork v3 (ETA ~15:00), nb4 v5 fold-0 (ETA ~14:30). All three land mid-afternoon.
+
+## Update 09:55 IST — EFFICIENCY METRIC DECODED (user pasted from site)
+- Eff = AUC/(Benchmark − maxAUC) + RuntimeSeconds/32400; minimize. Linear trade: 1h runtime ≡ 0.05 AUC.
+- Strategy: strip c384 (0.949, ~20min) = efficiency horse; MIL/fusion (~5.5-6h) CANNOT win efficiency (5.5h must buy >0.27 AUC).
+- DEADLINE ACTION (repeat until done): team's 2 final selections MUST include strip-c384 run for efficiency eligibility; other slot = best-AUC sub.
+- GPU accel accepted: user will provide Daksh token for parallel nb4 folds 1-3.
