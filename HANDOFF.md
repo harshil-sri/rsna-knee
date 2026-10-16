@@ -651,3 +651,8 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - DISCARDED: pylibjpeg wheels +0.05-0.10 AUC claim (our v2-vs-v9 A/B = 0.950 vs 0.950, zero delta; wheels = robustness only, already proven on hidden rerun).
 - PARKED: DINOv2-small backbone swap (+0.005-0.010, needs 26 GPU-h retrain) - future campaign material.
 - Next: synthesis of all 5 streams via synthesizer-2 (big-pickle) -> wt/research/SYNTHESIS.md.
+
+## 15:13 IST Oct 16 — strip-v2 PUSHED (v2 of pub954-strip)
+- coder-2 work VERIFIED for real this time: FASTREAD_VARIANT=studyone_lut present in assignment AND in decoded base64 _fastread blob (65,576 b64 chars -> 49,181 chars = byte-identical to full-out7 reference). cudnn.benchmark + 2x allow_tf32 flags in. metadata clean.
+- Watcher armed: completion -> MAXDIFF vs _sota_0949.csv must be exactly 0.0 (decode contract) -> then strip-v2 = verified fast decode base for fusion kernel.
+- Runtime measurement of the cut comes from the next real submission (tomorrow quota) or the fusion rerun.
