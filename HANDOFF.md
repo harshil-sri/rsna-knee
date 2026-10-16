@@ -525,3 +525,11 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - **nb3 v5 (MIL 5-fold ensemble, crash-fixed) = 0.950 public LB** — crash fix validated, at the top of the public LB. levers row added.
 - Kaggle mount layout CHANGED overnight: /kaggle/input now nests comp data under /kaggle/input/competitions/<comp>/ and datasets under /kaggle/input/datasets/<owner>/. This silently broke flat-path kernels (nb4 v2/v3) and will break NB1/NB2 on any future rerun (their train.csv globs are flat-only; patch before any rerun). NB3 already robust (sample_submission glob, any depth). nb4 v4: comp_dir derived from resolved train_series.csv; v1_targets/folds/convnext weights via depth-agnostic find_file; diagnostic cell prints mounts + fail-fast.
 - Full fork (pub954-full v2) in hidden rerun 7h+ (pending). nb4 v4 ETA ~14:00 IST. 3 subs left today.
+
+## Update 07:55 IST — Kartik handoff shipped; full-fork 0.756 root-caused; nb4 v5 running
+- **Kartik handoff package DELIVERED**: handoffs/incoming/harshil/20261016T0205Z-mil-ensemble-pub0950/ (manifest+SHA256SUMS 23 files all verify, score receipts, candidate_levers, README with explicit "Kartik's role is NOT model takeover" scope note). Committed 5db1141 + fixup.
+- **Full fork v2 scored 0.756 public** — root cause: pylibjpeg decoder wheels missing from cnxt-reader leg's assets dir → pip install failed silently (check=False) → cnxt leg ran with broken DICOM decode → fusion poisoned the 0.949 c384 leg. Fork author had wheels; we didn't. Fix: harshilsrivastav/pylibjpeg-wheels-cp313 dataset (cp313 wheels) + cell-15 patch (wheels dir + check=True hard-fail). v3 pushed ~08:00, ETA ~15:00 IST.
+- **nb4 v5 running** (recursive-glob find_file fix; v4 died at 4-deep paths). ETA ~14:30 IST.
+- nb2 hardened for nested mounts (all globs recursive); nb1 verified already-robust; nb3 verified robust.
+- Day watcher: /tmp/opencode/day_watcher.sh → /tmp/opencode/day.log (kernel statuses + LB, 10-min cadence, changes only).
+- Sub budget today: 3 (full fork v3 will use 1 on gate-pass → 2 left for MIL/fusion).
