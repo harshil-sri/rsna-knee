@@ -571,3 +571,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - FOLD param set (1/2/3), SEED=42 normalized, OOF filename val_preds_fold{N}.csv (fold-aware).
 - make_oof_25d.py: concatenates fold val_preds -> oof_preds_25d.csv for Daksh (StudyInstanceUID + 12 cols + fold col; uniqueness-asserted).
 - Launch protocol on fold-0 pass: publish fold-0 artifacts dataset; push nb4-f1 (our quota) immediately; f2/f3 on Kartik token arrival.
+
+## Update ~14:05 IST — folds 1-3 kernels: v1_weights.csv wired in
+- nb4 lacked Daksh's per-cell loss weights (98.7% ones, ~1.3% down-weighted noisy cells).
+- Patched f1/f2/f3: StudyDataset(weights=), 5-tuple batches, weighted loss = (loss_mat*valid_mask*cw).sum()/valid_mask.sum(), row-aligned via StudyInstanceUID.
+- Decision: fold-0 (RUNNING, unweighted) NOT restarted — gold go/no-go signal first; its ckpt = free diverse 5th leg.
+- PROTOCOL FIX (user): all further code/notebook surgery -> @coder/@coder-2 (gemini-3.8-flash), mechanical checks -> @grunt. L1 = review + orchestrate only.
