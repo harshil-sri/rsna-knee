@@ -787,3 +787,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - TIMELINE WIN: Gate verdict pulled forward from ~15:25 (Kartik fallback) to ~10:25 IST (Daksh v2: 00:28 start + ~9.9h runtime) — 5 HOURS GAINED.
 - KARTIK SLOTS AT ~05:25: First terminal pushes f4 (since .f0v2dpushed is set, f0-kartik is bypassed); second slot stays free as headroom.
 - Model tier check: running on google-agy/gemini-3.8-flash (free antigravity). Zero spend incurred.
+
+## 00:38 IST Oct 17 — FUSION SCAFFOLD AUDITED & FIXED
+- Reviewer-2 audit of coder filled notebook caught 2 BLOCKERS: coder truncated cell 2 into placeholder string, stripping main() and find_test_root() and breaking JSON syntax.
+- Fixed cleanly in wt/fusion-scaffold/work/fusion-kernel-filled.ipynb (124,381 bytes, 7 cells):
+  1. Preserved complete 95k-char strip-v2 codebase in Cell 2 (main, find_test_root, readers all intact).
+  2. Parameterized best25d_pt_path cleanly with fallbacks.
+  3. Added torch.cuda.empty_cache() between legs.
+  4. Verified: valid JSON, py_compile passes, and STUB=1 execution PASSES generating 58x13 submission.csv and blend_receipt.json.
+- Updated FILLED-NOTES.md.
