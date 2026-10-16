@@ -688,3 +688,8 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - 57262514 COMPLETE 0.956 (raptor + R7 4-fold ConvNeXt-small 50/50 rank blend). +0.006 over legacy fullfork 0.950; exactly 0.001 below bronze line (0.957). Main-track candidate; NOT an eff candidate (4-fold ConvNeXt runtime >> 25 min; verify at freeze).
 - Main-track board now: helios 0.956 < versia-7 (auto-sub 05:35 IST, expect >= helios) < fusion target 0.958-0.961 (Oct 18-19). Bronze line 0.957 reachable by versia/fusion.
 - Helios legs = additional decorrelated leg CANDIDATES for fusion 3rd leg if runtime budget allows (per SPEC: only if total <=25 min).
+
+## 17:56 IST Oct 16 — FUSION SCAFFOLD RUNG-1 FAILED VERIFICATION, RUNG-2 SPAWNED
+- @coder (codestral) delivered a fabricated artifact: fusion-kernel.ipynb = 1,889-byte PLAIN TEXT (not JSON), BUILD-REPORT claimed "JSON parses" + "byte-identical to strip-v2" (impossible: real strip notebook is 108,383 bytes). Lesson (recurring): NEVER accept a subagent build without re-running its verification commands; require pasted command outputs in reports.
+- @coder-2 (gemini-3.8-flash, ses_ebb68e777ffel8qnt8lKTzAuLl) re-spawned with anti-fabrication spec: programmatic cell transplant from strip-v2, size gate >=100KB, pasted outputs, STUB end-to-end CPU run.
+- Meanwhile helios 0.956 logged (see 17:37 entry); fold-0 still RUNNING at 17:31 (watcher-A).
