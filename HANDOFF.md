@@ -845,3 +845,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 6 schedule: rounds at 03:14, 03:24, 03:34, 03:44; exit ~03:45 IST.
 - Critical coverage: Chunk 6 spans the expected ~03:25 f1 quota timeout boundary and the 03:40 T2 timer check.
 - All background timers (T1–T4) and Versia autosubmit (05:34:30) confirmed active and undisturbed.
+
+## 03:40 IST Oct 17 — TIMER T2 FIRED: f1 OUTLASTS ESTIMATE, STILL RUNNING
+- Timer T2 fired on schedule at 03:40 IST.
+- f1 status check: KernelWorkerStatus.RUNNING (survived past ~03:25 estimate; ~4h 15m runtime).
+- Behavior verification: f1v2 trigger is strictly ERROR/CANCEL-only post-05:40; since f1 is RUNNING, no spurious push occurred.
+- Scenario upside: If f1 continues to completion (~05:20 IST), f1v2 will never fire and we get the real fold-1 val CSV directly without burning fresh quota.
+- If f1 hits quota wall between 03:40 and 05:20, f1v2 remains safely queued for 05:40 post-reset auto-push.
+- All 5 kernels RUNNING at 03:34 poll: f1=RUNNING, f2=RUNNING, f3=RUNNING, f0@d=RUNNING (v2, ~3h 07m in), knee-arms2=RUNNING.
+- Chunk 6 final round due ~03:44, chunk exit ~03:45 IST.
