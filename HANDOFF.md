@@ -592,3 +592,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Our strip c384 (0.949, ~20min) projects eff-rank ~#85-160 (top 2%). Top-3 eff needs ~0.959+ AUC at <=30min runtime.
 - Fast-leg candidates under analysis (explore2): jiweiliu fast-2xt4 (20-member DINO ensemble + CoAt/Raptor arms, dual-T4), evgendvorkin Versia-7 (430 votes).
 - Fork push flags learned: is_private=true required for comp-sourced forks; pop docker_image/machine_shape/id_no from pulled metadata.
+
+## Update 14:10 IST — fast-leg analysis verdicts (explore2) + efficiency math
+- jiwei fast-2xt4: 0.943 inherited, 8h, 2xT4 mandatory, 20-member DINO fail-closed, ~16 mounts -> NOT a leg; BORROW ideas (shared frozen DINO prefix, dual-GPU scheduling).
+- versia-7: 2-branch (1 CoAtNet + Heliosli R7 4-fold ConvNeXt + stackers), 50/50 rank blend, claims ~0.956 unverified, <=8.3h -> FORKED (rsna-knee-versia7, GPU+7 mounts hardened; push queued behind GPU 2-session limit).
+- GPU limit: max 2 concurrent GPU kernels/account. Queue: nb4-f0 (til ~15:30) + helios-957 (til ~20-22h); then f1 + versia.
+- EFF MATH (benchmark=0.5 assumption): 1h runtime = 0.111 eff; 0.01 AUC = 0.0214 eff. Slow forks (8h) LOSE to strip on efficiency. Strip 0.949@20min = eff-rank ~#85-160. Top-3 eff profile = 0.959+ AUC at <30min -> model-quality bar we can't fake; long shot, top-20 eff realistic.
+- TODO: get exact team display name from user -> locate our row in eff LB (tonight's 21:27Z refresh).
