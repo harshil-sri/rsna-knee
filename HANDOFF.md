@@ -599,3 +599,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - GPU limit: max 2 concurrent GPU kernels/account. Queue: nb4-f0 (til ~15:30) + helios-957 (til ~20-22h); then f1 + versia.
 - EFF MATH (benchmark=0.5 assumption): 1h runtime = 0.111 eff; 0.01 AUC = 0.0214 eff. Slow forks (8h) LOSE to strip on efficiency. Strip 0.949@20min = eff-rank ~#85-160. Top-3 eff profile = 0.959+ AUC at <30min -> model-quality bar we can't fake; long shot, top-20 eff realistic.
 - TODO: get exact team display name from user -> locate our row in eff LB (tonight's 21:27Z refresh).
+
+## 14:45 IST Oct 16 — fusion plan REVERSED (research audit, wt/research/calibration-deep.md)
+- Per-finding weight grids on gold-58 BANNED: this-comp evidence (Devpost audit 0.8217 vs 0.8495 untuned; DiFiore UnifiedTheory; 18th-place HF blog). Rare findings = 1-3 positives in 58 studies -> tuned weights = pure noise, dies on private ~910 studies.
+- New fusion recipe: percentile rank-average (rankdata -> [0,1]) of legs, UNIFORM 1/3 weights = primary sub. Optional secondary = ONE global scalar (0.5/0.3/0.2 leg-level), never per-finding. Target 0.958-0.961.
+- Daksh v2 guidance changed: soft distillation (BCEWithLogitsLoss on continuous OOF targets, NO 0.9/0.1 cutoffs), gold-58 override w=2.0, silent/ambiguous cells w=0. TEAM-STATUS.md + Downloads copy updated.
+- Corroborates our own negatives: nb5 MIL fusion 0.891 dead; every leg-blend that worked (helios 0.957, versia 0.956) is uniform rank fusion.

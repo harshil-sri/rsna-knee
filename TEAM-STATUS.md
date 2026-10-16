@@ -31,7 +31,10 @@
 
 ## Daksh — your lane
 1. **OOF incoming**: after all four 2.5D folds finish (fold-1 tonight; folds 2–3 tonight on Kartik's GPU), Harshil publishes **`oof_preds_25d.csv`** as a Kaggle dataset — **4,407 rows: StudyInstanceUID + 12 finding columns, fold-blind OOF**. ETA **Oct 17 ~09:00 IST**. Your pseudo-label v2 consumes this.
-2. **Pseudo-label v2 retrain**: replace v1 weak labels with calibrated OOF ranks where confident (e.g., rank >0.9/<0.1 per finding); retrain your leg(s) once (one GPU pass). Rank-calibrate per finding before thresholding.
+2. **Pseudo-label v2 retrain** (methodology REVISED Oct 16 — soft distillation, no hard cutoffs):
+   - Targets = **continuous float OOF predictions** (0.0–1.0), train with `BCEWithLogitsLoss(logits, soft_targets)` — do NOT binarize at 0.9/0.1 (hard cutoffs destroy exactly the borderline ranking that macro-AUC scores; RSNA-2023 1st place showed hard cutoffs fail outright).
+   - **Gold override**: the 58 gold studies get their exact binary labels with `sample_weight=2.0`; silent/ambiguous weak-label cells get weight `0.0`; low-confidence weak labels (<0.20 confidence or extractor disagreement >0.75) get masked `w=0`.
+   - Retrain your leg(s) once (one GPU pass).
 3. **GPU**: use **your own Kaggle account** (create one if needed — free, ~30 GPU-h/week, 2 concurrent slots). That is not a limitation for one retrain pass (~2–6 h). Harshil does **not** need your API token. If you truly can't get an account, Kartik's frees after Oct 17 morning.
 4. **Dataset shares you'll need (ask Harshil in chat)**: `harshilsrivastav/rsna-knee-labels-v1`, `harshilsrivastav/rsna-knee-weak-labels`, `harshilsrivastav/rsna-knee-embeddings-v1`.
 5. **Deliverable: v2 inference kernel or prediction dataset by Oct 19, 12:00 IST** → Harshil re-fuses Oct 19–20. If you have any earlier leg improvement in flight, tell Harshil before Oct 17 evening so GPU slots get sequenced.
@@ -42,8 +45,11 @@
 3. **Tonight: your 2 GPU slots run nb4 folds 2–3** (Harshil pushes the kernels under your account; ~6.5 h each, launched as soon as the shares land — target 16:00–18:00 IST tonight, else tomorrow morning). That's ~13 h of your ~30 weekly GPU-h. **Nothing else is required from you today.**
 4. Oct 18–19: possibly one backup kernel slot. Final freeze Oct 21–22 is Harshil's job. Your scope stays **read-only inference-side levers** — don't modify the frozen handoff package.
 
-## Fusion plan (Harshil, Oct 18–20)
-- Legs: best public fork legs + our 2.5D 4-fold + Daksh v2 → **per-finding weight grid {0, 0.25, 0.5, 0.75}** tuned on the 58 gold studies, shrunk toward uniform (LOO-validated so we don't overfit 58 studies). Target public **0.958–0.961**.
+## Fusion plan (Harshil, Oct 18–20) — REVISED Oct 16 after research audit
+- **Per-finding weight tuning on the 58 gold studies is BANNED** (evidence from this competition: per-target weight selection lost to untuned fusion 0.8217 vs 0.8495 under 20×5-fold CV; rare findings have only 1–3 positives in gold-58 — any tuned weight fits that one patient's noise and dies on the ~910-study private split).
+- **Primary sub = percentile rank averaging, uniform weights**: per finding, rank-normalize each leg's predictions to [0,1] (`(rankdata(p)-1)/(N-1)`), then average legs ⅓ each: best public fork legs + our 2.5D 4-fold + Daksh v2. Zero fitted parameters → maximally private-safe.
+- **Secondary sub (optional)** = same rank-average but ONE global scalar across all 12 findings (e.g., 0.5·ConvNeXt + 0.3·Daksh + 0.2·public) — one parameter over 696 evaluations is statistically allowed; nothing more.
+- Target public **0.958–0.961**.
 - Oct 21–22: freeze, full pre-deadline rerun of both final kernels, select `[best-AUC, strip-c384]`.
 
 ## Standing rules
