@@ -533,3 +533,8 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - nb2 hardened for nested mounts (all globs recursive); nb1 verified already-robust; nb3 verified robust.
 - Day watcher: /tmp/opencode/day_watcher.sh → /tmp/opencode/day.log (kernel statuses + LB, 10-min cadence, changes only).
 - Sub budget today: 3 (full fork v3 will use 1 on gate-pass → 2 left for MIL/fusion).
+
+## Update 08:15 IST — nb5 fusion kernel assembled (MIL 0.950 + c384 0.949 rank-fuse)
+- All public DICOMs are uncompressed (ExplicitVR LE, 132 scanned) — cnxt leg decode was fine locally; poison is hidden-set-specific (likely compressed TS needs pylibjpeg — fork author shipped wheels in assets, ours lacked them). v3 hard-fails if wheels missing.
+- nb5 = nb3 MIL cells (output _mil.csv) + strip c384 cells (output _c384.csv) + rank-pct-average fusion → submission.csv. Pushed v1. Public run validates assembly; hidden risk = total runtime (MIL ~5.5h + c384 ?) vs 9h cap — decide submission only after full-fork v3 score lands (~15:00 IST) and nb5 public runtime observed.
+- Sub budget: 3. Plan: 1 for full fork v3 (if gate+score good), 1 for nb5, 1 reserve.
