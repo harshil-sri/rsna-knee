@@ -880,3 +880,16 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 9 schedule: rounds at 04:46, 04:56, 05:06, 05:16; exit ~05:17 IST.
 - This chunk leads directly into the ~05:20 completion window of Kartik folds f2/f3 and the 05:30 quota reset.
 - Background timers T4 (05:45), T1 (06:10), T3 (10:20) and Versia autosubmit (05:34:30) active.
+
+## 05:18 IST Oct 17 — WATCHER v6 CHUNK 10 ARMED FOR CRITICAL PRE-DAWN WINDOW
+- Watcher v6 Chunk 9 finished 4 rounds normally (04:46, 04:57, 05:07, 05:17; exit 05:17 IST).
+- Watcher v6 Chunk 10 launched in background (sh_1471d6e36001lnZULZ1W1Ef7EA).
+- Round 1 poll at 05:17 IST verified in watch-folds-recovery.log:
+  f1=RUNNING (~5h 53m elapsed; within minutes of 2-epoch completion boundary),
+  f2=RUNNING (~9h 20m elapsed, due ~05:20–05:25),
+  f3=RUNNING (~9h 20m elapsed, due ~05:20–05:25),
+  f0@d=RUNNING (v2 fixed, ~4h 50m in, healthy),
+  knee-arms2=COMPLETE.
+- Chunk 10 schedule: rounds at 05:17, 05:27, 05:37, 05:47; exit ~05:48 IST.
+- Round 2 (~05:27) directly captures Kartik f2/f3 completion and auto-pushes f4.
+- Quota reset occurs at 05:30; Versia-7 autosubmit fires at 05:34:30; T4 timer verifies at 05:45.
