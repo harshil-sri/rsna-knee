@@ -645,3 +645,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 ## 15:02 IST Oct 16 — fusion kernel SPEC written (wt/fusion-scaffold/SPEC.md)
 - KEY DESIGN LOCK: fusion runs 2.5D fold-0 SOLO (4-fold inference = 20-40 min, blows 25-min budget). 4-fold ensemble serves OOF/pseudo-labels; f1 added only if measured rerun shows headroom.
 - Fusion = percentile rank-average, uniform, fail-closed per leg, receipt json. Legs: strip-c384 (post-cuts ~10-12 min) + 2.5D-f0 (~5-10 min); Daksh leg 3rd only if fits.
+
+## 15:04 IST Oct 16 — win-recipes stream landed (5/5 research complete)
+- ACCEPTED: rank-average fusion (confirms), studyone_lut+fp16+cudnn (confirms, in motion), one-global-scalar secondary (confirms calibration-deep).
+- DISCARDED: pylibjpeg wheels +0.05-0.10 AUC claim (our v2-vs-v9 A/B = 0.950 vs 0.950, zero delta; wheels = robustness only, already proven on hidden rerun).
+- PARKED: DINOv2-small backbone swap (+0.005-0.010, needs 26 GPU-h retrain) - future campaign material.
+- Next: synthesis of all 5 streams via synthesizer-2 (big-pickle) -> wt/research/SYNTHESIS.md.
