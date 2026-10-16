@@ -666,3 +666,10 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - studyone_lut swap + cudnn.benchmark + tf32: predictions byte-identical on public 3 studies. Decode contract holds -> strip-v2 = official fast-decode base for fusion kernel (born-fast requirement satisfied).
 - NOTE: the nohup strip watcher died silently (empty log) - verification done manually. Lesson stands: nohup watchers need a heartbeat line at start; silent death = missing verification.
 - fold-0 RUNNING at 15:52 (ETA slipped ~20min, normal variance; poller covers to ~17:50). helios PENDING. Subs 5/5 until 05:30 IST.
+
+## 16:15 IST Oct 16 — WATCHDOG CHECK + 9h-CAP RISK DISCOVERED (user flagged: watchdog hasnt reported)
+- Watchdog (harness fold-0 poller) IS alive (pid 10289, launched 14:53 IST) and correctly silent because fold-0 is STILL RUNNING. Added 60s tight poller (nohup, watch-fold0-tight.log) for forensic trail; harness poller remains the wake mechanism.
+- HARD FACT: fold-0 session started 02:15:32 UTC = 07:45 IST -> 9h interactive GPU cap kills it at 16:45:32 IST (~30 min from now). The 6.5h-per-fold estimate is ~2h stale — overrun cause unknown until log lands.
+- VERIFIED in fold notebook source: per-epoch best checkpoint saved to /kaggle/working/best25d.pt (SURVIVES cap-kill); endgame order = gold-58 scoring (k=16) -> gold_score25d.json -> val_preds_foldN.csv (k=16). On cap-kill mid-endgame: gold json survives, val_preds may be lost (recomputable locally on RTX 4060 8GB).
+- CRITICAL FIX in gate-go-f0.sh: filename was best.pt -> actual best25d.pt (guard+cp would have always failed GO); auto-pushes WITHHELD from script — after gate PASS I read the phase timings first; if total >8.5h, folds 1-3 need an anti-cap cut (e.g., EPOCHS 3->2) before push or they die at cap identically.
+- Contingency prep: local gold-eval script (RTX 4060) for best25d.pt in case gold json is missing on cap-kill.
