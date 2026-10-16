@@ -584,3 +584,11 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - nb5 fusion kernel has NO wheels dataset: if ever resubmitted, attach pylibjpeg-abi-zips first. Strip + fork v9 = safe tonight.
 - Fusion weight plan (day 4): rank-average, per-finding coarse grid {0,0.25,0.5} per leg tuned on gold-58 (58 rows => overfit-risk; smoothing toward uniform).
 - Efficiency trim option (medium priority): strip windows/2 => ~10min hidden (eff gain ~0.05); decide after first daily Efficiency Leaderboard sighting.
+
+## Update 14:30 IST — LB deep-dive (6,071 teams) + efficiency intel
+- Distribution: top 0.968 (CentralyDS); gold line #10 = 0.964 (9 teams >=0.965); silver #304 & bronze #607 lines = 0.957 (!); fork plateau 0.955-0.960 = 1,400+ teams; we are #1742 @ 0.950 (28.7%).
+- KEY: silver AND bronze lines both 0.957. Heliosli public one-click = 0.957 => forked it (rsna-knee-helios-957, RUNNING 14:20). Recipe: public Raptor leg + their private 4-fold ConvNeXt-small (bundles are PUBLIC datasets), rank-blend 0.5/0.5, per-finding rank fusion, fail-closed stages. If clean -> submit tonight -> 0.957 = bronze line public.
+- Efficiency LB pulled (ryanholbrook dataset, 5,955 rows, daily 21:27Z). Frontier: rank1-20 AUC 0.947-0.964; 0.963-AUC team ranks #4279 (slow fusion) vs 0.948 team at #16 (fast). RUNTIME separates frontier; AUC alone worthless there.
+- Our strip c384 (0.949, ~20min) projects eff-rank ~#85-160 (top 2%). Top-3 eff needs ~0.959+ AUC at <=30min runtime.
+- Fast-leg candidates under analysis (explore2): jiweiliu fast-2xt4 (20-member DINO ensemble + CoAt/Raptor arms, dual-T4), evgendvorkin Versia-7 (430 votes).
+- Fork push flags learned: is_private=true required for comp-sourced forks; pop docker_image/machine_shape/id_no from pulled metadata.
