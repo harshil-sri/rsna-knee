@@ -1214,3 +1214,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 5 schedule: rounds at ~19:37, ~19:47, ~19:57, ~20:07; exit ~20:08 IST.
 - This chunk covers the exact 12h threshold (20:02 IST) for f1 and f4.
 - Automated OOF pipeline ready: upon completion of f1 or f4, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 20:08 IST Oct 17 — WATCHER v8 CHUNK 6 ARMED (12h PLATFORM EXTENSION)
+- Watcher v8 Chunk 5 completed normally (19:37, 19:47, 19:56, 20:06; exit 20:06 IST).
+- Direct API check at 20:07:13 IST: all 3 kernels actively RUNNING:
+  f1 (Ours v2): RUNNING (~12h 05m elapsed; crossing into endgame output writes)
+  f4 (Kartik): RUNNING (~12h 05m elapsed; crossing into endgame output writes)
+  f0@k (Kartik fast gate): RUNNING (~2h 29m elapsed; active ConvNeXt training)
+- Watcher v8 Chunk 6 launched in background (sh_14a4bba7a00177yIiXZVG6N0iP).
+- Chunk 6 schedule: rounds at ~20:07, ~20:17, ~20:27, ~20:37; exit ~20:38 IST.
+- Automated OOF pipeline ready: upon completion of f1 or f4, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
