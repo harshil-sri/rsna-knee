@@ -1250,3 +1250,14 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f4 (Kartik): CANCEL_ACKNOWLEDGED.
 - Chunk 8 schedule: rounds at ~21:13, ~21:23, ~21:33, ~21:43; exit ~21:44 IST.
 - This chunk leads directly into the final 45-minute approach toward the ~22:30 IST Gate Verdict.
+
+## 21:43 IST Oct 17 — WATCHER v8 CHUNK 9 ARMED (THE GATE LANDING CHUNK)
+- Watcher v8 Chunk 8 completed normally (21:13, 21:22, 21:32, 21:41; exit 21:42 IST).
+- Watcher v8 Chunk 9 launched in background (sh_14aa328f30016QXBLQX65NOyzu).
+- Fleet Status at 21:42 IST:
+  f0@k (Kartik fast gate): RUNNING (~4h 05m elapsed; launched 17:38 IST; ETA ~22:25-22:30 IST for Gate evaluation).
+  f1 (Ours v3 fast): QUEUED (waiting for container allocation on Kaggle).
+  f4 (Kartik): CANCEL_ACKNOWLEDGED.
+- Chunk 9 schedule: rounds at ~21:43, ~21:53, ~22:03, ~22:13, ~22:23; exit ~22:24-22:25 IST.
+- THIS CHUNK COVERS THE EXACT GATE EVALUATION WINDOW OF FOLD 0 (~22:25-22:30 IST).
+- Automated Gate trigger armed: the instant f0@k completes, Watcher v8 executes ./gate-go-f0.sh, publishes the checkpoint dataset, updates oof_preds_25d.csv, and pushes to GitHub.
