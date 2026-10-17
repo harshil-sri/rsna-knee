@@ -1152,3 +1152,23 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f1 (Ours v2): RUNNING (~8h 58m elapsed; launched 08:02 IST).
   f4@k (Kartik): RUNNING (~8h 58m elapsed; launched 08:02 IST).
 - Chunk 5 schedule: rounds at ~17:01, ~17:11, ~17:21, ~17:31; exit ~17:32 IST.
+
+## 17:40 IST Oct 17 — AUTONOMOUS 24-HOUR ABSENCE PROTOCOL INITIALIZED
+- USER MANDATE: Harshil heading out for 1 day; pipeline operating 100% autonomously.
+- GITHUB SYNC ACTIVE: Remote origin main configured and verified. Comprehensive .gitignore deployed (blocking >50MB tarballs/weights). Git push verified clean.
+- AUTOMATED OOF ASSEMBLY & GITHUB PUSH:
+  - Watcher v8 (wt/watch-folds-v8.sh) armed in background (sh_149c39848001a31Wqws1uw5E4d).
+  - The instant any fold finishes (f1, f4, or f0@k), watcher automatically:
+    1. Pulls val_preds_fold*.csv
+    2. Runs wt/make_oof_25d.py to generate/update oof_preds_25d.csv (with full 4407-row NaN schema)
+    3. Copies oof_preds_25d.csv to rsna-knee/
+    4. Commits and executes git push origin main so Dr. Kartik has instant access on GitHub.
+- FAST FOLD 0 (ka1205/rsna-knee-nb4-f0) LAUNCHED:
+  - Pushed to Kartik freed slot at 17:37:55 IST (v1).
+  - Features 4.8h OOM-proof configuration: BS_PER_GPU=8, GRAD_ACCUM=2, MAX_CACHE_SECS=2h, K_TRAIN=4, K_VAL=8.
+  - Confirmed QUEUED -> RUNNING. Gate verdict expected ~22:30 IST tonight.
+- COUNCIL PROTOCOL: Any strategic tradeoffs or decisions will be routed through @council (5 adversarial advisors + reviewer + chairman).
+- ACTIVE FLEET:
+  - f1 (Ours v2): RUNNING (~9h 38m in, expected completion ~18:30-19:30 IST)
+  - f4 (Kartik): RUNNING (~9h 38m in, expected completion ~18:30-19:30 IST)
+  - f0@k (Kartik): RUNNING (fast gate, ETA ~22:30 IST)
