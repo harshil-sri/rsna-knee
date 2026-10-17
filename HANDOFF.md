@@ -1093,3 +1093,26 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f4@k (Kartik): RUNNING (~4h 25m in)
 - Chunk 24 schedule: rounds at ~12:27, ~12:37, ~12:47, ~12:57; exit ~12:58 IST.
 - The moment f0@d reaches terminal status, output pull and evaluation will execute.
+
+## 15:02 IST Oct 17 — FAST ~4.8h FOLD-0 (v3) DEPLOYED & WATCHER v7 ARMED
+- FOLD 0 TIMEOUT POST-MORTEM:
+  - f0v2 reached Kaggle 12.0h platform SIGKILL at ~12:28 IST (00:27 launch -> 12:28 kill, empty 2-byte log).
+  - Root cause math: 4.5h cache + 3.4h train (768 crops/step) + 3.8h eval (K=16) = ~12.2h runtime, crossing 12.0h cap by ~15 min.
+- FAST 4.8h FOLD-0 (v3) SOLUTION:
+  - Notebook wt/f0-daksh/rsna-knee-nb4-f0.ipynb updated with:
+    1. MAX_CACHE_SECS = 2.0 * 3600 (saves 2.5h).
+    2. K_TRAIN = 4 (384 crops/step instead of 768, halving step compute; saves 1.7h).
+    3. K_VAL = 8 (validation and endgame evaluation at 8 windows instead of 16; saves 1.0h).
+    4. Total expected runtime: ~4.8 hours (leaves >7 hours of safety margin before 12h cap).
+  - Verification: py_compile passed cleanly on all cells; gold loop 5-tuple unpack verified.
+- DEPLOYMENT RECEIPT:
+  - Pushed to dakxsh23/rsna-knee-nb4-f0 (version 3) at 15:00:29 IST.
+  - Confirmed KernelWorkerStatus.RUNNING at 15:00:36 IST on Daksh free slot.
+  - Target gate verdict: ~19:45-20:00 IST tonight.
+- WATCHER v7 ARMED:
+  - New watcher script wt/watch-folds-v7.sh written, syntax-checked, and launched in background (sh_149338809001SLqA9FzBwFSy54).
+  - Features automated gate trigger: executes ./gate-go-f0.sh the instant f0@d reaches COMPLETE.
+- FLEET STATUS AT 15:02 IST:
+  - f0@d (Daksh v3 fast gate): RUNNING (launched ~15:00 IST, ETA ~19:45-20:00 IST).
+  - f1 (Ours v2): RUNNING (~7h in; launched 08:02 IST).
+  - f4@k (Kartik): RUNNING (~7h in; launched 08:02 IST).
