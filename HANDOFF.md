@@ -956,3 +956,14 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   They have ~35m before platform ceiling. Upon completion, watcher v6 automatically pushes f4.
 - Versia-7 submission (ref 57287734) remains PENDING.
 - Timer T3 active in background targeting 10:20 IST.
+
+## 07:53 IST Oct 17 — WATCHER v6 CHUNK 15 ARMED AT 12h BATCH CAP BOUNDARY
+- Watcher v6 Chunk 14 finished 4 rounds normally (07:21, 07:31, 07:41, 07:52; exit 07:52 IST).
+- Watcher v6 Chunk 15 launched in background (sh_147aaf580001Wm9xJTJE57LQuW).
+- Round 1 poll at 07:52 IST verified in watch-folds-recovery.log:
+  f1=RUNNING (~8h 27m in), f2=RUNNING (~11h 54m in), f3=RUNNING (~11h 54m in), f0@d=RUNNING (v2, ~7h 24m in).
+- Chunk 15 schedule: rounds at 07:52, 08:02, 08:12, 08:22; exit ~08:23 IST.
+- 12h CAP BOUNDARY (07:58 IST): In ~5 minutes, f2 and f3 reach the 12-hour hard platform ceiling.
+  Round 2 (~08:02 IST) will detect the terminal state and auto-push f4 into Kartik freed slot.
+- Versia-7 submission (ref 57287734) remains PENDING.
+- Timer T3 active in background targeting 10:20 IST.
