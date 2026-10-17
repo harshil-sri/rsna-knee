@@ -1224,3 +1224,19 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Watcher v8 Chunk 6 launched in background (sh_14a4bba7a00177yIiXZVG6N0iP).
 - Chunk 6 schedule: rounds at ~20:07, ~20:17, ~20:27, ~20:37; exit ~20:38 IST.
 - Automated OOF pipeline ready: upon completion of f1 or f4, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 20:45 IST Oct 17 — COUNCIL VERDICT: FOLD 1 FAST LAUNCHED & WATCHER v8 CHUNK 7 ARMED
+- COUNCIL VERDICT (ses_eb5989e7dffe4pD26afhDssZiL):
+  - Question: Wait for f0@k gate verdict at 22:30 IST vs. launch f1-fast now.
+  - Recommendation: Option B (LAUNCH Fold 1 Fast immediately).
+  - Rationale: Downside is strictly bounded (~2.1 GPU-hours out of 25h+ surplus if f0 fails), while buying >2.1 hours of calendar lead time towards the 5-fold ensemble.
+- FOLD 1 FAST (harshilsrivastav/rsna-knee-nb4-f1 v3) DEPLOYED:
+  - Pushed at 20:43:11 IST.
+  - Carries fast ~4.8h OOM-proof configuration: BS_PER_GPU=8, GRAD_ACCUM=2, MAX_CACHE_SECS=2h, K_TRAIN=4, K_VAL=8, expandable_segments:True.
+  - Status: QUEUED -> RUNNING. Expected completion ~01:30 IST.
+- WATCHER v8 CHUNK 7 ARMED in background (sh_14a6ccead0019Sbs2Ye71rOO9z):
+  - Schedule: rounds at ~20:44, ~20:54, ~21:04, ~21:14; exit ~21:15 IST.
+- FLEET STATUS AT 20:45 IST:
+  f0@k (Kartik v1 fast gate): RUNNING (~3h 07m elapsed, ETA ~22:30 IST for Gold Gate evaluation)
+  f1 (Ours v3 fast): QUEUED/RUNNING (launched 20:43 IST, ETA ~01:30 IST)
+  f4 (Kartik): CANCEL_ACKNOWLEDGED (timed out at 12h; fast rerun queued post-gate)
