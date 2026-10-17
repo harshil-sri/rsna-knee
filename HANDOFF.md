@@ -916,3 +916,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 11 schedule: rounds at 05:48, 05:58, 06:08, 06:18; exit ~06:19 IST.
 - Timer T1 fires at 06:10 IST to verify Kartik folds completion and f4 push.
 - Versia-7 submission (ref 57287734) active and queued in Kaggle pipeline.
+
+## 06:10 IST Oct 17 — TIMER T1 REPORT: f2/f3 STILL COMPUTING (~10h 12m in)
+- Timer T1 fired on schedule at 06:10 IST.
+- ka1205/rsna-knee-nb4-f2 and f3 remain KernelWorkerStatus.RUNNING at 06:09 poll (~10h 12m elapsed runtime).
+- Concurrency safety: Since both Kartik slots remain occupied, .f4pushed correctly held off (preventing 2-session cap push error).
+- 12-Hour Platform Cap Headroom: f2 and f3 have ~1h 48m remaining before the 12h batch limit; they are in their final validation/saving phase.
+- f1 (ours) is STILL RUNNING at 06:09 poll (~6h 45m elapsed).
+- f0@d (daksh v2) is RUNNING at 06:09 poll (~5h 42m elapsed).
+- Versia-7 submission (ref 57287734) is PENDING evaluation.
+- Watcher Chunk 11 running round 4 (~06:19; exit ~06:20 IST).
