@@ -967,3 +967,17 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   Round 2 (~08:02 IST) will detect the terminal state and auto-push f4 into Kartik freed slot.
 - Versia-7 submission (ref 57287734) remains PENDING.
 - Timer T3 active in background targeting 10:20 IST.
+
+## 08:20 IST Sat Oct 17 — MORNING STATUS BRIEFING FOR HARSHIL
+- OVERNIGHT FLEET AUDIT:
+  1. f0v2 (Daksh): Running healthy since 00:28 IST (~7h 52m elapsed). ETA ~10:25 IST. This is the GATE model.
+  2. Versia-7: Submitted automatically at 05:34:30 (ref 57287734, PENDING). Daily submission #1 for Oct 17.
+  3. Weekly Quota Reset: Completed at 05:30 IST. All 3 accounts (ours, Kartik, Daksh) have fresh 30h quota.
+  4. f4 (Kartik): Auto-pushed at 08:02 IST as planned; RUNNING cleanly.
+  5. f1v2 (Ours): Auto-pushed at 08:02 IST on fresh quota after f1 marathon run concluded; RUNNING cleanly.
+  6. f2 & f3 (Kartik): Hit Kaggle 12h batch cap at ~08:00 IST (started 19:58 Oct 16). No working output saved.
+     STANDING STRATEGY: Held until f0 gate verdict lands at ~10:25 IST. No rerun decisions until gate passes.
+- ARTIFACT STATUS:
+  - Fusion kernel: wt/fusion-scaffold/work/fusion-kernel-filled.ipynb audited, repaired, STUB=1 verified.
+  - OOF assembler: wt/make_oof_25d.py hardened (full 4407-row NaN-complete reindex, permutation guard).
+- NEXT CRITICAL MILESTONE: ~10:20-10:25 IST — f0v2 completion and gate-go-f0.sh evaluation (MACRO AUC >= 0.80).
