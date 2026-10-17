@@ -1057,3 +1057,15 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f4@k (Kartik): RUNNING (~2h 53m in)
 - Chunk 21 schedule: rounds at ~10:56, ~11:06, ~11:16, ~11:26; exit ~11:27 IST.
 - The moment f0@d lands, ./gate-go-f0.sh will be executed immediately.
+
+## 11:27 IST Oct 17 — WATCHER v6 CHUNK 22 ARMED (GATE CAP HEADROOM WATCH)
+- Watcher v6 Chunk 21 completed normally (10:55, 11:05, 11:15, 11:25; exit 11:25 IST).
+- Direct API check at 11:26:17 IST: dakxsh23/rsna-knee-nb4-f0 is KernelWorkerStatus.RUNNING (~10h 58m elapsed).
+  Batch GPU platform ceiling is 12.0h (12:27:52 IST; ~1h 01m headroom remaining).
+- Watcher v6 Chunk 22 launched in background (sh_1486eca24001HbymurFt0dDZXU).
+- Fleet Status at 11:26 IST:
+  f0@d (Daksh v2): RUNNING (~10h 58m in)
+  f1 (Ours v2): RUNNING (~3h 24m in)
+  f4@k (Kartik): RUNNING (~3h 24m in)
+- Chunk 22 schedule: rounds at ~11:26, ~11:36, ~11:46, ~11:56; exit ~11:57 IST.
+- The moment f0@d lands, ./gate-go-f0.sh will be executed immediately.
