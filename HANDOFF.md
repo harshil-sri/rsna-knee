@@ -907,3 +907,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f0 (daksh v2) = RUNNING (~5h 18m in, healthy)
 - Watcher Chunk 10 running round 4 (~05:48 IST; exit ~05:49 IST).
 - Next milestone: Timer T1 at 06:10 IST (f2/f3 deadline & f4 push verification).
+
+## 05:50 IST Oct 17 — WATCHER v6 CHUNK 11 ARMED & ROUND 1 VERIFIED GREEN
+- Watcher v6 Chunk 10 finished 4 rounds normally (05:17, 05:28, 05:38, 05:48; exit 05:48 IST).
+- Watcher v6 Chunk 11 launched in background (sh_14739b3a4001IHcDa5SdC3Nq2Q).
+- Round 1 poll at 05:48 IST verified in watch-folds-recovery.log:
+  f1=RUNNING (~6h 24m in), f2=RUNNING (~9h 50m in), f3=RUNNING (~9h 50m in), f0@d=RUNNING (v2, ~5h 21m in).
+- Chunk 11 schedule: rounds at 05:48, 05:58, 06:08, 06:18; exit ~06:19 IST.
+- Timer T1 fires at 06:10 IST to verify Kartik folds completion and f4 push.
+- Versia-7 submission (ref 57287734) active and queued in Kaggle pipeline.
