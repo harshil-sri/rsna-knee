@@ -935,3 +935,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 12 schedule: rounds at 06:19, 06:29, 06:39, 06:49; exit ~06:50 IST.
 - Timer T3 active in background targeting 10:20 IST.
 - Versia-7 submission (ref 57287734) remains PENDING on leaderboard.
+
+## 06:51 IST Oct 17 — WATCHER v6 CHUNK 13 ARMED & ROUND 1 VERIFIED GREEN
+- Watcher v6 Chunk 12 finished 4 rounds normally (06:19, 06:29, 06:39, 06:50; exit 06:50 IST).
+- Watcher v6 Chunk 13 launched in background (sh_1477249d6001LsWiH6TC5KOZzd).
+- Round 1 poll at 06:50 IST verified in watch-folds-recovery.log:
+  f1=RUNNING (~7h 25m in), f2=RUNNING (~10h 52m in), f3=RUNNING (~10h 52m in), f0@d=RUNNING (v2, ~6h 22m in).
+- Chunk 13 schedule: rounds at 06:50, 07:00, 07:10, 07:20; exit ~07:21 IST.
+- f2 and f3 are approaching the 11-hour mark (~10h 52m in, ~1h 08m headroom before 12h platform ceiling).
+- Versia-7 submission (ref 57287734) remains PENDING on leaderboard.
+- Timer T3 active in background targeting 10:20 IST.
