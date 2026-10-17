@@ -1240,3 +1240,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f0@k (Kartik v1 fast gate): RUNNING (~3h 07m elapsed, ETA ~22:30 IST for Gold Gate evaluation)
   f1 (Ours v3 fast): QUEUED/RUNNING (launched 20:43 IST, ETA ~01:30 IST)
   f4 (Kartik): CANCEL_ACKNOWLEDGED (timed out at 12h; fast rerun queued post-gate)
+
+## 21:13 IST Oct 17 — WATCHER v8 CHUNK 8 ARMED (PRE-GATE COUNTDOWN)
+- Watcher v8 Chunk 7 completed normally (20:43, 20:53, 21:02, 21:12; exit 21:12 IST).
+- Watcher v8 Chunk 8 launched in background (sh_14a87f12c001V4IcICR9YvA5dO).
+- Fleet Status at 21:12 IST:
+  f0@k (Kartik fast gate): RUNNING (~3h 35m elapsed; active training; ETA ~22:30 IST for Gate evaluation).
+  f1 (Ours v3 fast): QUEUED (waiting for GPU node allocation on fresh quota).
+  f4 (Kartik): CANCEL_ACKNOWLEDGED.
+- Chunk 8 schedule: rounds at ~21:13, ~21:23, ~21:33, ~21:43; exit ~21:44 IST.
+- This chunk leads directly into the final 45-minute approach toward the ~22:30 IST Gate Verdict.
