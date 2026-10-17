@@ -926,3 +926,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - f0@d (daksh v2) is RUNNING at 06:09 poll (~5h 42m elapsed).
 - Versia-7 submission (ref 57287734) is PENDING evaluation.
 - Watcher Chunk 11 running round 4 (~06:19; exit ~06:20 IST).
+
+## 06:20 IST Oct 17 — WATCHER v6 CHUNK 12 ARMED & ROUND 1 VERIFIED GREEN
+- Watcher v6 Chunk 11 finished 4 rounds normally (05:48, 05:58, 06:09, 06:19; exit 06:19 IST).
+- Watcher v6 Chunk 12 launched in background (sh_14755f1360015iH284vSWW38Wl).
+- Round 1 poll at 06:19 IST verified in watch-folds-recovery.log:
+  f1=RUNNING (~6h 54m in), f2=RUNNING (~10h 21m in), f3=RUNNING (~10h 21m in), f0@d=RUNNING (v2, ~5h 51m in).
+- Chunk 12 schedule: rounds at 06:19, 06:29, 06:39, 06:49; exit ~06:50 IST.
+- Timer T3 active in background targeting 10:20 IST.
+- Versia-7 submission (ref 57287734) remains PENDING on leaderboard.
