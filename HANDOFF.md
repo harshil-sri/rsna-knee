@@ -893,3 +893,17 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 10 schedule: rounds at 05:17, 05:27, 05:37, 05:47; exit ~05:48 IST.
 - Round 2 (~05:27) directly captures Kartik f2/f3 completion and auto-pushes f4.
 - Quota reset occurs at 05:30; Versia-7 autosubmit fires at 05:34:30; T4 timer verifies at 05:45.
+
+## 05:46 IST Oct 17 — TIMER T4 REPORT: VERSIA-7 SUBMITTED; f1 RUNNING PAST RESET
+- Timer T4 fired on schedule at 05:45 IST.
+- VERSIA-7 SUBMITTED: ref 57287734 registered cleanly (SubmissionStatus.PENDING).
+  Description: "versia-7 fork: 2-branch 50/50 rank blend (hidden rerun)". First daily submission for Oct 17.
+- KAGGLE QUOTA RESET (05:30 IST): Completed. Our account now holds 30h fresh GPU quota.
+- f1 SURVIVAL MIRACLE: harshilsrivastav/rsna-knee-nb4-f1 is STILL RUNNING (~6h 20m elapsed). It crossed the 05:30 quota reset cleanly without terminating. f1v2 will NOT fire as long as f1 finishes cleanly, preserving our fresh 30h quota.
+- LIVE STATUS SWEEP (05:45 IST direct API queries):
+  f1 (ours) = RUNNING (~6h 20m in)
+  f2 (kartik) = RUNNING (~9h 47m in, final validation phase)
+  f3 (kartik) = RUNNING (~9h 47m in, final validation phase)
+  f0 (daksh v2) = RUNNING (~5h 18m in, healthy)
+- Watcher Chunk 10 running round 4 (~05:48 IST; exit ~05:49 IST).
+- Next milestone: Timer T1 at 06:10 IST (f2/f3 deadline & f4 push verification).
