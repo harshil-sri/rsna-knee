@@ -1003,3 +1003,14 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   knee-arms2 (Daksh): COMPLETE.
 - Chunk 17 schedule: rounds at 08:54, 09:04, 09:14, 09:24; exit ~09:25 IST.
 - Timer T3 active in background targeting 10:20 IST for gate-go-f0.sh.
+
+## 09:25 IST Oct 17 — WATCHER v6 CHUNK 18 ARMED (PRE-GATE COVERAGE)
+- Watcher v6 Chunk 17 completed normally (08:54, 09:04, 09:14, 09:24; exit 09:24 IST).
+- Watcher v6 Chunk 18 launched in background (sh_147ff5710001zoVjEmUwFWQMJU).
+- Fleet Status at 09:24 IST:
+  f0@d (Daksh v2): RUNNING (~8h 56m elapsed; ETA ~10:25 IST for gate evaluation).
+  f1 (Ours v2): RUNNING (~1h 22m elapsed, healthy on fresh quota).
+  f4@k (Kartik): RUNNING (~1h 22m elapsed, healthy on Kartik slot).
+  f2, f3 (Kartik): CANCEL_ACKNOWLEDGED (held safely).
+- Chunk 18 schedule: rounds at ~09:25, ~09:35, ~09:45, ~09:55; exit ~09:56 IST.
+- This chunk leads directly into the Gate Horizon (~10:20-10:25 IST, Timer T3).
