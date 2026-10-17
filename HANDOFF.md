@@ -1402,3 +1402,16 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f4 (Kartik): CANCEL_ACKNOWLEDGED.
 - Chunk 23 schedule: rounds at ~04:36, ~04:46, ~04:56, ~05:06; exit ~05:07 IST.
 - Automated OOF pipeline ready: upon completion of f1 or f0@k, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 05:05 IST Sun Oct 18 — WATCHER v8 CHUNK 24 ARMED (QUOTA RESET & f1 LANDING)
+- Watcher v8 Chunk 23 completed normally (04:35, 04:45, 04:54, 05:04; exit 05:04 IST).
+- Watcher v8 Chunk 24 launched in background (sh_14c37d017001Oev4F70AUPTDqK).
+- Fleet Status at 05:04 IST:
+  f1 (Ours v3 fast): RUNNING (~5h 04m in; launched 00:00 IST; in final CSV serialization phase).
+  f0@k (Kartik fast gate): RUNNING (~11h 26m elapsed; launched 17:38 IST Oct 17; ~33m headroom before 12h cap at 05:38 IST).
+  f4 (Kartik): CANCEL_ACKNOWLEDGED.
+- Chunk 24 schedule: rounds at ~05:05, ~05:15, ~05:25, ~05:35; exit ~05:36 IST.
+- Critical events in this chunk:
+  1. Completion of f1 and automated initial oof_preds_25d.csv generation & push to GitHub.
+  2. Weekly Kaggle GPU quota reset at 05:30:00 IST (replenishing 30.0h fresh quota across all accounts).
+  3. 12.0h platform cap boundary for f0@k at 05:38 IST.
