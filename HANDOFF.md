@@ -1392,3 +1392,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f4 (Kartik): CANCEL_ACKNOWLEDGED.
 - Chunk 22 schedule: rounds at ~04:06, ~04:16, ~04:26, ~04:36; exit ~04:37 IST.
 - Automated OOF pipeline ready: upon completion of f0@k or f1, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 04:36 IST Sun Oct 18 — WATCHER v8 CHUNK 23 ARMED (f1 COMPLETION WINDOW)
+- Watcher v8 Chunk 22 completed normally (04:06, 04:15, 04:25, 04:34; exit 04:35 IST).
+- Watcher v8 Chunk 23 launched in background (sh_14c1d19de001oN344xsEld2Kzr).
+- Fleet Status at 04:35 IST:
+  f1 (Ours v3 fast): RUNNING (~4h 35m in; launched 00:00 IST; entering peak completion window; ETA ~04:45-05:00 IST).
+  f0@k (Kartik fast gate): RUNNING (~10h 57m elapsed; launched 17:38 IST Oct 17; in final validation & CSV serialization; ~41m platform headroom before 12h cap).
+  f4 (Kartik): CANCEL_ACKNOWLEDGED.
+- Chunk 23 schedule: rounds at ~04:36, ~04:46, ~04:56, ~05:06; exit ~05:07 IST.
+- Automated OOF pipeline ready: upon completion of f1 or f0@k, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
