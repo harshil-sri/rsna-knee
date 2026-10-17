@@ -1081,3 +1081,15 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f4@k (Kartik): RUNNING (~3h 54m in)
 - Chunk 23 schedule: rounds at ~11:57, ~12:07, ~12:17, ~12:27; exit ~12:28 IST.
 - The moment f0@d lands, ./gate-go-f0.sh will be executed immediately.
+
+## 12:28 IST Oct 17 — WATCHER v6 CHUNK 24 ARMED AT 12h BATCH BOUNDARY
+- Watcher v6 Chunk 23 completed normally (11:56, 12:06, 12:16, 12:26; exit 12:26 IST).
+- Direct API check at 12:27:16 IST: dakxsh23/rsna-knee-nb4-f0 is KernelWorkerStatus.RUNNING (~11h 59m elapsed).
+  Session is crossing the exact 12.0h platform threshold (00:27:52 launch -> 12:27:52 boundary).
+- Watcher v6 Chunk 24 launched in background (sh_148a6a1ca001Vm75WNP21fPxQZ).
+- Fleet Status at 12:27 IST:
+  f0@d (Daksh v2): RUNNING (~12h 00m in, crossing boundary/completing)
+  f1 (Ours v2): RUNNING (~4h 25m in)
+  f4@k (Kartik): RUNNING (~4h 25m in)
+- Chunk 24 schedule: rounds at ~12:27, ~12:37, ~12:47, ~12:57; exit ~12:58 IST.
+- The moment f0@d reaches terminal status, output pull and evaluation will execute.
