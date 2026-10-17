@@ -1033,3 +1033,15 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Watcher v6 Chunk 19 is actively tracking; Round 4 is due at ~10:24-10:25 IST, with chunk exit at ~10:26 IST.
 - All other fleet kernels verified healthy at 10:14 poll: f1v2=RUNNING (~2h 12m in), f4@k=RUNNING (~2h 12m in).
 - Standing by for completion to trigger ./gate-go-f0.sh.
+
+## 10:25 IST Oct 17 — WATCHER v6 CHUNK 20 ARMED (GATE VERDICT WATCH)
+- Watcher v6 Chunk 19 finished normally (09:55, 10:04, 10:14, 10:24; exit 10:25 IST).
+- Direct API check at 10:25:17 IST: dakxsh23/rsna-knee-nb4-f0 is KernelWorkerStatus.RUNNING (~9h 57m elapsed).
+  Batch GPU ceiling is 12.0h (>2h headroom remaining); kernel is in final endgame output persistence.
+- Watcher v6 Chunk 20 launched in background (sh_14836f4f10013vWwI3esJ8ESGx).
+- Fleet Status at 10:25 IST:
+  f0@d (Daksh v2): RUNNING (~9h 57m in, endgame)
+  f1 (Ours v2): RUNNING (~2h 23m in)
+  f4@k (Kartik): RUNNING (~2h 23m in)
+- Chunk 20 schedule: rounds at ~10:25, ~10:35, ~10:45, ~10:55; exit ~10:56 IST.
+- The moment f0@d lands, ./gate-go-f0.sh will be executed immediately.
