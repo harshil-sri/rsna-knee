@@ -990,3 +990,16 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 16 schedule: rounds at 08:23, 08:33, 08:43, 08:53; exit ~08:54 IST.
 - Timer T3 active in background targeting 10:20 IST.
 - Versia-7 submission (ref 57287734) remains PENDING.
+
+## 08:55 IST Oct 17 — VERSIA-7 COMPLETE (0.956); WATCHER v6 CHUNK 17 ARMED
+- Versia-7 submission (ref 57287734) reached SubmissionStatus.COMPLETE with Public LB Score = 0.956 (matches team PB, confirmed robust hidden rerun).
+- Watcher v6 Chunk 16 finished 4 rounds normally (08:23, 08:33, 08:43, 08:53; exit 08:53 IST).
+- Watcher v6 Chunk 17 launched in background (sh_147e381d7001fpadcrW5ZBGO2B).
+- Fleet Status at 08:54 IST:
+  f0@d (Daksh v2): RUNNING (~8h 26m elapsed; ETA ~10:25 IST for gate evaluation).
+  f1 (Ours v2): RUNNING (~52m elapsed, healthy on fresh quota).
+  f4@k (Kartik): RUNNING (~52m elapsed, healthy on Kartik slot).
+  f2, f3 (Kartik): CANCEL_ACKNOWLEDGED (held for post-gate rerun decision).
+  knee-arms2 (Daksh): COMPLETE.
+- Chunk 17 schedule: rounds at 08:54, 09:04, 09:14, 09:24; exit ~09:25 IST.
+- Timer T3 active in background targeting 10:20 IST for gate-go-f0.sh.
