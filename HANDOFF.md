@@ -1203,3 +1203,14 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 4 schedule: rounds at ~19:08, ~19:18, ~19:28, ~19:38; exit ~19:39 IST.
 - This chunk covers the critical completion window of f1 and f4.
 - Automated OOF pipeline ready: upon completion of f1 or f4, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 19:38 IST Oct 17 — WATCHER v8 CHUNK 5 ARMED (12h BOUNDARY CROSSING FOR FOLDS 1 & 4)
+- Watcher v8 Chunk 4 completed normally (19:07, 19:17, 19:26, 19:36; exit 19:36 IST).
+- Watcher v8 Chunk 5 launched in background (sh_14a307b670015qjl7epH6ej9G6).
+- Fleet Status at 19:36 IST:
+  f1 (Ours v2): RUNNING (~11h 35m elapsed; ~25m before 12h batch cap).
+  f4 (Kartik): RUNNING (~11h 35m elapsed; ~25m before 12h batch cap).
+  f0@k (Kartik fast gate): RUNNING (~2h 00m elapsed; ETA ~22:30 IST).
+- Chunk 5 schedule: rounds at ~19:37, ~19:47, ~19:57, ~20:07; exit ~20:08 IST.
+- This chunk covers the exact 12h threshold (20:02 IST) for f1 and f4.
+- Automated OOF pipeline ready: upon completion of f1 or f4, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
