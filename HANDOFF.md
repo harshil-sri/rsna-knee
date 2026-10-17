@@ -981,3 +981,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   - Fusion kernel: wt/fusion-scaffold/work/fusion-kernel-filled.ipynb audited, repaired, STUB=1 verified.
   - OOF assembler: wt/make_oof_25d.py hardened (full 4407-row NaN-complete reindex, permutation guard).
 - NEXT CRITICAL MILESTONE: ~10:20-10:25 IST — f0v2 completion and gate-go-f0.sh evaluation (MACRO AUC >= 0.80).
+
+## 08:24 IST Oct 17 — WATCHER v6 CHUNK 16 ARMED & ROUND 1 VERIFIED GREEN
+- Watcher v6 Chunk 15 finished 4 rounds normally (07:52, 08:02, 08:12, 08:23; exit 08:23 IST).
+- Watcher v6 Chunk 16 launched in background (sh_147c75a0f001ajf7CwR1wzus8f).
+- Round 1 poll at 08:23 IST verified in watch-folds-recovery.log:
+  f1=RUNNING (v2), f4@k=RUNNING (fold 4), f0@d=RUNNING (v2, ~7h 55m in, healthy), knee-arms2=COMPLETE.
+- Chunk 16 schedule: rounds at 08:23, 08:33, 08:43, 08:53; exit ~08:54 IST.
+- Timer T3 active in background targeting 10:20 IST.
+- Versia-7 submission (ref 57287734) remains PENDING.
