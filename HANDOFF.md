@@ -1025,3 +1025,11 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f2, f3 (Kartik): CANCEL_ACKNOWLEDGED (held safely).
 - Chunk 19 schedule: rounds at ~09:55, ~10:05, ~10:15, ~10:25; exit ~10:26 IST.
 - THIS CHUNK DIRECTLY COVERS THE FOLD 0 GATE LANDING AND TIMER T3 FIRE (~10:20-10:25 IST).
+
+## 10:20 IST Oct 17 — TIMER T3 REPORT: FOLD 0 IN FINAL ENDGAME (~9h 52m in)
+- Timer T3 fired on schedule at 10:20 IST.
+- dakxsh23/rsna-knee-nb4-f0 status check: KernelWorkerStatus.RUNNING (started 00:27:52 IST; ~9h 52m elapsed runtime).
+- Expected runtime ~9.9h (~9h 54m) means the kernel is in its final evaluation/saving endgame (saving best25d.pt, gold_score25d.json, val_preds_fold0.csv).
+- Watcher v6 Chunk 19 is actively tracking; Round 4 is due at ~10:24-10:25 IST, with chunk exit at ~10:26 IST.
+- All other fleet kernels verified healthy at 10:14 poll: f1v2=RUNNING (~2h 12m in), f4@k=RUNNING (~2h 12m in).
+- Standing by for completion to trigger ./gate-go-f0.sh.
