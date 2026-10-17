@@ -1134,3 +1134,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f1 (Ours v2): RUNNING (~7h 58m elapsed; launched 08:02 IST).
   f4@k (Kartik): RUNNING (~7h 58m elapsed; launched 08:02 IST).
 - Chunk 3 schedule: rounds at ~16:01, ~16:11, ~16:21, ~16:31; exit ~16:32 IST.
+
+## 16:31 IST Oct 17 — WATCHER v7 CHUNK 4 ARMED
+- Watcher v7 Chunk 3 completed normally (16:00, 16:10, 16:20, 16:30; exit 16:30 IST).
+- Watcher v7 Chunk 4 launched in background (sh_149857828001zguJNmXGLvq9Hf).
+- Fleet Status at 16:30 IST:
+  f0@d (Daksh v3 fast gate): RUNNING (~1h 30m elapsed; caching phase completing; ETA ~19:45-20:00 IST).
+  f1 (Ours v2): RUNNING (~8h 28m elapsed; launched 08:02 IST).
+  f4@k (Kartik): RUNNING (~8h 28m elapsed; launched 08:02 IST).
+- Chunk 4 schedule: rounds at ~16:31, ~16:41, ~16:51, ~17:01; exit ~17:02 IST.
