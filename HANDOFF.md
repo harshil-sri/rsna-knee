@@ -945,3 +945,14 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - f2 and f3 are approaching the 11-hour mark (~10h 52m in, ~1h 08m headroom before 12h platform ceiling).
 - Versia-7 submission (ref 57287734) remains PENDING on leaderboard.
 - Timer T3 active in background targeting 10:20 IST.
+
+## 07:22 IST Oct 17 — WATCHER v6 CHUNK 14 ARMED & ROUND 1 VERIFIED GREEN
+- Watcher v6 Chunk 13 finished 4 rounds normally (06:50, 07:00, 07:10, 07:21; exit 07:21 IST).
+- Watcher v6 Chunk 14 launched in background (sh_1478ea0f6001DPGH7QwCertl7W).
+- Round 1 poll at 07:21 IST verified in watch-folds-recovery.log:
+  f1=RUNNING (~7h 56m in), f2=RUNNING (~11h 23m in), f3=RUNNING (~11h 23m in), f0@d=RUNNING (v2, ~6h 53m in).
+- Chunk 14 schedule: rounds at 07:21, 07:31, 07:41, 07:51; exit ~07:52 IST.
+- CRITICAL CAP WATCH: f2 and f3 are at 11h 23m elapsed (started 19:58 Oct 16; 12h batch cap is 07:58 IST).
+  They have ~35m before platform ceiling. Upon completion, watcher v6 automatically pushes f4.
+- Versia-7 submission (ref 57287734) remains PENDING.
+- Timer T3 active in background targeting 10:20 IST.
