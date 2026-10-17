@@ -1045,3 +1045,15 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f4@k (Kartik): RUNNING (~2h 23m in)
 - Chunk 20 schedule: rounds at ~10:25, ~10:35, ~10:45, ~10:55; exit ~10:56 IST.
 - The moment f0@d lands, ./gate-go-f0.sh will be executed immediately.
+
+## 10:56 IST Oct 17 — WATCHER v6 CHUNK 21 ARMED (GATE ENDGAME EXTENSION)
+- Watcher v6 Chunk 20 finished normally (10:25, 10:35, 10:45, 10:55; exit 10:55 IST).
+- Direct API check at 10:55:40 IST: dakxsh23/rsna-knee-nb4-f0 is KernelWorkerStatus.RUNNING (~10h 28m elapsed).
+  Batch GPU platform ceiling is 12.0h (~1h 32m platform headroom remaining).
+- Watcher v6 Chunk 21 launched in background (sh_14852c0f20017vL2q9V8JuKxlw).
+- Fleet Status at 10:55 IST:
+  f0@d (Daksh v2): RUNNING (~10h 28m in, endgame)
+  f1 (Ours v2): RUNNING (~2h 53m in)
+  f4@k (Kartik): RUNNING (~2h 53m in)
+- Chunk 21 schedule: rounds at ~10:56, ~11:06, ~11:16, ~11:26; exit ~11:27 IST.
+- The moment f0@d lands, ./gate-go-f0.sh will be executed immediately.
