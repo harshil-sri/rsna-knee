@@ -1,6 +1,54 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
-checkpoints/
-logs/
-*.parquet
+*.py[cod]
+*$py.class
+
+# Environments
 .venv/
+venv/
+ENV/
+env/
+
+# Large Model Checkpoints & Weights
+checkpoints/
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.onnx
+
+# Datasets, Caches, & Raw Data
+kaggle-out/
+cache384/
+tmp/
+*.parquet
+*.npy
+*.npz
+*.dcm
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+
+# Temporary Output Dumps & Crash Logs
+nb4-*-out/
+*-err/
+logs/
+*.tmp
+*.tmp.npy
+
+# Watcher Lock & State Flags
+.f*
+
+# Credentials & Tokens (Strict hygiene)
+*token*
+*key*
+*.pem
+*.secret
+
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
