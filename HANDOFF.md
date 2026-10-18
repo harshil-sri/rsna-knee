@@ -1725,3 +1725,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   - Automatically monitors f1 (ours) and f0@d (daksh).
   - The instant either finishes, harvests val_preds_fold*.csv, updates oof_preds_25d.csv, and pushes directly to GitHub for Dr. Kartik.
   - Fires ./gate-go-f0.sh upon f0@d completion.
+
+## 19:16 IST Sun Oct 18 — WATCHER v9 CHUNK 2 ARMED
+- Watcher v9 Chunk 1 completed normally (18:46, 18:56, 19:05, 19:14; exit 19:14 IST).
+- Watcher v9 Chunk 2 launched in background (sh_14f429515001IONb6rvZDgu9Hx).
+- Fleet Status at 19:15 IST:
+  f0@d (Daksh v4 1-epoch fast gate): RUNNING (~29m in; launched 18:46 IST; active DICOM caching; ETA ~22:45-23:15 IST).
+  f1 (Ours v5 speedup): RUNNING (~6h 53m in; launched 12:22 IST; in final CSV serialization phase; headroom until 00:22 IST).
+- Chunk 2 schedule: rounds at ~19:16, ~19:26, ~19:36, ~19:46; exit ~19:47 IST.
+- Automated OOF pipeline ready: upon completion of f1 or f0@d, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
