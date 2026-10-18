@@ -1817,3 +1817,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f1 (Ours v5 speedup): RUNNING (~11h 19m in; launched 12:22 IST; in final CSV serialization phase; headroom until 00:22 IST).
 - Chunk 11 schedule: rounds at ~23:42, ~23:52, ~00:02, ~00:12; exit ~00:13 IST.
 - Automated Gate trigger armed: the instant f0@d completes, Watcher v9 executes ./gate-go-f0.sh, evaluates MACRO AUC >= 0.80, publishes the checkpoint dataset, updates oof_preds_25d.csv, and pushes to GitHub.
+
+## 00:14 IST Mon Oct 19 — WATCHER v9 CHUNK 12 ARMED (f1 12.0h THRESHOLD APPROACH)
+- Watcher v9 Chunk 11 completed normally (23:41, 23:51, 00:02, 00:12; exit 00:12 IST).
+- Watcher v9 Chunk 12 launched in background (sh_15052f319001a4m6d00JgMpnPb).
+- Fleet Status at 00:12 IST:
+  f0@d (Daksh v4 1-epoch fast gate): RUNNING (~5h 26m in; launched 18:46 IST Oct 18; in final validation & CSV serialization; >6.5h platform headroom).
+  f1 (Ours v5 speedup): RUNNING (~11h 50m in; launched 12:22 IST Oct 18; ~10m before 12.0h platform cap at 00:22 IST).
+- Chunk 12 schedule: rounds at ~00:13, ~00:23, ~00:33, ~00:43; exit ~00:44 IST.
+- This chunk covers the exact 12.0h platform cap boundary (00:22 IST) for f1.
+- Automated OOF pipeline ready: upon completion of any fold, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
