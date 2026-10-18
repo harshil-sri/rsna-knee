@@ -1459,3 +1459,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f4@k (Kartik v2 speedup): RUNNING (~24m in; launched 06:08 IST; caching phase; ETA ~09:45-10:00 IST).
 - Chunk 28 schedule: rounds at ~06:32, ~06:42, ~06:52, ~07:02; exit ~07:03 IST.
 - Automated OOF pipeline ready: upon completion of any fold, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 07:02 IST Sun Oct 18 — WATCHER v8 CHUNK 29 ARMED
+- Watcher v8 Chunk 28 completed normally (06:32, 06:41, 06:51, 07:00; exit 07:00 IST).
+- Watcher v8 Chunk 29 launched in background (sh_14ca28db0001L57CWFeVFcNfwN).
+- Fleet Status at 07:01 IST:
+  f1 (Ours v3 fast): RUNNING (~7h 01m in; launched 00:00 IST; in final validation & CSV serialization).
+  f0@k (Kartik v2 speedup gate): RUNNING (~53m in; launched 06:08 IST; entering active ConvNeXt training; ETA ~09:45-10:00 IST).
+  f4@k (Kartik v2 speedup): RUNNING (~53m in; launched 06:08 IST; entering active ConvNeXt training; ETA ~09:45-10:00 IST).
+- Chunk 29 schedule: rounds at ~07:01, ~07:11, ~07:21, ~07:31; exit ~07:32 IST.
+- Automated OOF pipeline ready: upon completion of f1, f0@k, or f4@k, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
