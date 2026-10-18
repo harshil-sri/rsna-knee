@@ -1415,3 +1415,14 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   1. Completion of f1 and automated initial oof_preds_25d.csv generation & push to GitHub.
   2. Weekly Kaggle GPU quota reset at 05:30:00 IST (replenishing 30.0h fresh quota across all accounts).
   3. 12.0h platform cap boundary for f0@k at 05:38 IST.
+
+## 05:35 IST Sun Oct 18 — WATCHER v8 CHUNK 25 ARMED (POST-RESET FLEET STATUS)
+- Watcher v8 Chunk 24 completed normally (05:04, 05:14, 05:23, 05:33; exit 05:33 IST).
+- Watcher v8 Chunk 25 launched in background (sh_14c528c70001w2vnV8KmRiyewM).
+- Fleet Status at 05:33 IST:
+  f1 (Ours v3 fast): RUNNING (~5h 34m in; launched 00:00 IST; in final CSV serialization phase).
+  f0@k (Kartik fast gate): RUNNING (~11h 56m elapsed; launched 17:38 IST Oct 17; at the 12.0h platform cap boundary of 05:38 IST).
+  f4 (Kartik): CANCEL_ACKNOWLEDGED.
+- Quota Reset at 05:30:00 IST: Daily UTC midnight boundary crossed cleanly across all accounts.
+- Chunk 25 schedule: rounds at ~05:34, ~05:44, ~05:54, ~06:04; exit ~06:05 IST.
+- Automated OOF pipeline ready: upon completion of f1 or f0@k, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
