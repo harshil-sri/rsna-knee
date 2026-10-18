@@ -1808,3 +1808,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 10 schedule: rounds at ~23:11, ~23:21, ~23:31, ~23:41; exit ~23:42 IST.
 - THIS CHUNK COVERS THE EXACT GATE EVALUATION WINDOW OF FOLD 0 (~23:15-23:25 IST).
 - Automated Gate trigger armed: the instant f0@d completes, Watcher v9 executes ./gate-go-f0.sh, evaluates MACRO AUC >= 0.80, publishes the checkpoint dataset, updates oof_preds_25d.csv, and pushes to GitHub.
+
+## 23:42 IST Sun Oct 18 — WATCHER v9 CHUNK 11 ARMED (GATE ENDGAME EXTENSION)
+- Watcher v9 Chunk 10 completed normally (23:10, 23:21, 23:31, 23:41; exit 23:41 IST).
+- Watcher v9 Chunk 11 launched in background (sh_1503697a8001o8K89GwYgDqfed).
+- Fleet Status at 23:41 IST:
+  f0@d (Daksh v4 1-epoch fast gate): RUNNING (~4h 55m in; launched 18:46 IST; in final CSV serialization & metrics calculation; >7.0h platform headroom).
+  f1 (Ours v5 speedup): RUNNING (~11h 19m in; launched 12:22 IST; in final CSV serialization phase; headroom until 00:22 IST).
+- Chunk 11 schedule: rounds at ~23:42, ~23:52, ~00:02, ~00:12; exit ~00:13 IST.
+- Automated Gate trigger armed: the instant f0@d completes, Watcher v9 executes ./gate-go-f0.sh, evaluates MACRO AUC >= 0.80, publishes the checkpoint dataset, updates oof_preds_25d.csv, and pushes to GitHub.
