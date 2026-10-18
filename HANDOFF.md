@@ -1699,3 +1699,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 51 schedule: rounds at ~17:41, ~17:51, ~18:01, ~18:11; exit ~18:12 IST.
 - This chunk directly spans the 12.0h platform cap boundary (18:08 IST) for f0@k and f4@k.
 - Automated OOF pipeline ready: upon completion of any fold, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 18:11 IST Sun Oct 18 — WATCHER v8 CHUNK 52 ARMED (12h PLATFORM CAP CROSSING FOR FOLDS 0 & 4)
+- Watcher v8 Chunk 51 completed normally (17:41, 17:50, 18:00, 18:09; exit 18:09 IST).
+- Watcher v8 Chunk 52 launched in background (sh_14f072265001elb3WdS9ltMH2q).
+- Fleet Status at 18:10 IST:
+  f0@k (Kartik v2 speedup gate): RUNNING (~12h 02m in; launched 06:08 IST; crossing 12.0h platform threshold).
+  f4@k (Kartik v2 speedup): RUNNING (~12h 02m in; launched 06:08 IST; crossing 12.0h platform threshold).
+  f1 (Ours v5 speedup): RUNNING (~5h 48m in; launched 12:22 IST; in final CSV serialization phase; headroom until 00:22 IST).
+- Chunk 52 schedule: rounds at ~18:10, ~18:20, ~18:30, ~18:40; exit ~18:41 IST.
+- Automated OOF pipeline ready: upon completion of any fold, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
