@@ -1426,3 +1426,14 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Quota Reset at 05:30:00 IST: Daily UTC midnight boundary crossed cleanly across all accounts.
 - Chunk 25 schedule: rounds at ~05:34, ~05:44, ~05:54, ~06:04; exit ~06:05 IST.
 - Automated OOF pipeline ready: upon completion of f1 or f0@k, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 06:05 IST Sun Oct 18 — WATCHER v8 CHUNK 26 ARMED (f1 RUNNING AT 6h; f0@k TIMEOUT POST-MORTEM)
+- Watcher v8 Chunk 25 completed normally (05:34, 05:43, 05:53, 06:02; exit 06:02 IST).
+- Watcher v8 Chunk 26 launched in background (sh_14c6d503c001DbRgHvY37i8r2R).
+- Fleet Status at 06:03 IST:
+  f1 (Ours v3 fast): RUNNING (~6h 03m in; launched 00:00 IST; in active validation/output writes; platform cap headroom until 12:00 IST).
+  f0@k (Kartik fast gate): CANCEL_ACKNOWLEDGED (hit 12.0h platform cap at ~05:53 IST; 2-byte empty log).
+  f4 (Kartik): CANCEL_ACKNOWLEDGED.
+- Quota Reset: 05:30 IST reset completed. Kartik now holds 2 FREE GPU SLOTS with 30.0h fresh quota. Our account has 1 FREE GPU SLOT with fresh quota.
+- Chunk 26 schedule: rounds at ~06:04, ~06:14, ~06:24, ~06:34; exit ~06:35 IST.
+- Automated OOF pipeline ready: upon completion of f1, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
