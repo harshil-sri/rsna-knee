@@ -1530,3 +1530,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f1 (Ours v3 fast): RUNNING (~9h 56m in; launched 00:00 IST; in final validation & CSV serialization; platform headroom until 12:00 IST).
 - Chunk 35 schedule: rounds at ~09:56, ~10:06, ~10:16, ~10:26; exit ~10:27 IST.
 - Automated Gate trigger armed: the instant f0@k completes, Watcher v8 executes ./gate-go-f0.sh, evaluates MACRO AUC >= 0.80, publishes the checkpoint dataset, updates oof_preds_25d.csv, and pushes to GitHub.
+
+## 10:26 IST Sun Oct 18 — WATCHER v8 CHUNK 36 ARMED
+- Watcher v8 Chunk 35 completed normally (09:56, 10:05, 10:15, 10:24; exit 10:24 IST).
+- Watcher v8 Chunk 36 launched in background (sh_14d5d1db40012WN3lwEPftBBUc).
+- Fleet Status at 10:25 IST:
+  f0@k (Kartik v2 speedup gate): RUNNING (~4h 17m in; launched 06:08 IST; in final validation & CSV serialization; >7.5h platform headroom).
+  f4@k (Kartik v2 speedup): RUNNING (~4h 17m in; launched 06:08 IST; in final validation & CSV serialization; >7.5h platform headroom).
+  f1 (Ours v3 fast): RUNNING (~10h 25m in; launched 00:00 IST; in final validation & CSV serialization; platform headroom until 12:00 IST).
+- Chunk 36 schedule: rounds at ~10:25, ~10:35, ~10:45, ~10:55; exit ~10:56 IST.
+- Automated Gate trigger armed: the instant f0@k completes, Watcher v8 executes ./gate-go-f0.sh, evaluates MACRO AUC >= 0.80, publishes the checkpoint dataset, updates oof_preds_25d.csv, and pushes to GitHub.
