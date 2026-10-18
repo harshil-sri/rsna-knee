@@ -1761,3 +1761,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f1 (Ours v5 speedup): RUNNING (~8h 19m in; launched 12:22 IST; in final CSV serialization phase; headroom until 00:22 IST).
 - Chunk 5 schedule: rounds at ~20:42, ~20:52, ~21:02, ~21:12; exit ~21:13 IST.
 - Automated OOF pipeline ready: upon completion of f1 or f0@d, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 21:11 IST Sun Oct 18 — WATCHER v9 CHUNK 6 ARMED
+- Watcher v9 Chunk 5 completed normally (20:41, 20:50, 20:59, 21:09; exit 21:09 IST).
+- Watcher v9 Chunk 6 launched in background (sh_14fab7f63001u447bLPHpZkRZK).
+- Fleet Status at 21:10 IST:
+  f0@d (Daksh v4 1-epoch fast gate): RUNNING (~2h 24m in; launched 18:46 IST; active 1-epoch ConvNeXt training; ETA ~22:45-23:15 IST).
+  f1 (Ours v5 speedup): RUNNING (~8h 48m in; launched 12:22 IST; in final CSV serialization phase; headroom until 00:22 IST).
+- Chunk 6 schedule: rounds at ~21:11, ~21:21, ~21:31, ~21:41; exit ~21:42 IST.
+- Automated OOF pipeline ready: upon completion of f1 or f0@d, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
