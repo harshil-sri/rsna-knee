@@ -1873,3 +1873,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f1 (Ours): CANCEL_ACKNOWLEDGED (2 free GPU slots on our account).
 - Chunk 17 schedule: rounds at ~02:47, ~02:57, ~03:07, ~03:17; exit ~03:18 IST.
 - Automated Gate trigger armed: the instant f0@d completes, Watcher v9 executes ./gate-go-f0.sh, evaluates MACRO AUC >= 0.80, publishes the checkpoint dataset, updates oof_preds_25d.csv, and pushes to GitHub.
+
+## 03:19 IST Mon Oct 19 — WATCHER v9 CHUNK 18 ARMED
+- Watcher v9 Chunk 17 completed normally (02:47, 02:57, 03:07, 03:17; exit 03:17 IST).
+- Watcher v9 Chunk 18 launched in background (sh_150fd06d8001w9IQViOVplAWD0).
+- Fleet Status at 03:18 IST:
+  f0@d (Daksh v4 1-epoch fast gate): RUNNING (~8h 32m in; launched 18:46 IST Oct 18; in final validation & CSV serialization; >3.2h platform headroom).
+  f1 (Ours): CANCEL_ACKNOWLEDGED (2 free GPU slots on our account).
+- Chunk 18 schedule: rounds at ~03:19, ~03:29, ~03:39, ~03:49; exit ~03:50 IST.
+- Automated Gate trigger armed: the instant f0@d completes, Watcher v9 executes ./gate-go-f0.sh, evaluates MACRO AUC >= 0.80, publishes the checkpoint dataset, updates oof_preds_25d.csv, and pushes to GitHub.
