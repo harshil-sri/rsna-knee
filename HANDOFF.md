@@ -1668,3 +1668,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f4@k (Kartik v2 speedup): RUNNING (~10h 06m in; launched 06:08 IST; in final serialization; ~1h 54m platform headroom before 12h cap at 18:08 IST).
 - Chunk 48 schedule: rounds at ~16:15, ~16:25, ~16:35, ~16:45; exit ~16:46 IST.
 - Automated OOF pipeline ready: upon completion of f1, val_preds_fold1.csv will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 16:45 IST Sun Oct 18 — WATCHER v8 CHUNK 49 ARMED
+- Watcher v8 Chunk 48 completed normally (16:14, 16:24, 16:33, 16:42; exit 16:42 IST).
+- Watcher v8 Chunk 49 launched in background (sh_14eb7ae73001Au5tIqzISEYBSQ).
+- Fleet Status at 16:43 IST:
+  f1 (Ours v5 speedup): RUNNING (~4h 21m in; launched 12:22 IST; in final epoch validation & CSV serialization; landing imminent).
+  f0@k (Kartik v2 speedup gate): RUNNING (~10h 35m in; launched 06:08 IST; in final serialization; ~1h 25m platform headroom before 12h cap at 18:08 IST).
+  f4@k (Kartik v2 speedup): RUNNING (~10h 35m in; launched 06:08 IST; in final serialization; ~1h 25m platform headroom before 12h cap at 18:08 IST).
+- Chunk 49 schedule: rounds at ~16:44, ~16:54, ~17:04, ~17:14; exit ~17:15 IST.
+- Automated OOF pipeline ready: upon completion of any fold, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
