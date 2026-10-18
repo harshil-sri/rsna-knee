@@ -1437,3 +1437,15 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Quota Reset: 05:30 IST reset completed. Kartik now holds 2 FREE GPU SLOTS with 30.0h fresh quota. Our account has 1 FREE GPU SLOT with fresh quota.
 - Chunk 26 schedule: rounds at ~06:04, ~06:14, ~06:24, ~06:34; exit ~06:35 IST.
 - Automated OOF pipeline ready: upon completion of f1, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 06:10 IST Sun Oct 18 — COUNCIL VERDICT EXECUTED: FAST FOLDS 0 & 4 LAUNCHED ON KARTIK SLOTS
+- COUNCIL VERDICT (ses_eb3923023ffezWKpQoWHZotBzf):
+  - Mandate: Apply speedup patch (skip mid-training epoch-1 eval, set EVAL_BS=16 under torch.no_grad()) dropping runtime to ~3.5h.
+  - Deploy immediately to Kartik dual free slots on fresh 30.0h quota.
+- DEPLOYMENT RECEIPT (06:07:53 IST):
+  - ka1205/rsna-knee-nb4-f0 (v2 speedup): RUNNING (launched 06:07 IST; ETA ~09:45-10:00 IST for Gate Evaluation).
+  - ka1205/rsna-knee-nb4-f4 (v2 speedup): RUNNING (launched 06:07 IST; ETA ~09:45-10:00 IST).
+  - harshilsrivastav/rsna-knee-nb4-f1 (v3 fast): RUNNING (~6h 08m elapsed; in final output persistence).
+- WATCHER v8 CHUNK 27 ARMED in background (sh_14c71e612001dlfdUj0cKqn53z):
+  - Schedule: rounds at ~06:08, ~06:18, ~06:28, ~06:38; exit ~06:39 IST.
+  - Automated OOF pipeline ready: upon completion of any fold, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
