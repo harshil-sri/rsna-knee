@@ -1709,3 +1709,19 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f1 (Ours v5 speedup): RUNNING (~5h 48m in; launched 12:22 IST; in final CSV serialization phase; headroom until 00:22 IST).
 - Chunk 52 schedule: rounds at ~18:10, ~18:20, ~18:30, ~18:40; exit ~18:41 IST.
 - Automated OOF pipeline ready: upon completion of any fold, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 18:47 IST Sun Oct 18 — COUNCIL VERDICT EXECUTED: 1-EPOCH FAST GATE (v4) DEPLOYED ON DAKSH; WATCHER v9 ARMED
+- KARTIK QUOTA AUDIT: ka1205 reached weekly GPU limit of 30.00h (exhausted by cumulative 12h runs).
+- DAKSH FLEET ALLOCATION: Daksh slot freed (knee-infer cancelled); fresh 30h quota active.
+- COUNCIL VERDICT EXECUTED (ses_eb0dde6c6ffec30iFQMpuqdDqX):
+  - Mandate: Deploy 1-Epoch Fast Fold package (EPOCHS=1, MAX_CACHE_SECS=2h, K_TRAIN=4, K_VAL=8, BS_PER_GPU=8, GRAD_ACCUM=2, EVAL_BS=16).
+  - Expected runtime: ~4.0-4.5 hours (well under 12h cap; finishes tonight ~22:45-23:15 IST).
+- DEPLOYMENT RECEIPT (18:46:01 IST):
+  - dakxsh23/rsna-knee-nb4-f0 (v4 1-epoch fast gate): RUNNING.
+- FLEET STATUS AT 18:46 IST:
+  f0@d (Daksh v4 1-epoch fast gate): RUNNING (launched 18:46 IST; ETA ~22:45-23:15 IST for Gate Evaluation).
+  f1 (Ours v5 speedup): RUNNING (~6h 24m in; launched 12:22 IST; in final CSV serialization phase).
+- WATCHER v9 ARMED in background (sh_14f285774001hpjpFcm6ppgNVj):
+  - Automatically monitors f1 (ours) and f0@d (daksh).
+  - The instant either finishes, harvests val_preds_fold*.csv, updates oof_preds_25d.csv, and pushes directly to GitHub for Dr. Kartik.
+  - Fires ./gate-go-f0.sh upon f0@d completion.
