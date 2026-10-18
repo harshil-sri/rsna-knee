@@ -1570,3 +1570,21 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   f4@k (Kartik v2 speedup): RUNNING (~5h 44m in; launched 06:08 IST; in active validation & CSV serialization; >6.0h platform headroom).
 - Chunk 39 schedule: rounds at ~11:52, ~12:02, ~12:12, ~12:22; exit ~12:23 IST.
 - Automated OOF pipeline ready: upon completion of any fold, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
+
+## 12:25 IST Sun Oct 18 — WATCHER v8 CHUNK 40 ARMED & f1 SPEEDUP (v5) DEPLOYED
+- Watcher v8 Chunk 39 completed normally (11:52, 12:01, 12:11, 12:20; exit 12:20 IST).
+- f1 (v3) hit 12.0h platform cap at 12:00 IST (2-byte log). It ran with the un-patched eval loop.
+- f1 SPEEDUP PATCH (v5) DEPLOYED on our free slot:
+  - Notebook wt/nb4-f1/rsna-knee-nb4-f1.ipynb updated with:
+    1. MAX_CACHE_SECS = 2.0h.
+    2. K_TRAIN = 4, K_VAL = 8, BS_PER_GPU = 8, GRAD_ACCUM = 2, EVAL_BS = 16, expandable_segments:True.
+    3. Skipped mid-training epoch-1 validation (saves 1.2h).
+    4. py_compile verified 100% clean (indentation audited).
+  - Pushed to harshilsrivastav/rsna-knee-nb4-f1 (v5) at 12:22:20 IST.
+  - Confirmed KernelWorkerStatus.RUNNING at 12:22:34 IST. ETA ~16:00 IST.
+- FLEET STATUS AT 12:23 IST:
+  f0@k (Kartik v2 speedup gate): RUNNING (~6h 15m in; launched 06:08 IST; in final serialization; >5.5h platform headroom).
+  f4@k (Kartik v2 speedup): RUNNING (~6h 15m in; launched 06:08 IST; in final serialization; >5.5h platform headroom).
+  f1 (Ours v5 speedup): RUNNING (launched 12:22 IST; ETA ~16:00 IST).
+- Watcher v8 Chunk 40 launched in background (sh_14dc8b614001ZknC34rtmWrSE2).
+- Automated OOF pipeline ready: upon completion of any fold, val_preds will be harvested, oof_preds_25d.csv assembled, and pushed to GitHub immediately.
