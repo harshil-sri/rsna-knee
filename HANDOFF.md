@@ -2158,3 +2158,22 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   2. ref 57378322 (versia-8: 3-way diverse rank blend): COMPLETE (score=0.956).
   3. ref 57387009 (versia-9: anatomical weight specialization + gamma=1.05 sharpening): PENDING (~3h 21m elapsed; submitted 12:34 IST; target 0.960+).
 - Chunk 7 schedule: rounds at ~15:56, ~16:06, ~16:16, ~16:26; exit ~16:27 IST.
+
+
+## 16:15 IST Mon Oct 19 — VERSIA-9 RESOLVED (0.955); COUNCIL VERDICT: VERSIA-10 LAUNCHED; WATCHER v15 ARMED
+- VERSIA-9 PUBLIC SCORE RESOLVED:
+  - ref 57387009 reached SubmissionStatus.COMPLETE with score = 0.955 (-0.001 delta).
+  - Diagnostic: Power sharpening (gamma=1.05) and heuristic over-weighting on Raptor degraded rank calibration on sparse findings; confirms R7 (4-fold ConvNeXt-small + stackers) is the true anchor.
+- COUNCIL VERDICT EXECUTED (ses_eac42de46ffexv4Tqy0tyVfSvB):
+  - Question: How to break 0.956 plateau with 2 remaining submissions today?
+  - Verdict: Execute Option B (R7 Standalone Calibration Run).
+  - Zero downside risk (leaderboard floor permanently locked at 0.956), 100% information gain:
+    * If R7 >= 0.957: Proves R7 is our true lead model and Raptor was dragging it down.
+    * If R7 <= 0.955: Proves R7 needs variance reduction and dictates optimal blend for Sub #5.
+  - Stripped all gamma sharpening and heuristic overrides; pure uncorrupted rank percentiles (W_OURS=1.0, W_RAPTOR=0.0, W_SOTA=0.0).
+- DEPLOYMENT RECEIPT (16:13:33 IST):
+  - Pushed to dakxsh23/rsna-knee-versia10 (v1) on Daksh free slot.
+  - Live status verified: KernelWorkerStatus.RUNNING at 16:13:42 IST (ETA ~17:25-17:35 IST).
+- WATCHER v15 ARMED in background (sh_153c37bb9001FtPJIJf11A8lAH):
+  - Automatically monitors versia-10 execution.
+  - The instant versia-10 reaches COMPLETE, automatically executes competition submission via API as Daily Submission #4 for Oct 19!
