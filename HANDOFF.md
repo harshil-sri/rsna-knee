@@ -2350,3 +2350,20 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   * Once container is provisioned, commit execution takes ~11 minutes.
 - Schedule: rounds at ~00:11, ~00:21, ~00:31, ~00:41; exit ~00:42 IST.
 - Automated competition trigger remains armed: api.competition_submit_code fires automatically as Daily Submission #5 the instant commit finishes.
+
+
+## 00:40 IST Tue Oct 20 — VERSIA-11 AUTO-SUBMITTED (REF 57406636); ALL 5 DAILY SUBS LOCKED; WATCHER v18 ARMED
+- VERSIA-11 EXECUTION & AUTO-SUBMISSION RECEIPT:
+  - dakxsh23/rsna-knee-versia11 provisioned and ran from 00:29 to 00:39 IST (~10m GPU execution).
+  - Watcher v17 caught completion and automatically fired api.competition_submit_code via API at 00:39 IST.
+  - Receipt: ref 57406636 — "versia-11: architectural 50/50 partition (R7 0.50, Raptor 0.375, SWA 0.125)" (SubmissionStatus.PENDING).
+- DAILY SUBMISSION QUOTA LOCKED IN:
+  - All 5 daily competition submission slots for Monday Oct 19 UTC successfully utilized (100% quota efficiency locked ~5 hours before the 00:00 UTC daily reset at 05:30 IST).
+- MONDAY OCT 19 UTC COMPLETE SUBMISSION LEDGER:
+  1. ref 57376691 (versia-7 fork): COMPLETE (score=0.956).
+  2. ref 57378322 (versia-8 3-way blend): COMPLETE (score=0.956).
+  3. ref 57387009 (versia-9 specialized blend): COMPLETE (score=0.955).
+  4. ref 57393605 (versia-10 R7 standalone probe): COMPLETE (score=0.949 - confirms decorrelation engine).
+  5. ref 57406636 (versia-11 architectural 50/50 partition): PENDING (~1m elapsed; submitted 00:39 IST; score expected ~03:30-04:00 IST).
+- WATCHER v18 ARMED in background (sh_15591d2e0001Bowk1Yf71UJZQn):
+  - Automatically polls Kaggle API every 10 minutes to capture public score resolution for ref 57406636.
