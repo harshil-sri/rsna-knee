@@ -2377,3 +2377,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   * Expected public score resolution window: ~03:30 - 04:00 IST.
 - Schedule: rounds at ~01:09, ~01:19, ~01:29, ~01:39; exit ~01:40 IST.
 - Daily quota status: 5/5 Monday submissions locked in; Tuesday fresh quota (5 new slots) activates at 05:30 IST (00:00 UTC).
+
+
+## 01:40 IST Tue Oct 20 — WATCHER v18 CHUNK 3 ARMED (VERSIA-11 EVALUATION PROGRESSION)
+- Watcher v18 Chunk 2 completed normally (01:08, 01:17, 01:27, 01:36; exit 01:36 IST).
+- Watcher v18 Chunk 3 launched in background (sh_155c6516600123p2ovLIfu12YY).
+- Submission status at 01:36 IST: ref 57406636 (versia-11: architectural 50/50 partition) is PENDING (~57m elapsed; submitted 00:39 IST).
+  * Benchmark hidden test evaluation for 3-arm pipeline takes ~2.5 to 3.5 hours.
+  * Expected public score resolution window: ~03:30 - 04:00 IST.
+- Schedule: rounds at ~01:37, ~01:47, ~01:57, ~02:07; exit ~02:08 IST.
+- Daily quota status: 5/5 Monday submissions locked in; Tuesday fresh quota (5 new slots) activates at 05:30 IST (00:00 UTC).
