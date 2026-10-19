@@ -2035,3 +2035,11 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   1. ref 57376691 (versia-7 fork: 2-branch 50/50 rank blend): PENDING (~2h 43m elapsed; score resolution imminent).
   2. ref 57378322 (versia-8: 3-way diverse rank blend): PENDING (~1h 51m elapsed; score resolution imminent; target 0.960+).
 - Chunk 4 schedule: rounds at ~09:44, ~09:54, ~10:04, ~10:14; exit ~10:15 IST.
+
+## 10:15 IST Mon Oct 19 — SUBMISSION 57376691 COMPLETE (0.956); VERSIA-8 IN FINAL PHASE
+- SUBMISSION #1 RESOLVED:
+  - ref 57376691 (versia-7 fork) completed evaluation cleanly.
+  - Public Score: 0.956 (perfect 3-time score reproducibility across Oct 16, 17, and 19).
+- SUBMISSION #2 (VERSIA-8) IN FINAL PHASE:
+  - ref 57378322 (versia-8: 3-way diverse rank blend: Raptor 0.35 + R7 0.40 + SWA384 0.25) is currently in final evaluation phase (~2h 21m elapsed).
+  - Target: 0.960+.
