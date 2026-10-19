@@ -1955,3 +1955,19 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - NEXT ACTIONS:
   1. Monitor submission ref 57376691 public score resolution.
   2. Build 3-way multi-model rank blend kernel (Raptor + Helios R7 + CoAtNet-384) targeting 0.960+.
+
+## 07:06 IST Mon Oct 19 — FAST GOLD 2.5D (f0-gold) DEPLOYED & WATCHER v10 ARMED
+- FAST GOLD 2.5D PACKAGE DEPLOYED:
+  - Monolithic 4,407-study training abandoned per Council verdict (ses_eae3d1bf4ffeI0gczeUgGwSnz3).
+  - Fast Gold package (wt/f0-gold) engineered: trained strictly on 58 Gold studies + 200 high-confidence studies (258 studies total).
+  - MAX_CACHE_SECS = 0.5h (1,674 series caching takes ~12m).
+  - EPOCHS = 2 fine-tuning from pre-trained ImageNet ConvNeXt (takes ~15m).
+  - Expected runtime: ~25-30 minutes (ETA ~07:35-07:45 IST this morning).
+- DEPLOYMENT RECEIPT (07:04:55 IST):
+  - Pushed to dakxsh23/rsna-knee-f0-gold (v1) on Daksh slot.
+  - Confirmed KernelWorkerStatus.RUNNING at 07:05:13 IST.
+- DAILY SUBMISSION #1 (OCT 19):
+  - ref 57376691 (versia-7 fork: 2-branch 50/50 rank blend) is PENDING on Kaggle hidden test set.
+- WATCHER v10 ARMED in background (sh_151ccfffb0018MGoFHsMF9tpDg):
+  - Automatically monitors f0-gold until completion and submission 57376691 until score resolution.
+  - The instant f0-gold finishes: downloads output, runs ./gate-go-f0.sh, assembles oof_preds_25d.csv via make_oof_25d.py, and pushes directly to GitHub for Dr. Kartik.
