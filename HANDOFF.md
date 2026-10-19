@@ -1939,3 +1939,19 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Chunk 24 schedule: rounds at ~06:23, ~06:33, ~06:43, ~06:53; exit ~06:54 IST.
 - This chunk directly spans the 12.0h platform cap boundary (06:46 IST) for f0@d.
 - Automated Gate trigger armed: the instant f0@d completes, Watcher v9 executes ./gate-go-f0.sh, evaluates MACRO AUC >= 0.80, publishes the checkpoint dataset, updates oof_preds_25d.csv, and pushes to GitHub.
+
+## 07:05 IST Mon Oct 19 — DAILY SUBMISSION #1 (REF 57376691) & COUNCIL STRATEGY PIVOT
+- DAILY SUBMISSION #1 (OCT 19):
+  - Submitted harshilsrivastav/rsna-knee-versia7 (v1) at 07:01:13 IST via API.
+  - Receipt: ref 57376691 (SubmissionStatus.PENDING on hidden test set).
+  - Target: Solidify team score floor at 0.956 on new submission day.
+- COUNCIL STRATEGIC PIVOT (ses_eae3d1bf4ffeI0gczeUgGwSnz3):
+  - Question: 7 consecutive 12h timeouts on raw DICOM 2.5D training vs. Ensembling pivot.
+  - Unanimous Verdict: Stop 4,407-study raw DICOM batch training. Allocate primary compute to ensembling and submission optimization around 0.956+ backbones (versia-7, raptor, helios R7, pub954 CoAtNet).
+- FLEET STATUS AT 07:05 IST:
+  - Ours (harshilsrivastav): 2 FREE GPU SLOTS with fresh quota.
+  - Daksh (dakxsh23): 2 FREE GPU SLOTS with fresh quota.
+  - Kartik (ka1205): Quota exhausted for the week.
+- NEXT ACTIONS:
+  1. Monitor submission ref 57376691 public score resolution.
+  2. Build 3-way multi-model rank blend kernel (Raptor + Helios R7 + CoAtNet-384) targeting 0.960+.
