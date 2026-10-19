@@ -1984,3 +1984,18 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   - Pushed to harshilsrivastav/rsna-knee-versia8 (v1).
 - SUBMISSION IN-FLIGHT:
   - ref 57376691 (versia-7, Oct 19 Daily Sub #1) is PENDING on hidden test set.
+
+## 07:44 IST Mon Oct 19 — VERSIA-8 LAUNCHED ON DAKSH; WATCHER v11 ARMED
+- VERSIA-8 3-WAY RANK ENSEMBLE LIVE:
+  - Notebook wt/versia8/rsna-knee-versia8.ipynb combines:
+    1. Arm 1: CoAtNet Raptor (0.950+ baseline; ~20m inference).
+    2. Arm 2: Heliosli R7 (0.956 baseline; ~35m inference).
+    3. Arm 3: SWA CoAtNet-384 pub954 (0.954+ baseline; ~15m inference).
+    4. Stage 3: 3-way percentile rank blend (W_OURS=0.40, W_RAPTOR=0.35, W_SOTA=0.25) with fail-closed survivor re-weighting.
+  - Pushed to dakxsh23/rsna-knee-versia8 (v1) at 07:42:29 IST using Daksh free quota.
+  - Live status verified: KernelWorkerStatus.RUNNING at 07:42:37 IST.
+- DAILY SUBMISSION #1 (OCT 19):
+  - ref 57376691 (versia-7 fork: 2-branch 50/50 rank blend) is PENDING on Kaggle hidden test set.
+- WATCHER v11 ARMED in background (sh_151ef49f50013Nuw5ovAvZK49F):
+  - Automatically tracks versia-8 execution and submission 57376691 score resolution.
+  - The instant versia-8 reaches COMPLETE, Watcher v11 automatically executes competition submission via API as Daily Submission #2 for Oct 19!
