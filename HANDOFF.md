@@ -2199,3 +2199,9 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Watcher v16 Chunk 2 launched in background (sh_153fa1949001I1X0EDUmipqwUe).
 - Submission ref 57393605 (versia-10: R7 standalone probe) is PENDING (~50m elapsed; submitted 16:24 IST; score resolution expected ~17:40-18:00 IST).
 - Watcher v16 schedule: rounds at ~17:15, ~17:25, ~17:35, ~17:45; exit ~17:46 IST.
+
+## 17:45 IST Mon Oct 19 — WATCHER v16 CHUNK 3 ARMED (VERSIA-10 EXACT SCORE RESOLUTION WINDOW)
+- Watcher v16 Chunk 2 completed normally (17:14, 17:23, 17:33, 17:43; exit 17:43 IST).
+- Watcher v16 Chunk 3 launched in background (sh_154152a47001rUeWKYmwyT4xlJ).
+- Submission ref 57393605 (versia-10: R7 standalone probe) is PENDING (~1h 20m elapsed; submitted 16:24 IST; score resolution expected ~17:50-18:05 IST).
+- Watcher v16 schedule: rounds at ~17:44, ~17:54, ~18:04, ~18:14; exit ~18:15 IST.
