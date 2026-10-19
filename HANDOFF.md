@@ -2140,3 +2140,12 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   2. ref 57378322 (versia-8: 3-way diverse rank blend): COMPLETE (score=0.956).
   3. ref 57387009 (versia-9: anatomical weight specialization + gamma=1.05 sharpening): PENDING (~2h 22m elapsed; submitted 12:34 IST; score resolution imminent; target 0.960+).
 - Chunk 5 schedule: rounds at ~14:56, ~15:06, ~15:16, ~15:26; exit ~15:27 IST.
+
+## 15:26 IST Mon Oct 19 — WATCHER v14 CHUNK 6 ARMED (VERSIA-9 SCORE WINDOW)
+- Watcher v14 Chunk 5 completed normally (14:55, 15:05, 15:15, 15:24; exit 15:24 IST).
+- Watcher v14 Chunk 6 launched in background (sh_153968e5d001pbvUqWDLWVt9MD).
+- Submissions Status at 15:25 IST:
+  1. ref 57376691 (versia-7 fork): COMPLETE (score=0.956).
+  2. ref 57378322 (versia-8: 3-way diverse rank blend): COMPLETE (score=0.956).
+  3. ref 57387009 (versia-9: anatomical weight specialization + gamma=1.05 sharpening): PENDING (~2h 51m elapsed; submitted 12:34 IST; score resolution expected shortly; target 0.960+).
+- Chunk 6 schedule: rounds at ~15:25, ~15:35, ~15:45, ~15:55; exit ~15:56 IST.
