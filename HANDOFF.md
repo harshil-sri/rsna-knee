@@ -1999,3 +1999,15 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - WATCHER v11 ARMED in background (sh_151ef49f50013Nuw5ovAvZK49F):
   - Automatically tracks versia-8 execution and submission 57376691 score resolution.
   - The instant versia-8 reaches COMPLETE, Watcher v11 automatically executes competition submission via API as Daily Submission #2 for Oct 19!
+
+## 08:15 IST Mon Oct 19 — VERSIA-8 AUTO-SUBMITTED (REF 57378322); DUAL EVALUATIONS IN-FLIGHT
+- VERSIA-8 COMPLETE & SUBMITTED:
+  - dakxsh23/rsna-knee-versia8 completed cleanly at 07:53 IST.
+  - Watcher v11 automatically triggered competition submission via API.
+  - Receipt: ref 57378322 — "versia-8: 3-way diverse rank blend (Raptor 0.35 + R7 0.40 + SWA384 0.25)" (SubmissionStatus.PENDING).
+- ACTIVE KAGGLE SUBMISSIONS IN-FLIGHT:
+  1. ref 57376691 (versia-7 50/50 blend, Oct 19 Sub #1): PENDING (~1h 12m in, score resolution imminent).
+  2. ref 57378322 (versia-8 3-way blend, Oct 19 Sub #2): PENDING (~20m in; target 0.960+).
+- NEXT ACTIONS:
+  1. Track score resolutions for both submissions.
+  2. If versia-8 beats 0.956, it becomes our new official lead candidate for post-processing and private selection.
