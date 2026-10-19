@@ -1971,3 +1971,16 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - WATCHER v10 ARMED in background (sh_151ccfffb0018MGoFHsMF9tpDg):
   - Automatically monitors f0-gold until completion and submission 57376691 until score resolution.
   - The instant f0-gold finishes: downloads output, runs ./gate-go-f0.sh, assembles oof_preds_25d.csv via make_oof_25d.py, and pushes directly to GitHub for Dr. Kartik.
+
+## 07:42 IST Mon Oct 19 — VERSIA-8 3-WAY RANK ENSEMBLE ENGINEERED & PUSHED
+- VERSIA-8 ARCHITECTURE:
+  - Arm 1: CoAtNet Raptor (~20m inference; 0.950+ baseline).
+  - Arm 2: Heliosli R7 (~35m inference; 0.956 baseline).
+  - Arm 3: SWA CoAtNet-384 pub954 (~15m inference; 0.954+ baseline).
+  - Stage 3 Blend: 3-way percentile rank blend (W_OURS=0.40, W_RAPTOR=0.35, W_SOTA=0.25) with fail-closed survivor re-weighting.
+  - Total test runtime: ~70 minutes (safe under 9.0h test cap).
+  - py_compile verified 100% clean across all 14 cells.
+- PUSH RECEIPT:
+  - Pushed to harshilsrivastav/rsna-knee-versia8 (v1).
+- SUBMISSION IN-FLIGHT:
+  - ref 57376691 (versia-7, Oct 19 Daily Sub #1) is PENDING on hidden test set.
