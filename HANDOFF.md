@@ -2011,3 +2011,11 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - NEXT ACTIONS:
   1. Track score resolutions for both submissions.
   2. If versia-8 beats 0.956, it becomes our new official lead candidate for post-processing and private selection.
+
+## 08:45 IST Mon Oct 19 — WATCHER v12 CHUNK 2 ARMED (SCORE RESOLUTION HORIZON)
+- Watcher v12 Chunk 1 completed normally (08:14, 08:24, 08:33, 08:43; exit 08:43 IST).
+- Watcher v12 Chunk 2 launched in background (sh_1522748a4001J6GMx4umL4lVyR).
+- Submissions Status at 08:44 IST:
+  1. ref 57376691 (versia-7 fork: 2-branch 50/50 rank blend): PENDING (~1h 43m elapsed; score resolution imminent).
+  2. ref 57378322 (versia-8: 3-way diverse rank blend): PENDING (~51m elapsed; score expected ~09:15-09:30 IST; target 0.960+).
+- Chunk 2 schedule: rounds at ~08:44, ~08:54, ~09:04, ~09:14; exit ~09:15 IST.
