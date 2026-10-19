@@ -2019,3 +2019,11 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   1. ref 57376691 (versia-7 fork: 2-branch 50/50 rank blend): PENDING (~1h 43m elapsed; score resolution imminent).
   2. ref 57378322 (versia-8: 3-way diverse rank blend): PENDING (~51m elapsed; score expected ~09:15-09:30 IST; target 0.960+).
 - Chunk 2 schedule: rounds at ~08:44, ~08:54, ~09:04, ~09:14; exit ~09:15 IST.
+
+## 09:15 IST Mon Oct 19 — WATCHER v12 CHUNK 3 ARMED (DUAL SCORE RESOLUTION WINDOW)
+- Watcher v12 Chunk 2 completed normally (08:44, 08:54, 09:04, 09:13; exit 09:13 IST).
+- Watcher v12 Chunk 3 launched in background (sh_15242d268001b0hg5Tk3ZDrAWb).
+- Submissions Status at 09:14 IST:
+  1. ref 57376691 (versia-7 fork: 2-branch 50/50 rank blend): PENDING (~2h 13m elapsed; score resolution imminent).
+  2. ref 57378322 (versia-8: 3-way diverse rank blend): PENDING (~1h 21m elapsed; score resolution expected ~09:30-09:45 IST; target 0.960+).
+- Chunk 3 schedule: rounds at ~09:15, ~09:25, ~09:35, ~09:45; exit ~09:46 IST.
