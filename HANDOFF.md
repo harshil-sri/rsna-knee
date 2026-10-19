@@ -2220,3 +2220,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - Submission ref 57393605 (versia-10: R7 standalone probe) is PENDING (~2h 20m elapsed; submitted 16:24 IST; score resolution imminent).
 - Watcher v16 schedule: rounds at ~18:44, ~18:54, ~19:04, ~19:14; exit ~19:15 IST.
 - Pre-committed contingency protocol armed for Daily Submission #5 (versia-11) immediately upon score posting.
+
+
+## 19:15 IST Mon Oct 19 — WATCHER v16 CHUNK 6 ARMED (VERSIA-10 SCORE RESOLUTION HORIZON)
+- Watcher v16 Chunk 5 completed normally (18:44, 18:53, 19:03, 19:13; exit 19:13 IST).
+- Watcher v16 Chunk 6 launched in background (sh_1546727d0001kp6VdagI0a2w2V).
+- Submission ref 57393605 (versia-10: R7 standalone probe) is PENDING (~2h 50m elapsed; submitted 16:24 IST).
+  * Benchmark runtime note: versia-9 completed in 3h 31m (12:34 -> 16:05 IST); versia-10 follows the exact same 3-arm inference harness on the hidden test set.
+  * Expected resolution window: ~19:35 - 19:55 IST.
+- Watcher v16 schedule: rounds at ~19:14, ~19:24, ~19:34, ~19:44; exit ~19:45 IST.
+- Pre-committed contingency protocol armed for Daily Submission #5 (versia-11) immediately upon score posting.
