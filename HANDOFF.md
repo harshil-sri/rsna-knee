@@ -2099,3 +2099,11 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   dakxsh23/rsna-knee-versia9: RUNNING (transitioned from QUEUED to RUNNING at ~12:20 IST; active Stage 1 Raptor & Stage 2 R7 inference; ETA ~13:30-13:35 IST).
 - Chunk 2 schedule: rounds at ~12:25, ~12:35, ~12:45, ~12:55; exit ~12:56 IST.
 - Automated Submission trigger armed: the instant versia-9 reaches COMPLETE, Watcher v13 automatically executes competition submission via API as Daily Submission #3 for Oct 19!
+
+## 12:57 IST Mon Oct 19 — WATCHER v14 ARMED (VERSIA-9 SCORE RESOLUTION TRACKING)
+- Watcher v14 launched in background (sh_1530e1abb001bNQA3n7Rg7wQ19).
+- Active Submissions Status at 12:56 IST:
+  1. ref 57376691 (versia-7 fork): COMPLETE (score=0.956).
+  2. ref 57378322 (versia-8: 3-way diverse rank blend): COMPLETE (score=0.956).
+  3. ref 57387009 (versia-9: anatomical weight specialization + gamma=1.05 sharpening): PENDING (~22m elapsed; submitted 12:34 IST; target 0.960+).
+- Watcher v14 schedule: rounds at ~12:56, ~13:06, ~13:16, ~13:26; exit ~13:27 IST.
