@@ -2275,3 +2275,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   * Once container is provisioned, commit execution takes ~11m.
 - Schedule: rounds at ~20:48, ~20:58, ~21:08, ~21:18; exit ~21:19 IST.
 - Automated competition trigger remains armed: api.competition_submit_code fires automatically as Daily Submission #5 upon commit completion.
+
+
+## 21:18 IST Mon Oct 19 — WATCHER v17 CHUNK 4 ARMED (VERSIA-11 QUEUE SURVEILLANCE)
+- Watcher v17 Chunk 3 completed normally (20:47, 20:57, 21:06, 21:16; exit 21:16 IST).
+- Watcher v17 Chunk 4 launched in background (sh_154d8a66b001EIdxG6xsH1t72P).
+- Kernel status at 21:16 IST: dakxsh23/rsna-knee-versia11 remains KernelWorkerStatus.QUEUED (~1h 27m in Kaggle GPU queue).
+  * Diagnostic: Daksh's account has used only ~1h of weekly GPU quota (holding ~29h headroom); queue time is driven entirely by Kaggle platform-wide GPU cluster congestion 74h before deadline.
+  * Once a container is provisioned, commit takes ~11 minutes.
+- Schedule: rounds at ~21:17, ~21:27, ~21:37, ~21:47; exit ~21:48 IST.
+- Automated competition trigger remains armed: api.competition_submit_code fires automatically as Daily Submission #5 the instant commit finishes.
