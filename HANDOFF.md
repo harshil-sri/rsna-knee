@@ -2043,3 +2043,11 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - SUBMISSION #2 (VERSIA-8) IN FINAL PHASE:
   - ref 57378322 (versia-8: 3-way diverse rank blend: Raptor 0.35 + R7 0.40 + SWA384 0.25) is currently in final evaluation phase (~2h 21m elapsed).
   - Target: 0.960+.
+
+## 10:46 IST Mon Oct 19 — WATCHER v12 CHUNK 6 ARMED
+- Watcher v12 Chunk 5 completed normally (10:15, 10:25, 10:34, 10:44; exit 10:44 IST).
+- Watcher v12 Chunk 6 launched in background (sh_15295ee7f001DAKziZ770LyQ9I).
+- Submissions Status at 10:45 IST:
+  1. ref 57376691 (versia-7 fork): COMPLETE (score=0.956).
+  2. ref 57378322 (versia-8: 3-way diverse rank blend): PENDING (~2h 52m elapsed; in final evaluation steps; target 0.960+).
+- Chunk 6 schedule: rounds at ~10:45, ~10:55, ~11:05, ~11:15; exit ~11:16 IST.
