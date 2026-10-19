@@ -2074,3 +2074,20 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - REMAINING CAPACITY TODAY:
   - 3 daily submission slots remaining for Oct 19 UTC.
   - Next step: Optimize per-finding blending weights and threshold calibration to push toward 0.960+.
+
+
+## 11:55 IST Mon Oct 19 — VERSIA-9 LAUNCHED ON DAKSH; WATCHER v13 ARMED
+- VERSIA-9 SPECIALIZED 3-WAY RANK ENSEMBLE LIVE:
+  - In strict accordance with Council verdict (ses_ead2fd747ffe2VWhI58Sm6h57g):
+    1. Preserves zero-leakage 3-subprocess inference (Raptor + R7 + SWA-384, ~70 min runtime).
+    2. Anatomical Weight Specialization:
+       - Ligaments & Cartilage (ACL, MCL, Meniscus): Raptor 0.42, R7 0.29, SWA 0.29.
+       - Compartment OA & Effusion: R7 0.44, Raptor 0.28, SWA 0.28.
+       - Low-prevalence findings: Uniform 0.3333 / 0.3333 / 0.3334.
+    3. Gentle Power Sharpening: gamma=1.05 strictly on SWA ranks for Fracture, Baker's, and Contusion.
+  - Pushed to dakxsh23/rsna-knee-versia9 (v1) at 11:53:03 IST on Daksh free slot.
+  - Live status verified: KernelWorkerStatus.QUEUED -> RUNNING.
+  - Completion expected ~13:00 IST.
+- WATCHER v13 ARMED in background (sh_152d578b7001NCnIhBxenaAT7M):
+  - Automatically tracks versia-9 execution.
+  - The instant versia-9 reaches COMPLETE, automatically executes competition submission via API as Daily Submission #3 for Oct 19!
