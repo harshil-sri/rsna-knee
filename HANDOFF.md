@@ -2255,3 +2255,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   3. ref 57387009 (versia-9 specialized blend): COMPLETE (score=0.955).
   4. ref 57393605 (versia-10 R7 standalone probe): COMPLETE (score=0.949 - confirms decorrelation engine).
   5. versia-11 (Architectural 50/50 Partition): Pushed & queuing (Daily Submission #5).
+
+
+## 20:20 IST Mon Oct 19 — WATCHER v17 CHUNK 2 ARMED (VERSIA-11 QUEUE MONITORING)
+- Watcher v17 Chunk 1 completed normally (19:49, 19:59, 20:08, 20:18; exit 20:18 IST).
+- Watcher v17 Chunk 2 launched in background (sh_154a2e054001mOkEGJBtG7DaXL).
+- Kernel status at 20:18 IST: dakxsh23/rsna-knee-versia11 is KernelWorkerStatus.QUEUED.
+  * Standard Kaggle GPU queue wait times range ~15-45m during peak deadline traffic.
+  * Commit execution takes ~11m once provisioned.
+- Schedule: rounds at ~20:19, ~20:29, ~20:39, ~20:49; exit ~20:50 IST.
+- Automated competition submission armed: the instant status becomes COMPLETE, api.competition_submit_code fires automatically as Daily Submission #5.
