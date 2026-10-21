@@ -2445,3 +2445,13 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   * Wednesday Oct 21 UTC: 5 of 5 daily submissions available (versia-12 is Sub #1).
   * Thursday Oct 22 UTC: 5 daily submissions available after 00:00 UTC (05:30 IST).
   * Total remaining submission budget: 10 submissions before final deadline (Oct 22 23:59 UTC).
+
+
+## 22:06 IST Wed Oct 21 — WATCHER v19 CHUNK 2 ARMED (VERSIA-12 QUEUE MONITORING)
+- Watcher v19 Chunk 1 completed normally (21:35, 21:45, 21:55, 22:04; exit 22:04 IST).
+- Watcher v19 Chunk 2 launched in background (sh_15f50f98a001CpWqA2byd6C5ze).
+- Kernel status at 22:04 IST: dakxsh23/rsna-knee-versia12 remains KernelWorkerStatus.QUEUED (~29m in Kaggle GPU queue).
+  * Context: Standard evening queue wait times range ~30-60m during peak competition traffic 32h before deadline.
+  * Once container is provisioned, commit execution takes ~11-12 minutes on the mock 3-study test set.
+- Schedule: rounds at ~22:05, ~22:15, ~22:25, ~22:35; exit ~22:36 IST.
+- Automated competition trigger remains armed: api.competition_submit_code fires automatically as Daily Submission #1 for Wednesday Oct 21 UTC the instant commit finishes.
