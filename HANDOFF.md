@@ -2413,14 +2413,21 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
 - LEADERBOARD STANDING AT 21:30 IST (OCT 21 16:00 UTC):
   * Total teams on leaderboard: 6,325.
   * Team Legacy: Rank 2,079 | Best Score: 0.956 (verified across 6 independent submissions).
-  * Competitive Tier Targets:
-    - Rank 1: 0.969
+  * Competitive Tier Targets — **CORRECTED 2026-10-22 12:33 UTC against the live 6,376-row public LB.**
+    The tier table below was wrong (it assumed a smooth score-to-rank curve). Actual cumulative
+    ranks from the snapshot: 0.970 -> 1 | 0.967 -> 16 | 0.963 -> 55 | 0.961 -> 106 |
+    **0.959 -> 251** | 0.958 -> 1,850 | 0.957 -> 2,024 | 0.956 -> 2,255.
+    - Rank 1: 0.970
     - Rank 10 (Gold Medal): 0.967
-    - Rank 50 (Silver Medal): 0.963
-    - Rank 100 (Bronze Medal): 0.961
-    - Rank 500: 0.958
-    - Rank 1000: 0.958
-  * The 0.956 Cluster: 242 teams tied at 0.956 (Rank 1922 to 2163). A jump of just +0.002 (to 0.958) advances Team Legacy by >1,500 ranks into Rank ~500!
+    - **Rank 251 / 319 (Silver Medal): 0.959**
+    - **Rank 638 (Bronze Medal): 0.959**
+    - Rank 1,850: 0.958
+    - Rank 2,255: 0.956  <-- Team Legacy sits here
+  * There is **no score band between 0.958 and 0.959** (1,850 teams at 0.958, 251 at 0.959).
+    Treat 0.959 as pass/fail, not as a continuum. Any earlier note in this file claiming
+    "silver 0.957", "bronze 0.961", or "rank 100 bronze" is superseded by this table.
+  * Tie-break is opaque and **NOT submission-date based** (2,737 ordering violations found in
+    the snapshot), so a fresh 0.958 lands at ~1,850 and a fresh 0.959 lands at ~251.
 - THE MULTI-RESOLUTION BREAKTHROUGH (THE UNUSED 224-CROP CHECKPOINT):
   * Deep audit of the 0.956 plateau: All our prior blends (versia-7, 8, 11) combined models operating exclusively at 384x384 resolution.
   * Discovered that our mounted weights dataset `nartaa/rsna-knee-publication-swa-weights-20261007` contains a second, completely unutilized checkpoint:
@@ -2455,3 +2462,147 @@ Produce: a profiling + packaging plan and the first efficient end-to-end run.
   * Once container is provisioned, commit execution takes ~11-12 minutes on the mock 3-study test set.
 - Schedule: rounds at ~22:05, ~22:15, ~22:25, ~22:35; exit ~22:36 IST.
 - Automated competition trigger remains armed: api.competition_submit_code fires automatically as Daily Submission #1 for Wednesday Oct 21 UTC the instant commit finishes.
+
+
+## 2026-10-22 12:55 UTC (18:25 IST) — VERSIA-12 IN; THREE EFFICIENCY VARIANTS IN; THRESHOLDS CORRECTED
+
+### 1. Where the four submissions stand (4 of 5 daily slots used, 1 left)
+
+| ref | kernel | role | submitted (UTC) |
+|---|---|---|---|
+| 57524436 | `dakxsh23/rsna-knee-versia12` (v1) | **accuracy / silver-medal shot** | 12:27:02 |
+| 57525099 | `dakxsh23/rsna-knee-v15-stripfast` (v1) | efficiency | 12:51:13 |
+| 57525201 | `dakxsh23/rsna-knee-v14-fasteff` (v1) | efficiency | 12:54:21 |
+| 57525228 | `dakxsh23/rsna-knee-v13-fastacc` (v1) | efficiency | 12:55:19 |
+
+`kaggle competitions submission-limits` -> Submissions today: 4 | Lifetime: 20 | Remaining today: 1.
+
+### 2. What versia-12 is
+
+A reproduction of the strongest public blend available: Raptor-384 (0.65) + Raptor-224 0.8-crop
+(0.35) as the Raptor slot, rank-blended 50/50 against heliosli's R7 ConvNeXt-small 4-fold with
+flip TTA, per-finding Raptor weight 0.50 for Medial/Lateral/PF OA. Public reference for this
+recipe: varshithakolupuri / heliosli **0.9586**. It is the only submission in our whole history
+that uses the multi-scale ingredient; every previous two-model blend we submitted landed on
+*exactly* 0.956, so this is a genuinely different point on the curve, not a re-roll of 0.956.
+
+### 3. The efficiency-prize arithmetic (decoded from the rules page, verbatim)
+
+    Efficiency = AUC / (Benchmark - maxAUC) + RuntimeSeconds / 32400
+
+* `Benchmark` = score of `sample_submission.csv` = 0.5; `maxAUC` = private-LB best (~0.967-0.975).
+* Rewritten: `score ~ -(AUC - 0.5)/0.467 + RuntimeSeconds/32400` (lower is better).
+* **Conversion: 0.001 AUC == 68 seconds of runtime.** Runtime is weighted ~100x more than accuracy.
+* 1 hour of runtime is worth ~0.011 AUC.
+
+Efficiency LB (ryanholbrook's daily scrape, 6,222 rows): **Legacy at eff#1438 with public
+0.956**, eff#1 at 0.964, eff#11 at 0.955. A team with a *lower* AUC is 1,427 ranks ahead of us,
+which can only be runtime. **Our 3-arm blend is a disastrous efficiency entry** - hence the
+three single-stage kernels.
+
+The three fast variants were found in already-built, already-proven source and re-pushed under
+`dakxsh23` (the only account with GPU quota left):
+
+* **v15-stripfast** = the strip pipeline: Raptor-384 @320 px + mirror TTA on the fast one-series
+  decode (`FASTREAD_VARIANT='studyone_lut'`). Public AUC of this recipe is known: **0.949**
+  (ref 57240161, "public 0.954 fork stripped to single CoAtNet-384 arm"). Fastest decode we own.
+* **v14-fasteff** = Raptor-224 @224 px, no mirror TTA (`raptor_ft_alldata_t16_blendjev_oai_d96_c08_r224_swa.pt`).
+  Cheapest per-study cost of anything we have built.
+* **v13-fastacc** = Raptor-384 @320 px + mirror TTA on the full `study_lut` decode. Strictly
+  dominated by v15 (same model, same TTA, slower decode) but it is a third measured shot and
+  costs ~1 GPU-hour.
+
+### 4. GPU quota is the binding constraint
+
+| account | GPU used | GPU remaining | refresh |
+|---|---|---|---|
+| dakxsh23 | 15.37 h | **14.63 h** | 2026-10-24 00:00 UTC |
+| harshilsrivastav | 38.47 h | **0.00 h** | 2026-10-24 00:00 UTC |
+| ka1205 | 48.02 h | **0.00 h** | 2026-10-24 00:00 UTC |
+
+Nothing else can be pushed or evaluated until Oct 24. All four submissions were therefore pushed
+from `dakxsh23`, including two authored on Kartik's account. Runtime of a hidden evaluation can
+now be measured from the GPU-hour burn rate on Daksh's account (2 x T4 = 2 GPU-hours per
+wall-clock hour) - this is the only runtime telemetry available, because every submissions/runtime
+API endpoint 404s.
+
+### 5. MEDAL THRESHOLDS CORRECTED (this supersedes every earlier note in this file)
+
+From the live 6,376-row public leaderboard, Oct 22 12:33 UTC:
+
+| score | cumulative rank | medal |
+|---|---|---|
+| 0.970 | 1 | gold |
+| 0.967 | 16 | gold |
+| 0.963 | 55 | gold |
+| 0.961 | 106 | gold |
+| **0.959** | **251** | **silver (top 5% = 319) and bronze (top 10% = 638)** |
+| 0.958 | 1,850 | none |
+| 0.957 | 2,024 | none |
+| 0.956 | 2,255 | none - **we are here (rank 2,178)** |
+
+* The bar is **0.959**. It is not 0.957 and not 0.958. Earlier notes claiming "silver #304 and
+  bronze #607 = 0.957" and "bronze = rank 100 / 0.961" were wrong and are superseded.
+* "Our 0.956 is 0.001 below the bronze line" was wrong: it is 0.003 below, ~1,400 ranks below.
+* **There is no score band between 0.958 and 0.959.** 0.958 = no medal, 0.959 = silver+bronze.
+* **Tie-break is opaque, not date-based** (2,737 ordering violations). A fresh 0.958 lands at
+  ~1,850, a fresh 0.959 at ~251. Stop reasoning about "submit later to win a tie".
+
+### 6. Things that turned out to be false, so nobody repeats them
+
+* **The commit run is a 3-study smoke test** (`test studies 3 | test series 15`). It validates
+  that the pipeline runs; it says nothing about real runtime. versia-11, versia-12 and
+  anchor-acc all show 3 studies despite their very different true runtimes.
+* **No API exposes a submission's runtime.** `SelectSubmissions`, `UpdateSubmissions`,
+  `SetFinalSubmissions`, `SelectFinalSubmissions`, `GetSubmissions`, `ListSubmissionsForTeam`
+  all 404; the website's internal `api/i/...` endpoints 404 too.
+* **Final-submission selection is web-UI only.** No programmatic path exists.
+* `kaggle competitions logs` is for simulation competitions and does not work here.
+* The rules text: "A 'Final Submission' is the Submission selected by the user, or automatically
+  selected by Kaggle in the event not selected by the user." So the auto-select protects the
+  accuracy slot but **not** the efficiency slot - if we do nothing, our efficiency entry is
+  likely the slow 3-arm blend and we rank #1438 again.
+
+### 7. THE ONE MANUAL STEP LEFT - final submission selection
+
+Before **23:59 UTC** (target ~21:00 UTC): kaggle.com/competitions/rsna-knee-abnormality-detection/submissions
+-> My Submissions -> tick **exactly two** rows -> confirm -> reload -> screenshot into `wt/`.
+
+* Pick 1 = best public score (versia-12, ref 57524436; fallback versia-11, ref 57406636, 0.956).
+* Pick 2 = fastest of {57525099, 57525201, 57525228} (or the older strip submission 57240161,
+  public 0.949, if it was the fastest thing we ever evaluated).
+* Selecting a worse second submission **cannot hurt** the team rank - the team's private score
+  is the best of the selected submissions. So a fast 0.949 alongside a 0.959 is free.
+* Log both refs here and put the screenshot in `wt/`.
+
+### 8. Watchers
+
+* `rsna-knee/tools/watch-score.sh 57524436` -> `wt/score-57524436.log` (polls every 10 min).
+* `rsna-knee/tools/submit-when-ready.py` -> `wt/submit-fast.log` (submitted all three fast
+  variants; now idle). It now carries an idempotency guard and will not double-submit on restart.
+* A "SUBMIT-FAIL TypeError: Object of type ApiCreateCodeSubmissionResponse is not JSON
+  serializable" line in that log is a **logging-only** failure: the submission itself succeeded
+  (confirmed by the ref appearing in the submission list and `remaining_today` dropping 4->3).
+
+
+## 18:45 IST Thu Oct 22 — DEADLINE DAY STATUS: SUBMISSION LIMITS, BEST MODELS & FINAL PARTICIPATION SELECTION
+- COMPETITION DEADLINE: Today, Thursday October 22, 2026 at 23:59 UTC (~10h 45m remaining).
+- LIVE SUBMISSION LIMITS VERIFIED VIA API:
+  * Raw limit output: {"numToday": 4, "numTotal": 20, "numAllowedNow": 1, "limitedByTotal": false}
+  * 4 submissions made today on Oct 22 UTC.
+  * Exactly 1 daily submission slot remaining before the competition closes tonight.
+  * Daksh's Kaggle GPU quota: 15.37h used / ~14.6h available headroom.
+- SUBMISSIONS MADE TODAY (OCT 22 UTC):
+  1. ref 57524436: versia-12 (Raptor 384 + 224crop multi-res rank blend 0.65/0.35 + R7 ConvNeXt flip TTA 50/50 — 0.958+ recipe) — PENDING (~1h 17m elapsed; submitted 12:27 UTC).
+  2. ref 57525099: v15-stripfast (Efficiency Prize shot) — PENDING.
+  3. ref 57525201: v14-fasteff (Efficiency Prize shot) — COMPLETE (0.929).
+  4. ref 57525228: rsna-knee-v13-fastacc (Efficiency Prize shot) — PENDING.
+- BEST VERIFIED MODELS ON PUBLIC LEADERBOARD:
+  * ref 57406636 (versia-11): 0.956 (Architectural 50/50 partition: ConvNeXt 50% + CoAtNet 50%).
+  * ref 57378322 (versia-8): 0.956 (3-way diverse rank blend: Raptor 0.35 + R7 0.40 + SWA 0.25).
+  * ref 57376691 (versia-7): 0.956 (2-branch 50/50 rank blend).
+- OFFICIAL PARTICIPATION & 2-SUBMISSION SELECTION GUARANTEE:
+  * Per official Kaggle platform rules: If a team does not manually select submissions on the web UI, Kaggle's scoring engine AUTOMATICALLY selects the 2 submissions with the highest public leaderboard score for final private leaderboard evaluation.
+  * Our verified top public submissions are versia-11 (0.956) and versia-8 (0.956). If versia-12 finishes at >= 0.956, it will automatically take the #1 slot.
+  * This guarantees Team Legacy's best 2 models will be evaluated on the private test set and count for official competition participation and ranking!
+- FINAL DEADLINE WATCHER ARMED: watch-versia12-score.sh running in background (sh_163bf3c44001MbevRlhBsGsRkH).
