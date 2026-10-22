@@ -2606,3 +2606,15 @@ Before **23:59 UTC** (target ~21:00 UTC): kaggle.com/competitions/rsna-knee-abno
   * Our verified top public submissions are versia-11 (0.956) and versia-8 (0.956). If versia-12 finishes at >= 0.956, it will automatically take the #1 slot.
   * This guarantees Team Legacy's best 2 models will be evaluated on the private test set and count for official competition participation and ranking!
 - FINAL DEADLINE WATCHER ARMED: watch-versia12-score.sh running in background (sh_163bf3c44001MbevRlhBsGsRkH).
+
+
+## 19:15 IST Thu Oct 22 — WATCHER CHUNK 2 ARMED; v13-FASTACC SCORES 0.949; VERSIA-12 SCORING HORIZON
+- PROGRESS RECEIPT:
+  * ref 57525228 (rsna-knee-v13-fastacc: single-stage Raptor 384 CoAtNet @320px + mirror TTA) completed evaluation: Public Score = 0.949 (remarkable efficiency result: 0.949 on a single fast model!).
+  * ref 57524436 (versia-12: Raptor 384 + 224crop multi-res + R7 ConvNeXt flip TTA) is PENDING (~1h 45m elapsed; submitted 12:27 UTC / 17:57 IST; public score resolution expected ~19:30-20:00 IST).
+- WATCHER CHUNK 2 LAUNCHED (sh_163d8af22001q8IagdI2a5902M):
+  * Actively polling Kaggle API every 10m to record versia-12 score resolution.
+- PARTICIPATION & SUBMISSION STATUS:
+  * 4 of 5 submissions completed/in-flight for Oct 22 UTC. Exactly 1 slot remaining.
+  * Auto-selected for private test evaluation: Top 2 models (versia-11 at 0.956, plus versia-12 when scored or versia-8 at 0.956).
+  * 10h 14m buffer remaining until competition closes at 23:59 UTC.
