@@ -2644,3 +2644,16 @@ Before **23:59 UTC** (target ~21:00 UTC): kaggle.com/competitions/rsna-knee-abno
   * 4 of 5 submissions completed/in-flight for Oct 22 UTC. Exactly 1 slot remaining.
   * Auto-selected for private test evaluation: Top 2 models (versia-11 at 0.956, plus versia-12 when scored or versia-8 at 0.956).
   * 9h 21m buffer remaining until competition closes at 23:59 UTC.
+
+
+## 20:36 IST Thu Oct 22 — WATCHER CHUNK 5 ARMED (VERSIA-12 SCORING WINDOW EXTENSION)
+- PROGRESS RECEIPT:
+  * ref 57524436 (versia-12: Raptor 384 + 224crop multi-res + R7 ConvNeXt flip TTA) is PENDING (~3h 08m elapsed; submitted 12:27 UTC / 17:57 IST).
+  * Benchmark hidden evaluation for 3-arm pipelines across ~800+ test studies requires ~3.0 to 3.5 hours (e.g. versia-9 took 3h 31m).
+  * Score resolution window: ~20:40 - 21:15 IST.
+- WATCHER CHUNK 5 LAUNCHED (sh_1642537ea001tY379yec2WD91a):
+  * Actively polling Kaggle API every 10m to record versia-12 score resolution.
+- PARTICIPATION & SUBMISSION STATUS:
+  * 4 of 5 submissions completed/in-flight for Oct 22 UTC. Exactly 1 slot remaining.
+  * Auto-selected for private test evaluation: Top 2 models (versia-11 at 0.956, plus versia-12 when scored or versia-8 at 0.956).
+  * 8h 53m buffer remaining until competition closes at 23:59 UTC.
